@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title alt="Sistema Administrador Principal">Sistema Administrador Principal</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/Style_Sis_Administrador_Prin.css">
+    </head>
+
+    <body id="body">
+        <header id="cabecera" class="row" th:replace="layout/plantilla :: header"></header>
+        <aside class=" menu" id="menu_side">
+            <div class=" menu-div" id="menu-div">
+                <div>
+                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
+                </div>
+                <div id="menu_info">
+                    <h4 class="menu-text-user" value="USUARIO"></h4>
+                    <h5 class="menu-cargo" value="ADMINISTRADOR"></h5>
+                    <h6 class="menu-text-email" ><a class="menu-text-email-a" value="user@gmail.com" href="mailto:user@gmail.com"></a></h6>
+                </div>
+                <hr>
+                <ul class="list-unstyled components menu-ul">
+                    <li class="menu-li" >
+                        <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                        <a href="Sis_Administrador_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/area-administrar.svg" alt="home" height="30px" title="ADMINISTRAR ÁREAS">
+                        <a href="Sis_Administrador_Area.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR ÁREAS"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/zone-admin.svg" alt="home" height="30px" title="ADMINISTRAR ZONAS">
+                        <a href="Sis_Administrador_Zona.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR ZONAS"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/add-user.svg" alt="home" height="30px" title="GESTIONAR REGISTROS DE USUARIO">
+                        <a href="Sis_Administrador_GesReg.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR REGISTROS"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/gestion-user.svg" alt="home" height="30px" title="GESTIONAR USUARIOS">
+                        <a href="Sis_Administrador_GesUs.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR USUARIOS"></a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main id="contenedor-principal" class="contenedor-principal"> 
+
+            <section id="contenedor">
+                <div id="contenedor-div">
+                    <h2 class="">INICIO</h2>
+                    <hr>
+                    <section class="contenedor-div-section" id="contenedor-div-section">
+                        <div class="div-figure">
+                            <figure class="contenedor-figure">
+                                <img id="user_img" src="/img/icons/man.png" alt="user">
+                            </figure>
+                        </div>
+                        <div class="div-info">
+                            <h1 class="">ADMINISTRADOR</h1>
+                            <h3 class="">YONER ARBEY SILVA LEAL</h3>
+                            <h5 class=""><a href="mailto: yonerarbeysl@ufps.eduo.co">YONERARBEYSL@UFPS.EDU.CO</a></h3>
+                        </div>
+                    </section>
+                    <hr>
+                    <div id="botoncillos">
+
+                        <button type="button" class="fig-button" onclick="location.href = '/html/Sis_Administrador_Area.html'">
+                            <div>
+                                <p>ADMIN<br>ÁREAS</p>
+                                <i><img class="ordenar-img" src="/img/icons/area-administrar.svg" alt="ADMINISTRAR AREAS" height="40px"></i>
+                            </div>
+                            <figure class="fig-button-triangulo"></figure>
+                        </button>
+
+                        <button type="button" class="fig-button" onclick="location.href = '/html/Sis_Administrador_Zona.html'">
+                            <div>
+                                <p>ADMIN<br>ZONAS</p>
+                                <i><img src="/img/icons/zone-admin.svg" alt="ADMINISTRAR ZONAS" height="40px"></i>
+                            </div>
+                            <figure class="fig-button-triangulo"></figure>
+                        </button>
+
+                        <button type="button" class="fig-button" onclick="location.href = '/html/Sis_Administrador_GesReg.html'">
+                            <div>
+                                <p>GESTIONAR<br>REGISTROS</p>
+                                <i><img src="/img/icons/add-user.svg" alt="GESTIONAR REGISTROS DE USUARIO" height="40px"></i>
+                            </div>
+                            <figure class="fig-button-triangulo"></figure>
+                        </button>
+                        <button type="button" class="fig-button" onclick="location.href = '/html/Sis_Administrador_GesUs.html'">
+                            <div>
+                                <p>GESTIONAR<br>USUARIOS</p>
+                                <i><img src="/img/icons/gestion-user.svg" alt="GESTIONAR USUARIOS" height="40px"></i>
+                            </div>
+                            <figure class="fig-button-triangulo"></figure>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        <footer id="footer">
+            <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+        </footer>
+        
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Supervisor Principal">Sistema Supervisor Principal</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Supervisor_Prin.css">
+</head>
+
+<body id="body">
+    <header id="cabecera" class="row">
+        <nav class="col-12">
+            <span class="nav-span1 col-4">
+                <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS" data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg" alt="menu" height="30px" class="menu-button">
+                </figure>
+            </span>
+            <div class="col-1"></div>
+            <span class="nav-span2 col-7">
+                <a href="Sis_Supervisor_Prin.html" class="home">
+                    <img src="/img/icons/home.svg" alt="home" height="35px">
+                </a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+                        </figure>
+                        <p>USER</p>
+                    </button>
+                    <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                        <li id="sub-dropdown" class="dropdown">
+                            <a href="#" class="dropdown-item">Cambiar Rol</a>
+                            <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                <li class=""><a href="../html/Sis_Administrador_Prin.html" class="dropdown-item">ADMINISTRADOR</a></li>
+                                <li class=""><a href="../html/Sis_Supervisor_Prin.html" class="dropdown-item">SUPERVISOR</a></li>
+                                <li class=""><a href="../html/Sis_Interventor_Prin.html" class="dropdown-item">INTERVENTOR</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="../login.html">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </span>
+        </nav>
+    </header>
+    <aside class=" menu" id="menu_side">
+        <div class=" menu-div" id="menu-div">
+            <div>
+                <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
+            </div>
+            <div id="menu_info">
+                <h4 class="menu-text-user" value="USUARIO"></h4>
+                <h5 class="menu-cargo" value="SUPERVISOR"></h5>
+                <h6 class="menu-text-email" ><a class="menu-text-email-a" value="user@gmail.com" href="mailto:user@gmail.com"></a></h6>
+            </div>
+            <hr>
+            <ul class="list-unstyled components menu-ul">
+                <li class="menu-li">
+                    <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                    <a href="Sis_Supervisor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="INICIO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
+                    <a href="Sis_Supervisor_CargarPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CARGAR PEDIDO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
+                    <a href="Sis_Supervisor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="GESTIONAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
+                    <a href="Sis_Supervisor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CONSULTAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
+                    <a href="Sis_Supervisor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main id="contenedor-principal" class="contenedor-principal"> 
+        
+        <section id="contenedor">
+            <div id="contenedor-div">
+                <h2 class="">INICIO</h2>
+                <hr>
+                <section class="contenedor-div-section" id="contenedor-div-section">
+                    <div class="div-figure">
+                        <figure class="contenedor-figure">
+                            <img id="user_img" src="/img/icons/man.png" alt="user">
+                        </figure>
+                    </div>
+                    <div class="div-info">
+                        <h1 class="">SUPERVISOR</h1>
+                        <h3 class="">YONER ARBEY SILVA LEAL</h3>
+                        <h5 class=""><a href="mailto: yonerarbeysl@ufps.eduo.co">YONERARBEYSL@UFPS.EDU.CO</a></h3>
+                    </div>
+                </section>
+                <hr>
+                <div id="botoncillos">
+                    <button type="button" class="fig-button" onclick="location.href='/html/Sis_Supervisor_CargarPedido.html'">
+                        <div>
+                            <p>CARGAR <br>PEDIDO</p>
+                            <i><img src="/img/icons/subir.svg" alt="CARGAR" height="40px"></i>
+                        </div>
+                        <figure class="fig-button-triangulo"></figure>
+                    </button>
+
+                    <button type="button" class="fig-button" onclick="location.href='/html/Sis_Supervisor_Lista.html'">
+                        <div>
+                            <p>GESTIONAR <br>PEDIDOS</p>
+                            <i><img class="ordenar-img" src="/img/icons/orden.svg" alt="SUBIR" height="50px"></i>
+                        </div>
+                        <figure class="fig-button-triangulo"></figure>
+                    </button>
+
+                    <button type="button" class="fig-button" onclick="location.href='/html/'">
+                        <div>
+                            <p>CONSULTAR <br>PEDIDO</p>
+                            <i><img src="/img/icons/consulta.svg" alt="CONSULTAR" height="40px"></i>
+                        </div>
+                        <figure class="fig-button-triangulo"></figure>
+                    </button>
+
+                    <button type="button" class="fig-button" onclick="location.href='/html/'">
+                        <div>
+                            <p>DESCARGAR <br>REPORTE</p>
+                            <i><img src="/img/icons/flecha-hacia-abajo.svg" alt="DESCARGAR" height="40px"></i>
+                        </div>
+                        <figure class="fig-button-triangulo"></figure>
+                    </button>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+</body>
+
+</html>

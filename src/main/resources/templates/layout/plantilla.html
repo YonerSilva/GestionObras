@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header id="cabecera" class="row" th:fragment="header">
+            <nav class="col-12">
+                <span class="nav-span1 col-4">
+                    <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS" data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                    <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg" alt="menu" height="30px" class="menu-button">
+                    </figure>
+                </span>
+                <div class="col-1"></div>
+                <span class="nav-span2 col-7">
+                    <a th:href="@{/}" class="home">
+                        <img src="/img/icons/home.svg" alt="home" height="35px">
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+                            </figure>
+                            <p>USER</p>
+                        </button>
+                        <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                            <li id="sub-dropdown" class="dropdown">
+                                <a href="#" class="dropdown-item">Cambiar Rol</a>
+                                <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                    <li class=""><a th:href="@{../html/Sis_Administrador_Prin.html}" class="dropdown-item">ADMINISTRADOR</a></li>
+                                    <li class=""><a th:href="@{../html/Sis_Supervisor_Prin.html}" class="dropdown-item">SUPERVISOR</a></li>
+                                    <li class=""><a th:href="@{../html/Sis_Interventor_Prin.html}" class="dropdown-item">INTERVENTOR</a></li>
+                                </ul>
+                            </li>
+                            <li><form class="d-flex justify-content-center" method="post" th:action="@{/logout}"><input class="dropdown-item" type="submit" name="name" value="Cerrar Sesión"></form></li>
+                        </ul>
+                    </div>
+                </span>
+            </nav>
+        </header>
+        
+    </body>
+</html>
