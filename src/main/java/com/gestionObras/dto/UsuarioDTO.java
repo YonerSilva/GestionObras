@@ -17,6 +17,15 @@ public class UsuarioDTO implements Serializable{
     private long id_usuario;
     
     @NotEmpty
+    private String nombre;
+    
+    @NotEmpty
+    private String apellido;
+    
+    @NotEmpty
+    private String foto;
+    
+    @NotEmpty
     private String username;
     
     @NotEmpty

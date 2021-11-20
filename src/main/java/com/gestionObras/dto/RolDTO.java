@@ -16,6 +16,6 @@ public class RolDTO implements Serializable {
     private Long id_rol;
     
     @NotEmpty
-    private String nombre;
+    private String tipo_rol;
     
 }
