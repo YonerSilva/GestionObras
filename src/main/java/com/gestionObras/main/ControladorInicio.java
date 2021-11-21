@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.gestionObras.main;
 
 import com.gestionObras.dao.UsuarioDAO;
-import com.gestionObras.dto.UsuarioDTO;
+import com.gestionObras.entities.Rol;
+import com.gestionObras.entities.Usuario;
+import com.gestionObras.service.UsuarioService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -31,41 +26,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class ControladorInicio {
+
+    @Autowired
+    private UsuarioService usuarioService;
     
-    private UsuarioDAO usuarioDao;
-    
+    @Autowired
+    private 
+
     @GetMapping("/")
-    public String inicio(Model model, @AuthenticationPrincipal User user){
-        
-        System.out.println(user.getUsername());
-        //return "/html/Sis_Administrador_Prin";
+    public String inicio(Model model, @AuthenticationPrincipal User user) {
         return userAuthentication(user);
     }
-    
-    private String userAuthentication(@AuthenticationPrincipal User user){
-        if(user.getUsername().equals("user")){
-            System.out.println("Hola1");
-            return "/html/Sis_Supervisor_Prin";
-        }else{
-            if(user.getUsername().equals("admin")){
-                System.out.println("hola2");
+
+    private String userAuthentication(@AuthenticationPrincipal User user) {
+        Usuario usuario = usuarioService.encontrarUsuario(user.getUsername());
+        for (Rol rol : usuario.getRoles()) {
+            if (rol.getTipo_rol().equals("ADMINISTRADOR")) {
                 return "/html/Sis_Administrador_Prin";
             }
+            if (rol.getTipo_rol().equals("SUPERVISOR")){
+                return "/html/Sis_Supervisor_Prin";
+            } 
+            if (rol.getTipo_rol().equals("INTERVENTOR")){
+                return "/html/Sis_Interventor_Prin";
+            } 
         }
-        return "";
+        return "/login";    
     }
-    
+
     @PostMapping("/registrarse")
-    public String registrarUsuario(@Valid UsuarioDTO usuario,Errors errores){
+    public String registrarUsuario(@Valid Usuario usuario, Errors errores) {
         if (errores.hasErrors()) {
-            return "modificar";
+            return "/html/Registrar_User";
         }
-        usuarioDao.save(new UsuarioDTO())
-        return "/html/Registrar_User";
+        
+        return "/login";
     }
-    
+
     private File guardarfoto(String ruta) {
-    
+
         FileInputStream fis = null;
         try {
             File file = new File(ruta);

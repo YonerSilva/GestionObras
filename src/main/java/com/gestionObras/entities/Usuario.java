@@ -1,4 +1,4 @@
-package com.gestionObras.dto;
+package com.gestionObras.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Data
 @Table(name = "usuario")
-public class UsuarioDTO implements Serializable{
+public class Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -33,5 +33,5 @@ public class UsuarioDTO implements Serializable{
     
     @OneToMany
     @JoinColumn(name = "id_usuario")
-    private List<RolDTO> roles;
+    private List<Rol> roles;
 }

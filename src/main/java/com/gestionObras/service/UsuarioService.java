@@ -1,9 +1,11 @@
 package com.gestionObras.service;
 
 import com.gestionObras.dao.UsuarioDAO;
-import com.gestionObras.dto.RolDTO;
-import com.gestionObras.dto.UsuarioDTO;
+import com.gestionObras.entities.Rol;
+import com.gestionObras.entities.Usuario;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,17 +27,42 @@ public class UsuarioService implements UserDetailsService{
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UsuarioDTO usuario = usuarioDao.findByUsername(username);
+        Usuario usuario = usuarioDao.findByUsername(username);
         if(usuario == null){
             throw new UsernameNotFoundException(username);
         }
         
         var roles = new ArrayList<GrantedAuthority>();
-        for(RolDTO rol: usuario.getRoles()){
+        for(Rol rol: usuario.getRoles()){
             roles.add(new SimpleGrantedAuthority(rol.getTipo_rol()));
         }
         return new User(usuario.getUsername(),usuario.getPassword(), roles);
     }
     
+    @Transactional(readOnly = true)
+    public List<Usuario> listarUsuarios(){
+        return (List<Usuario>)usuarioDao.findAll();
+    }
     
+    public void guardarUsuario(Usuario usuario){
+        usuarioDao.save(usuario);
+    }
+    
+    public void eliminarUsuario(long id){
+        usuarioDao.deleteById(id);
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario encontrarUsuario(String username){
+        return usuarioDao.findByUsername(username);
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario findById(long id){
+        Optional<Usuario> optional = usuarioDao.findById(id);
+        if(optional.isPresent()){
+            return optional.get();
+        }
+        return null;
+    }
 }

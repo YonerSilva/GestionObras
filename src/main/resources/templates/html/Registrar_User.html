@@ -11,7 +11,7 @@
 <body>
     <section class="contenedor-principal">
         <h3>REGISTRAR</h3>
-        <form class="formulario" method="post">
+        <form class="formulario" method="post" th:action="@{/registrarse}">
             <div class="contenedor-div">
                 <label for="nombre" class="">NOMBRES</label>
                 <div class="">
@@ -66,7 +66,7 @@
                 <a href="/index.html" class="link-primary">Iniciar Sesión</a>
                 <a href="/html/Olvide_Contrasenia.html" class="link-primary">Olvidé mi contraseña</a>
             </div>
-            <button type="button" class="" onclick="registrarAction()">REGISTRARSE</button>
+            <button type="submit" onclick="registrarAction()">REGISTRARSE</button>
         </form>
     </section>
 
