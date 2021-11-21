@@ -11,29 +11,29 @@
 <body>
     <section class="contenedor-principal">
         <h3>REGISTRAR</h3>
-        <form class="formulario" method="post" th:action="@{/registrarse}">
+        <form class="formulario" method="post" th:action="@{/registrarse}" th:object="${usuario}">
             <div class="contenedor-div">
                 <label for="nombre" class="">NOMBRES</label>
                 <div class="">
-                    <input type="text" class=" input" id="nombre" required>
+                    <input type="text" class=" input" id="nombre" th:field="*{nombre}" required>
                 </div>
             </div>
             <div class="contenedor-div">
                 <label for="apellido" class="">APELLIDOS</label>
                 <div class="">
-                    <input type="text" class=" input" id="apellido" required>
+                    <input type="text" class=" input" id="apellido" th:field="*{apellido}" required>
                 </div>
             </div>
             <div class="contenedor-div">
-                <label for="email" class="">USUARIO</label>
+                <label for="username" class="">USUARIO</label>
                 <div class="">
-                    <input type="email" class=" input" id="email" required>
+                    <input type="email" class=" input" id="username" th:field="*{username}" required>
                 </div>
             </div>
             <div class="contenedor-div">
                 <label for="password" class="">CONTRASEÑA</label>
                 <div class="contenedor-password">
-                    <input type="password" class=" input" id="password" required>
+                    <input type="password" class=" input" id="password" th:field="*{password}" required>
                     <div class="figure-password">
                         <img id="password-eye" onclick="verContraseña()" src="/img/icons/eye-slash-regular.svg" alt="ver contraseña" height="15px">
                     </div>

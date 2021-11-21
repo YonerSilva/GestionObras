@@ -10,9 +10,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -37,32 +41,38 @@ public class ControladorInicio {
 
     @GetMapping("/")
     public String inicio(Model model, @AuthenticationPrincipal User user) {
+        log.info(user.toString());
         return userAuthentication(user);
     }
 
-    private String userAuthentication(@AuthenticationPrincipal User user) {
-        Usuario usuario = usuarioService.encontrarUsuario(user.getUsername());
-        for (Rol rol : usuario.getRoles()) {
-            if (rol.getTipo_rol().equals("ADMINISTRADOR")) {
+    private String userAuthentication(User user) {
+        Collection<GrantedAuthority> roles =  user.getAuthorities();
+        
+        for (GrantedAuthority role : roles) {
+            if (role.getAuthority().equals("ROLE_ADMINISTRADOR")) {
                 return "/html/Sis_Administrador_Prin";
             }
-            if (rol.getTipo_rol().equals("SUPERVISOR")){
+            if (role.getAuthority().equals("ROLE_SUPERVISOR")){
                 return "/html/Sis_Supervisor_Prin";
             } 
-            if (rol.getTipo_rol().equals("INTERVENTOR")){
+            if (role.getAuthority().equals("ROLE_INTERVENTOR")){
                 return "/html/Sis_Interventor_Prin";
             } 
         }
         return "/login";    
     }
 
+    @GetMapping("/Registrar_User")
+    public String inicio() {
+        return "/html/Registrar_User";
+    }
+    
     @PostMapping("/registrarse")
     public String registrarUsuario(@Valid Usuario usuario, Errors errores) {
         if (errores.hasErrors()) {
             return "/html/Registrar_User";
         }
         Solicitud_Registro solicitud = new Solicitud_Registro();
-        solicitud.setId_usuario(usuario.getId_usuario());
         solicitud.setNombre(usuario.getNombre());
         solicitud.setApellido(usuario.getApellido());
         solicitud.setFoto(usuario.getFoto());
