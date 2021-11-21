@@ -45,9 +45,9 @@
                     <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
                 </div>
                 <div id="menu_info">
-                    <h4 class="menu-text-user" value="USUARIO"></h4>
+                    <h4 class="menu-text-user" th:value="${usuario.getNombre()}+' '+${usuario.getApellido()}"></h4>
                     <h5 class="menu-cargo" value="ADMINISTRADOR"></h5>
-                    <h6 class="menu-text-email" ><a class="menu-text-email-a" value="user@gmail.com" href="mailto:user@gmail.com"></a></h6>
+                    <h6 class="menu-text-email" ><a class="menu-text-email-a" th:value="${usuario.getUsername()}" th:href="'mailto:'+${usuario.getUsername()}"></a></h6>
                 </div>
                 <hr>
                 <ul class="list-unstyled components menu-ul">

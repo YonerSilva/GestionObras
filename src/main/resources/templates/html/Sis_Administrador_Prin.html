@@ -25,14 +25,14 @@
                         </div>
                         <div class="div-info">
                             <h1 class="">ADMINISTRADOR</h1>
-                            <h3 class="">YONER ARBEY SILVA LEAL</h3>
-                            <h5 class=""><a href="mailto: yonerarbeysl@ufps.eduo.co">YONERARBEYSL@UFPS.EDU.CO</a></h3>
+                            <h3 class="" th:text="${usuario.getNombre()+' '+usuario.getApellido()}"></h3>
+                            <h5 class=""><a th:href="'mailto:'+${usuario.getUsername()}" th:text="${usuario.getUsername()}"></a></h3>
                         </div>
                     </section>
                     <hr>
                     <div id="botoncillos">
 
-                        <button type="button" class="fig-button" onclick="location.href = '/html/Sis_Administrador_Area.html'">
+                        <button type="button" class="fig-button"  th:onClick="location.href='/Sis_Administrador_Area'">
                             <div>
                                 <p>ADMIN<br>ÁREAS</p>
                                 <i><img class="ordenar-img" src="/img/icons/area-administrar.svg" alt="ADMINISTRAR AREAS" height="40px"></i>

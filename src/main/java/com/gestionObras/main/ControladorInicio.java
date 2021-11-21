@@ -38,7 +38,8 @@ public class ControladorInicio {
 
     @GetMapping("/")
     public String inicio(Model model, @AuthenticationPrincipal User user) {
-        log.info(user.toString());
+        Usuario usuario = usuarioService.encontrarUsuario(user.getUsername());
+        model.addAttribute("usuario", usuario);
         return userAuthentication(user);
     }
 
@@ -64,7 +65,7 @@ public class ControladorInicio {
         return "/html/Registrar_User";
     }
     
-    @PostMapping("/guardar")
+    @PostMapping("/Guardar_Solicitud")
     public String guardar(@Valid Usuario usuario, Errors errores) {
         if (errores.hasErrors()) {
             return "Registrar_User";
