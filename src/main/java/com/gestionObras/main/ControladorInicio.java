@@ -2,7 +2,9 @@ package com.gestionObras.main;
 
 import com.gestionObras.dao.UsuarioDAO;
 import com.gestionObras.entities.Rol;
+import com.gestionObras.entities.Solicitud_Registro;
 import com.gestionObras.entities.Usuario;
+import com.gestionObras.service.Solicitud_RegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +33,7 @@ public class ControladorInicio {
     private UsuarioService usuarioService;
     
     @Autowired
-    private 
+    private Solicitud_RegistroServiceImpl solicitudImpl;
 
     @GetMapping("/")
     public String inicio(Model model, @AuthenticationPrincipal User user) {
@@ -59,7 +61,15 @@ public class ControladorInicio {
         if (errores.hasErrors()) {
             return "/html/Registrar_User";
         }
-        
+        Solicitud_Registro solicitud = new Solicitud_Registro();
+        solicitud.setId_usuario(usuario.getId_usuario());
+        solicitud.setNombre(usuario.getNombre());
+        solicitud.setApellido(usuario.getApellido());
+        solicitud.setFoto(usuario.getFoto());
+        solicitud.setUsername(usuario.getUsername());
+        solicitud.setPassword(usuario.getPassword());
+        solicitud.setRoles(usuario.getRoles());
+        solicitudImpl.guardarSolicitud(solicitud);
         return "/login";
     }
 

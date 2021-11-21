@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 public class Solicitud_RegistroServiceImpl implements Solicitud_RegistroService{
     
     @Autowired
-    private Solicitud_RegistroDAO solicitud;
+    private Solicitud_RegistroDAO solicitudDao;
 
     @Override
     public List<Solicitud_Registro> listarSolicitudes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return solicitudDao.findAll();
     }
 
     @Override
     public void guardarSolicitud(Solicitud_Registro solicitud) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        solicitudDao.save(solicitud);
     }
 
     @Override
     public void eliminarSolicitud(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        solicitudDao.deleteById(id);
     }
     
 }
