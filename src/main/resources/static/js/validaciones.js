@@ -20,7 +20,6 @@ function verContraseña(){
 
 function registrarAction(){
     let inputs = document.querySelectorAll(".input");
-    console.log(inputs);
     let check1 = document.getElementById("check_admin");
     let check2 = document.getElementById("check_supervisor");
     let check3 = document.getElementById("check_interventor");

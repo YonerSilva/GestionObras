@@ -24,11 +24,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author ACER
- */
 @Controller
 @Slf4j
 public class ControladorInicio {
@@ -62,15 +59,15 @@ public class ControladorInicio {
         return "/login";    
     }
 
-    @GetMapping("/Registrar_User")
-    public String inicio() {
+    @GetMapping("/sign_in")
+    public String registrar_User(Usuario usuario) {
         return "/html/Registrar_User";
     }
     
-    @PostMapping("/registrarse")
-    public String registrarUsuario(@Valid Usuario usuario, Errors errores) {
+    @PostMapping("/guardar")
+    public String guardar(@Valid Usuario usuario, Errors errores) {
         if (errores.hasErrors()) {
-            return "/html/Registrar_User";
+            return "Registrar_User";
         }
         Solicitud_Registro solicitud = new Solicitud_Registro();
         solicitud.setNombre(usuario.getNombre());
