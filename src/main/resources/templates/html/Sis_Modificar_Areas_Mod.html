@@ -104,19 +104,19 @@
             </div>
             <div id="contenedor-div">
 
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputNombre" class="form-label">Nombre</label>
-                        <input type="nombre" class="form-control" id="exampleInputNombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
-                        <input type="descripcion" class="form-control" id="exampleInputDescripcion">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
-                        <input type="ubicacion" class="form-control" id="exampleInputUbicacion">
-                    </div>
+                <form  class="form-insumos col-6" th:action="@{/guardarArea}" method="post" th:object="${area}">
+                        <div class="mb-3">
+                            <label for="exampleInputNombre" class="form-label">Nombre</label>
+                            <input type="nombre" class="form-control" id="exampleInputNombre" th:field="*{nombre}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
+                            <input type="descripcion" class="form-control" id="exampleInputDescripcion" th:field="*{descripcion}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
+                            <input type="ubicacion" class="form-control" id="exampleInputUbicacion" th:field="*{ubicacion}">
+                        </div>
                     <div class="contenedor-buttons mx-auto mt-3">
                         <button type="button"  class="btn-primary p-1" onclick="">Actualizar</button>
                         </div>
