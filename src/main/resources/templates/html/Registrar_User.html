@@ -11,7 +11,7 @@
 <body>
     <section class="contenedor-principal">
         <h3>REGISTRAR</h3>
-        <form class="formulario" method="post" th:action="@{/guardar}" th:object="${usuario}">
+        <form class="formulario" method="post" enctype="multipart/form-data" th:action="@{/Guardar_Solicitud}" th:object="${usuario}">
             <div class="contenedor-div">
                 <label for="nombre" class="">NOMBRES</label>
                 <div class="">
@@ -64,10 +64,9 @@
             </div>
             <div class="contenedor-text">
                 <a th:href="@{/}" class="link-primary">Iniciar Sesión</a>
-                <a th:href="@{/html/Olvide_Contrasenia}" class="link-primary">Olvidé mi contraseña</a>
+                <a th:href="@{/Olvide_Contrasenia}" class="link-primary">Olvidé mi contraseña</a>
             </div>
-            <button type="submit" >REGISTRARSE</button>
-            <!--onclick="registrarAction()"-->
+            <button type="button" th:onclick="registrarAction()">REGISTRARSE</button>
         </form>
     </section>
 

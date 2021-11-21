@@ -18,4 +18,12 @@ public class Rol implements Serializable {
     @NotEmpty
     private String tipo_rol;
     
+    @Override
+    public String toString(){
+        String cadena = "";
+        for (int i = 5; i < this.tipo_rol.length(); i++) {
+            cadena += this.tipo_rol.charAt(i);
+        }
+        return cadena;
+    }
 }

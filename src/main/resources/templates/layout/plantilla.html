@@ -28,9 +28,9 @@
                             <li id="sub-dropdown" class="dropdown">
                                 <a href="#" class="dropdown-item">Cambiar Rol</a>
                                 <ul id="sub-dropdown-menu" class="dropdown-menu">
-                                    <li class=""><a th:href="@{../html/Sis_Administrador_Prin.html}" class="dropdown-item">ADMINISTRADOR</a></li>
-                                    <li class=""><a th:href="@{../html/Sis_Supervisor_Prin.html}" class="dropdown-item">SUPERVISOR</a></li>
-                                    <li class=""><a th:href="@{../html/Sis_Interventor_Prin.html}" class="dropdown-item">INTERVENTOR</a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_ADMINISTRADOR')}"><a th:href="@{../html/Sis_Administrador_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_SUPERVISOR')}"><a th:href="@{../html/Sis_Supervisor_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_INTERVENTOR')}"><a th:href="@{../html/Sis_Interventor_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
                                 </ul>
                             </li>
                             <li><form class="d-flex justify-content-center" method="post" th:action="@{/logout}"><input class="dropdown-item" type="submit" name="name" value="Cerrar Sesión"></form></li>

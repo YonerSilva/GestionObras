@@ -6,6 +6,7 @@ import com.gestionObras.entities.Solicitud_Registro;
 import com.gestionObras.entities.Usuario;
 import com.gestionObras.service.Solicitud_RegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
+import com.gestionObras.util.EncriptarPassword;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -67,6 +68,7 @@ public class ControladorInicio {
     
     @PostMapping("/Guardar_Solicitud")
     public String guardar(@Valid Usuario usuario, Errors errores) {
+        EncriptarPassword encriptar = new EncriptarPassword();
         if (errores.hasErrors()) {
             return "Registrar_User";
         }
@@ -75,7 +77,7 @@ public class ControladorInicio {
         solicitud.setApellido(usuario.getApellido());
         solicitud.setFoto(usuario.getFoto());
         solicitud.setUsername(usuario.getUsername());
-        solicitud.setPassword(usuario.getPassword());
+        solicitud.setPassword(encriptar.encriptarPassword(usuario.getPassword()));
         solicitud.setRoles(usuario.getRoles());
         solicitudImpl.guardarSolicitud(solicitud);
         return "/login";
@@ -98,5 +100,10 @@ public class ControladorInicio {
             }
         }
         return null;
+    }
+    
+    @GetMapping("/Olvide_Contrasenia")
+    public String olvideContrasenia(){
+        return "/html/Olvide_Contrasenia";
     }
 }

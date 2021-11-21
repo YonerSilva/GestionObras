@@ -25,6 +25,7 @@ function registrarAction(){
     let check3 = document.getElementById("check_interventor");
     if(inputs[0].value!=""&&inputs[1].value!=""&&inputs[2].value!=""&&inputs[3].value!=""&&inputs[4].value!=""&&inputs[5].value!=""&&check1.checked || check2.checked || check3.checked){
         if(verificarContraseñas(inputs)){
+            
             alert("Usuario Registrado Correctamente, por favor verificar correo electronico.");
             document.location.href = "../index.html";
         }
@@ -68,4 +69,8 @@ function verificarContraseñas(inputs){
         alert("Las contraseñas no coinciden.")
         return false;
     }
+}
+
+function agregarFoto(){
+    
 }
