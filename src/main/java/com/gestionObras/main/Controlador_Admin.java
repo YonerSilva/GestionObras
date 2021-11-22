@@ -3,6 +3,7 @@ package com.gestionObras.main;
 import com.gestionObras.entities.Area;
 import com.gestionObras.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ public class Controlador_Admin {
     
     @Autowired
     private AreaService areaService;
-    
+        
     @GetMapping("/Sis_Administrador_Area")
     public String Sis_Administrador_Area(Model model) {
         var areas = areaService.listarAreas();
@@ -27,8 +28,10 @@ public class Controlador_Admin {
     }
     
     @PostMapping("/guardarArea")
-    public String guardarArea(Area area){
+    public String guardarArea(Model model,Area area){
         areaService.guardar(area);
+        var areas = areaService.listarAreas();
+        model.addAttribute("areas", areas);
         return "/html/Sis_Administrador_Area";
     }
     
