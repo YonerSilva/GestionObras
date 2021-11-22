@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Supervisor Cargar Pedido">Supervisor Cargar Pedido</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Supervisor_CarPed.css">
+
+    <!-- CSS Tabla -->
+    <link rel="stylesheet" href="/css/bootstrap.table.css">
+    <!-- CSS Tabla -->
+
+</head>
+
+<body id="body">
+    <header id="cabecera" class="row">
+        <nav class="col-12">
+            <span class="nav-span1 col-4">
+                <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS"
+                    data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg"
+                        alt="menu" height="30px" class="menu-button">
+                </figure>
+            </span>
+            <div class="col-1"></div>
+            <span class="nav-span2 col-7">
+                <a href="Sis_Supervisor_Prin.html" class="home">
+                    <img src="/img/icons/home.svg" alt="home" height="35px">
+                </a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+                        </figure>
+                        <p>USER</p>
+                    </button>
+                    <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                        <li id="sub-dropdown" class="dropdown">
+                            <a href="#" class="dropdown-item">Cambiar Rol</a>
+                            <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                <li class=""><a href="../html/Sis_Administrador_Prin.html"
+                                        class="dropdown-item">ADMINISTRADOR</a></li>
+                                <li class=""><a href="../html/Sis_Supervisor_Prin.html"
+                                        class="dropdown-item">SUPERVISOR</a></li>
+                                <li class=""><a href="../html/Sis_Interventor_Prin.html"
+                                        class="dropdown-item">INTERVENTOR</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="../login.html">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </span>
+        </nav>
+    </header>
+    <aside class=" menu" id="menu_side">
+        <div class=" menu-div" id="menu-div">
+            <div>
+                <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img"
+                        src="/img/icons/man.png" alt="user-Aside"></figure>
+            </div>
+            <div id="menu_info">
+                <h4 class="menu-text-user" value="USUARIO"></h4>
+                <h5 class="menu-cargo" value="SUPERVISOR"></h5>
+                <h6 class="menu-text-email"><a class="menu-text-email-a" value="user@gmail.com"
+                        href="mailto:user@gmail.com"></a></h6>
+            </div>
+            <hr>
+            <ul class="list-unstyled components menu-ul">
+                <li class="menu-li">
+                    <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                    <a href="Sis_Supervisor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="INICIO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
+                    <a href="Sis_Supervisor_CargarPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CARGAR PEDIDO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
+                    <a href="Sis_Supervisor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="GESTIONAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
+                    <a href="Sis_Supervisor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CONSULTAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
+                    <a href="Sis_Supervisor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main id="contenedor-principal" class="contenedor-principal">
+
+        <section id="contenedor">
+            <div>
+                <h2 class="">CARGAR PEDIDO</h2>
+                <hr>
+            </div>
+            <div class="contenedor-info">
+                <div id="contenedor-form">
+                    <form class="form-pedido mb-2">
+                        <div class="mb-1">
+                            <select id="select-tipo" class="form-select" onchange="selectDisable()" required>
+                                <option selected hidden>TIPO</option>
+                                <option value="1">REGULAR</option>
+                                <option value="2">MAQUINARIA EXPRESS</option>
+                                <option value="3">KIT MENSUAL</option>
+                                <option value="4">KIT TRIMESTRAL</option>
+                                <option value="5">PEDIDOS ADICIONALES - 1</option>
+                                <option value="6">PEDIDOS ADICIONALES - 2</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <input type="text" class="form-control input" id="nombre-pedido" placeholder="NOMBRE DEL PEDIDO" required>
+                        </div>
+                    </form>
+                    <form class="form-insumos">
+                        <div class="mb-2">
+                            <input type="text" class="form-control input" id="descripcion-insumo" placeholder="DESCRIPCIÓN" required>
+                        </div>
+                        <div class="input-group mb-2">
+                            <input id="cantidad-insumo" type="number" class="form-control input" placeholder="CANTIDAD" required>
+                            <button class="btn btn-outline-secondary" type="button" onclick="more()"><img src="/img/icons/plus-solid.svg" alt="más" height="15px"></button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="less()"><img src="/img/icons/minus-solid.svg" alt="menos" height="15px"></button>
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control input" placeholder="PRECIO UNITARIO">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                        <div class="contenedor-buttons">
+                            <button type="button" class=" btn-primary p-1" onclick="agregarPedido()">AGREGAR</button>
+                            <button type="button" class=" btn-primary p-1" onclick="eliminarTodo()">ELIMINAR</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="contenedor-div">
+                    <table id="table-insumos" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Insumo</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+
+
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    
+
+    <!-- JS Tabla -->
+    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table-insumos').DataTable();
+            document.getElementById("table-insumos_length").hidden=true;
+        });
+    </script>
+    <!-- JS Tabla -->
+
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Supervisor Pedido">Sistema Supervisor Pedido</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Interventor_Ped.css">
+    
+    <!-- CSS Tabla -->
+    <link rel="stylesheet" href="/css/bootstrap.table.css">
+    <!-- CSS Tabla -->
+</head>
+
+<body id="body">
+    <header id="cabecera" class="row">
+        <nav class="col-12">
+            <span class="nav-span1 col-4">
+                <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS"
+                    data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg"
+                        alt="menu" height="30px" class="menu-button">
+                </figure>
+            </span>
+            <div class="col-1"></div>
+            <span class="nav-span2 col-7">
+                <a href="Sis_Supervisor_Prin.html" class="home">
+                    <img src="/img/icons/home.svg" alt="home" height="35px">
+                </a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+                        </figure>
+                        <p>USER</p>
+                    </button>
+                    <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                        <li id="sub-dropdown" class="dropdown">
+                            <a href="#" class="dropdown-item">Cambiar Rol</a>
+                            <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                <li class=""><a href="../html/Sis_Administrador_Prin.html"
+                                        class="dropdown-item">ADMINISTRADOR</a></li>
+                                <li class=""><a href="../html/Sis_Supervisor_Prin.html"
+                                        class="dropdown-item">SUPERVISOR</a></li>
+                                <li class=""><a href="../html/Sis_Interventor_Prin.html"
+                                        class="dropdown-item">INTERVENTOR</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="../login.html">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </span>
+        </nav>
+    </header>
+    <aside class=" menu" id="menu_side">
+        <div class=" menu-div" id="menu-div">
+            <div>
+                <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img"
+                        src="/img/icons/man.png" alt="user-Aside"></figure>
+            </div>
+            <div id="menu_info">
+                <h4 class="menu-text-user" value="USUARIO"></h4>
+                <h5 class="menu-cargo" value="SUPERVISOR"></h5>
+                <h6 class="menu-text-email"><a class="menu-text-email-a" value="user@gmail.com"
+                        href="mailto:user@gmail.com"></a></h6>
+            </div>
+            <hr>
+            <ul class="list-unstyled components menu-ul">
+                <li class="menu-li">
+                    <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                    <a href="Sis_Supervisor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="INICIO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
+                    <a href="Sis_Supervisor_CargarPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CARGAR PEDIDO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
+                    <a href="Sis_Supervisor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="GESTIONAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
+                    <a href="Sis_Supervisor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="CONSULTAR PEDIDOS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
+                    <a href="Sis_Supervisor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main id="contenedor-principal" class="contenedor-principal">
+
+        <section id="contenedor">
+            <div id="contenedor-div">
+                
+                    <h2 class="">INFORMACION PEDIDO</h2>
+                    <hr>
+                <table id="tabla-pedido" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Nombre Pedido</th>
+                            <th>Tipo Pedido</th>
+                            <th>Fecha Carga</th>
+                            <th>Fecha Aprobacion</th>
+                            <th>Fecha Despacho</th>
+                            <th>Estado Pedido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1105</td>
+                            <td>Pedido1</td>
+                            <td>Regular</td>
+                            <td>27/09/2021</td>
+                            <td>27/09/2021</td>
+                            <td>27/09/2021</td>
+                            <td>PENDIENTE</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div class="d-flex justify-content-around align-items-center">
+                    
+                    <div id="div-central" >
+                    <table id="tabla-interventor" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID Interventor</th>
+                                <th>Nombre Interventor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11151</td>
+                                <td>Garrett Winters</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="align-content-center"> 
+                        <button type="button" class="btn btn-secondary">Descargar Reporte</button>
+                    </div>
+                   
+                    </div>
+                    <table id="tabla-insumo" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cemento</td>
+                                <td>12</td>
+                                <td>20.000</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Varillas</td>
+                                <td>5</td>
+                                <td>35.000</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Varilla 0.5</td>
+                                <td>10</td>
+                                <td>17.500</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Arena</td>
+                                <td>100</td>
+                                <td>9.000</td>
+                                <td>0.00</td>
+                            </tr> 
+                            <tr>
+                                <td>Bloques</td>
+                                <td>200</td>
+                                <td>10.000</td>
+                                <td>0.00</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+    
+    <!-- JS Tabla -->
+    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+    <!-- JS Tabla -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla-insumo').DataTable();
+            document.getElementById("table-insumo_length").hidden=true;
+        });
+    </script>
+</body>
+
+</html>
