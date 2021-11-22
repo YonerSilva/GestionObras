@@ -124,10 +124,9 @@
                                         Opciones
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" th:href="@{/Sis_Modificar_Areas_Mod/} + ${area.id_area}">Modificar
-                                                Area</a></li>
+                                        <li><a class="dropdown-item" th:href="@{/Sis_Modificar_Areas_Mod/} + ${area.id_area}">Modificar Area</a></li>
                                         <li><a class="dropdown-item" href="Sis_VerPuntos_Area.html">Ver Puntos</a></li>
-                                        <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                        <li><a class="dropdown-item" th:href="@{/eliminar/} + ${area.id_area}">Eliminar</a></li>
                                     </ul>
                                 </div>
                             </td>

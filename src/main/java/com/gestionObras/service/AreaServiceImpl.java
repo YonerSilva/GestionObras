@@ -35,8 +35,5 @@ public class AreaServiceImpl  implements AreaService{
     @Transactional(readOnly=true)
     public Area encontrarArea(Area area) {
         return areaDao.findById(area.getId_area()).orElse(null);
-    }
-
-    
-    
+    }    
 }

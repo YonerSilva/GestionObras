@@ -1,7 +1,9 @@
 package com.gestionObras.main;
 
 import com.gestionObras.entities.Area;
+import com.gestionObras.entities.Zona;
 import com.gestionObras.service.AreaService;
+import com.gestionObras.service.ZonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ public class Controlador_Admin {
     
     @Autowired
     private AreaService areaService;
+    private ZonaService zonaService;
         
     @GetMapping("/Sis_Administrador_Area")
     public String Sis_Administrador_Area(Model model) {
@@ -37,15 +40,54 @@ public class Controlador_Admin {
     
     @GetMapping("/Sis_Modificar_Areas_Mod/{id_area}")
     public String Sis_Modificar_Areas_Mod(Area area, Model model){
+        area = areaService.encontrarArea(area);
         model.addAttribute("area", area);
         return "html/Sis_Modificar_Areas_Mod";
     }
     
+    @GetMapping("/eliminar/{id_area}")
+    public String eliminarArea(Area area, Model model){
+        areaService.eliminar(area);
+        var areas = areaService.listarAreas();
+        model.addAttribute("areas", areas);
+        return "/html/Sis_Administrador_Area";
+    }
+    
      @GetMapping("/Sis_Administrador_Zona")
-    public String Sis_Administrador_Zona() {
+    public String Sis_Administrador_Zona(Model model) {
+        var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);
         return "/html/Sis_Administrador_Zona";
     }
     
+     @GetMapping("/Sis_Agregar_Zonas")
+    public String Sis_Agregar_Zonas(Zona zona){
+        return "/html/Sis_Agregar_Zonas";
+    }
+    
+    @PostMapping("/guardarZona")
+    public String guardarZona(Model model,Zona zona){
+        zonaService.guardar(zona);
+        var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);
+        return "/html/Sis_Administrador_Zona";
+    }
+    /*
+    @GetMapping("/Sis_Modificar_Zonas_Mod/{id_zona}")
+    public String Sis_Modificar_Zonas_Mod(Zona zona, Model model){
+        zona = zonaService.encontrarZona(zona);
+        model.addAttribute("zona", zona);
+        return "html/Sis_Modificar_Zonas_Mod";
+    }
+    
+    @GetMapping("/eliminarZona/{id_zona}")
+    public String eliminarZona(Zona zona, Model model){
+        zonaService.eliminar(zona);
+        var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);
+        return "/html/Sis_Administrador_Zona";
+    }
+    */
     @GetMapping("/Sis_Administrador_GesReg")
     public String Sis_Administrador_GesReg() {
         return "/html/Sis_Administrador_GesReg";

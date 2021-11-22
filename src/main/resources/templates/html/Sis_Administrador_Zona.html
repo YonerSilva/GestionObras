@@ -102,7 +102,7 @@
                 <h2 class="">ADMINISTRAR ZONAS</h2>
                 <hr>
             </div>
-            <div id="contenedor-div">
+            <div id="contenedor-div" th:if="${zonas != null and !zonas.empty}">
                 <table id="example" class="table table-striped">
                     <thead>
                         <tr>
@@ -113,10 +113,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Coliseo</td>
-                            <td>**************</td>
-                            <td>UFPS</td>
+                        <tr th:each="zona : ${zonas}">
+                            <td th:text="${zona.nombre}"></td>
+                            <td th:text="${zona.descripcion}"></td>
+                            <td th:text="${zona.ubicacion}"></td>
                             <td>
                                 <div class="dropdown">
                                     <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
@@ -124,63 +124,22 @@
                                         Opciones
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="/html/Sis_Modificar_Zonas_Mod.html">Modificar Zona</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/html/Sis_VerPuntos_Zona.html">Ver Puntos</a>
-                                        <li><a class="dropdown-item" href="#">Eliminar</a>
-                                        </li>
+                                        <li><a class="dropdown-item" th:href="@{/Sis_Modificar_Zonas_Mod/} + ${area.id_area}">Modificar Zona</a></li>
+                                        <li><a class="dropdown-item" href="Sis_VerPuntos_Area.html">Ver Puntos</a></li>
+                                        <li><a class="dropdown-item" th:href="@{/eliminarZona/} + ${zona.id_zona}">Eliminar</a></li>
                                     </ul>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Coliseo</td>
-                            <td>**************</td>
-                            <td>UFPS</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Opciones
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="/html/Sis_Modificar_Zonas_Mod.html">Modificar Zona</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/html/Sis_VerPuntos_Zona.html">Ver Puntos</a>
-                                        <li><a class="dropdown-item" href="#">Eliminar</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Coliseo</td>
-                            <td>**************</td>
-                            <td>UFPS</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Opciones
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="/html/Sis_Modificar_Zonas_Mod.html">Modificar Zona</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/html/Sis_VerPuntos_Zona.html">Ver Puntos</a>
-                                        <li><a class="dropdown-item" href="#">Eliminar</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                        </tr>          
                     </tbody>
-
                 </table>
-                <div class="contenedor-buttons mx-auto mt-3">
-                    <button type="button" class="btn-primary p-1"
-                        onclick="location.href='/html/Sis_Agregar_Zonas.html'">AGREGAR ZONA</button>
-                </div>
             </div>
+            <div th:if="${zonas == null or zonas.empty}">
+                No hay zonas registradas en el sistema. 
+            </div>
+            <div class="contenedor-buttons mx-auto mt-3">
+                <button type="button"  class="btn-primary p-1" th:onClick="location.href='/Sis_Agregar_Zonas'">AGREGAR ZONA</button>
+                </div>
         </section>
     </main>
 
