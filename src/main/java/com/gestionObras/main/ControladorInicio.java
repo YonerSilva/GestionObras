@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,9 @@ public class ControladorInicio {
     private Solicitud_RegistroServiceImpl solicitudImpl;
 
     @GetMapping("/")
-    public String inicio(Model model, @AuthenticationPrincipal User user) {
+    public String inicio(Model model, @AuthenticationPrincipal User user, HttpSession session) {
         Usuario usuario = usuarioService.encontrarUsuario(user.getUsername());
+        session.setAttribute("usuario", usuario);
         model.addAttribute("usuario", usuario);
         return userAuthentication(user);
     }

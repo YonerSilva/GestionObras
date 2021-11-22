@@ -1,9 +1,11 @@
 package com.gestionObras.main;
 
 import com.gestionObras.entities.Area;
+import com.gestionObras.entities.Usuario;
 import com.gestionObras.entities.Zona;
 import com.gestionObras.service.AreaService;
 import com.gestionObras.service.ZonaService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -19,9 +21,11 @@ public class Controlador_Admin {
     private ZonaService zonaService;
         
     @GetMapping("/Sis_Administrador_Area")
-    public String Sis_Administrador_Area(Model model) {
+    public String Sis_Administrador_Area(Model model, HttpSession session) {
+        Usuario usuario =(Usuario) session.getAttribute("usuario");
         var areas = areaService.listarAreas();
         model.addAttribute("areas", areas);
+        model.addAttribute("usuario",usuario);
         return "/html/Sis_Administrador_Area";
     }
     

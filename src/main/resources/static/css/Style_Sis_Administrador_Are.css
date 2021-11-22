@@ -83,7 +83,15 @@ hr{
 #cabecera nav .nav-span2 div .contenedor-ul a:hover{
     color: black;
 }
-
+#cabecera nav .nav-span2 div .contenedor-ul li form input{
+    color: white;
+    text-align: center;
+    font-size: small;
+    width: 100%;
+}
+#cabecera nav .nav-span2 div .contenedor-ul li form input:hover{
+    color: black;
+}
 #sub-dropdown-menu{
     position: absolute;
     background-color: rgb(0, 168, 205);
