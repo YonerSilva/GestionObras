@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Administrador Agregar Area">Agregar Area</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Administrador_Are.css">
+
+    <!-- CSS Tabla -->
+    <link rel="stylesheet" href="/css/bootstrap.table.css">
+    <!-- CSS Tabla -->
+
+</head>
+
+<body id="body">
+    <header id="cabecera" class="row">
+        <nav class="col-12">
+            <span class="nav-span1 col-4">
+                <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS"
+                    data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg"
+                        alt="menu" height="30px" class="menu-button">
+                </figure>
+            </span>
+            <div class="col-1"></div>
+            <span class="nav-span2 col-7">
+                <a href="Sis_Administrador_Prin.html" class="home">
+                    <img src="/img/icons/home.svg" alt="home" height="35px">
+                </a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+                        </figure>
+                        <p>USER</p>
+                    </button>
+                    <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                        <li id="sub-dropdown" class="dropdown">
+                            <a href="#" class="dropdown-item">Cambiar Rol</a>
+                            <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                <li class=""><a href="../html/Sis_Administrador_Prin.html"
+                                        class="dropdown-item">ADMINISTRADOR</a></li>
+                                <li class=""><a href="../html/Sis_Supervisor_Prin.html"
+                                        class="dropdown-item">SUPERVISOR</a></li>
+                                <li class=""><a href="../html/Sis_Interventor_Prin.html"
+                                        class="dropdown-item">INTERVENTOR</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="../login.html">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </span>
+        </nav>
+    </header>
+    <aside class=" menu" id="menu_side">
+        <div class=" menu-div" id="menu-div">
+            <div>
+                <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img"
+                        src="/img/icons/man.png" alt="user-Aside"></figure>
+            </div>
+            <div id="menu_info">
+                <h4 class="menu-text-user" value="USUARIO"></h4>
+                <h5 class="menu-cargo" value="ADMINISTRADOR"></h5>
+                <h6 class="menu-text-email"><a class="menu-text-email-a" value="user@gmail.com"
+                        href="mailto:user@gmail.com"></a></h6>
+            </div>
+            <hr>
+            <ul class="list-unstyled components menu-ul">
+                <li class="menu-li">
+                    <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                    <a href="Sis_Administrador_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="INICIO"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/area-administrar.svg" alt="home" height="30px" title="ADMINISTRAR ÁREAS">
+                    <a href="Sis_Administrador_Area.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="ADMINISTRAR ÁREAS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/zone-admin.svg" alt="home" height="30px" title="ADMINISTRAR ZONAS">
+                    <a href="Sis_Administrador_Zona.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="ADMINISTRAR ZONAS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/add-user.svg" alt="home" height="30px" title="GESTIONAR REGISTROS DE USUARIO">
+                    <a href="Sis_Administrador_GesReg.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="GESTIONAR REGISTROS"></a>
+                </li>
+                <li class="menu-li">
+                    <img src="/img/icons/gestion-user.svg" alt="home" height="30px" title="GESTIONAR USUARIOS">
+                    <a href="Sis_Administrador_GesUs.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        value="GESTIONAR USUARIOS"></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main id="contenedor-principal" class="contenedor-principal">
+        <section id="contenedor">
+            <div>
+                <h2 class="">AGREGAR AREA</h2>
+                <hr>
+            </div>
+            <div id="contenedor-div1">
+                <div id="form1" class="row">
+                    <form  class="form-insumos col-6" th:action="@{/guardarArea}" method="post" th:object="${area}">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacion" class="form-label">Ubicacion</label>
+                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">AGREGAR AREA</button>
+                    </form>
+                </div>
+                <div id="form2" class="row">
+                    <form  class="form-insumos col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="exampleInputNombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="exampleInputDescripcion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
+                            <input type="text" class="form-control" id="exampleInputUbicacion">
+                        </div>
+                        <button type="submit" class="btn btn-primary">AGREGAR PUNTOS</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+
+
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+
+    <!-- JS Tabla -->
+    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+            document.getElementById("example_length").hidden = true;
+        });
+    </script>
+    <!-- JS Tabla -->
+</body>
+
+</html>
