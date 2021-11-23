@@ -70,7 +70,7 @@ hr{
     width: 166px;  
     background-color: var(--azul);
     padding: 0;
-    transform: translate(1px, 58px) !important;
+    transform: translate(1px, 63px) !important;
     border-radius: 0 !important;
 }
 

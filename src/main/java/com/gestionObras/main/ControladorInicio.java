@@ -81,7 +81,7 @@ public class ControladorInicio {
         solicitud = solicitudImpl.buscarSolicitudRegistro(usuario.getUsername());
         if (solicitud != null) {
             SolicitudRol solicitud_rol = new SolicitudRol();
-            solicitud_rol.setId_solicitud(solicitud.getId_solicitud());
+            //solicitud_rol.setId_solicitud(solicitud.getId_solicitud());
             String checkAdmin = req.getParameter("check_admin");
             String checkSuper = req.getParameter("check_super");
             String checkInter = req.getParameter("check_inter");

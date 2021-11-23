@@ -1,15 +1,24 @@
+<<<<<<< HEAD
 com\gestionObras\service\SolicitudRolService.class
 com\gestionObras\dao\SolicitudRolDAO.class
+=======
+com\gestionObras\dao\Solicitud_RegistroDAO.class
+>>>>>>> e5d72f908debadf23649172aa34ba099e345beee
 com\gestionObras\entities\Area.class
 com\gestionObras\service\UsuarioService.class
 com\gestionObras\util\Imagen.class
 com\gestionObras\main\Controlador_Admin.class
+<<<<<<< HEAD
+=======
+com\gestionObras\service\Solicitud_RegistroServiceImpl.class
+>>>>>>> e5d72f908debadf23649172aa34ba099e345beee
 com\gestionObras\entities\Rol.class
 com\gestionObras\dao\UsuarioDAO.class
 com\gestionObras\main\Controlador_Super.class
 com\gestionObras\dao\ZonaDAO.class
 com\gestionObras\main\WebConfig.class
 com\gestionObras\entities\Usuario.class
+<<<<<<< HEAD
 com\gestionObras\service\RolService.class
 com\gestionObras\main\Controlador_Inter.class
 com\gestionObras\entities\SolicitudRol.class
@@ -27,5 +36,17 @@ com\gestionObras\entities\SolicitudRegistro.class
 com\gestionObras\service\RolServiceImpl.class
 com\gestionObras\GestionObrasApplication.class
 com\gestionObras\service\SolicitudRegistroServiceImpl.class
+=======
+com\gestionObras\main\Controlador_Inter.class
+com\gestionObras\service\ZonaService.class
+com\gestionObras\service\Solicitud_RegistroService.class
+com\gestionObras\util\EncriptarPassword.class
+com\gestionObras\main\SecurityConfig.class
+com\gestionObras\service\AreaService.class
+com\gestionObras\dao\AreaDAO.class
+com\gestionObras\entities\Zona.class
+com\gestionObras\entities\Solicitud_Registro.class
+com\gestionObras\GestionObrasApplication.class
+>>>>>>> e5d72f908debadf23649172aa34ba099e345beee
 com\gestionObras\service\AreaServiceImpl.class
 com\gestionObras\main\ControladorInicio.class
