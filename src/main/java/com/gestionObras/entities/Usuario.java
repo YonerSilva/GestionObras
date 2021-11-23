@@ -31,7 +31,7 @@ public class Usuario implements Serializable{
     @NotEmpty
     private String password;
     
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private List<Rol> roles;
 }

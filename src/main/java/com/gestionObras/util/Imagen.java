@@ -1,30 +1,54 @@
 package com.gestionObras.util;
 
-import java.awt.Image;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Iterator;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReadParam;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.servlet.http.Part;
 import lombok.Data;
 
 @Data
 public class Imagen {
-    
-    private Image archivo;
 
-    public Image ConvertirImagen(byte[] bytes) throws IOException {
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        Iterator readers = ImageIO.getImageReadersByFormatName("jpeg");
-        ImageReader reader = (ImageReader) readers.next();
-        Object source = bis;
-        ImageInputStream iis = ImageIO.createImageInputStream(source);
-        reader.setInput(iis, true);
-        ImageReadParam param = reader.getDefaultReadParam();
-        return reader.read(0, param);
+    private String pathFiles;
+    private File uploads;
+    private String[] extens = {".png", ".jpg", ".jpeg"};
+
+    public Imagen() {
+        pathFiles =  "C:\\fotos\\";
+        uploads = new File(pathFiles);
     }
 
-    
+    public String saveFile(Part part, File pathUploads) {
+        String pathAbsolute = "";
+
+        try {
+            Path path = Paths.get(part.getSubmittedFileName());
+            String fileName = path.getFileName().toString();
+            InputStream input = part.getInputStream();
+
+            if (input != null) {
+                File file = new File(pathUploads, fileName);
+                pathAbsolute = file.getAbsolutePath();
+                Files.copy(input, file.toPath());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pathAbsolute;
+    }
+
+    public boolean isExtension(String fileName, String[] extensions) {
+        for (String et : extensions) {
+            if (fileName.toLowerCase().endsWith(et)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
