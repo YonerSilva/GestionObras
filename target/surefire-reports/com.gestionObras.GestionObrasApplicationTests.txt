@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.gestionObras.GestionObrasApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.695 s - in com.gestionObras.GestionObrasApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.773 s - in com.gestionObras.GestionObrasApplicationTests
->>>>>>> e5d72f908debadf23649172aa34ba099e345beee
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.306 s - in com.gestionObras.GestionObrasApplicationTests

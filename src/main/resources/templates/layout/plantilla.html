@@ -20,7 +20,9 @@
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
+
+                            <figure th:if="${usuario.getFoto()== null or usuario.getFoto().equals('')}" class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user"></figure>
+                            <figure th:unless="${usuario.getFoto()!= null or usuario.getFoto().equals('')==false}" class="nav-figure"><img class="nav_user_img" th:src="@{${usuario.getFoto()}}" alt="user">
                             </figure>
                             <p>USER</p>
                         </button>

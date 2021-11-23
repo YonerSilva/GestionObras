@@ -3,6 +3,8 @@ package com.gestionObras.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -33,7 +36,6 @@ public class SolicitudRegistro implements Serializable{
     @Column(name = "apellido")
     private String apellido;
     
-    @NotEmpty
     @Column(name = "foto")
     private String foto;
     
@@ -45,9 +47,15 @@ public class SolicitudRegistro implements Serializable{
     @Column(name = "password")
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity = SolicitudRol.class)
+    
+    @OneToMany(targetEntity=SolicitudRol.class,cascade=CascadeType.ALL)
     @JoinColumn(name = "id_solicitud",referencedColumnName = "id_solicitud")
-    private List<SolicitudRol> solicitudRoles = new ArrayList<>();
-    
-    
+    private List<SolicitudRol> solicitudRoles;
+
+    public int hash(String username) {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(username);
+        return Math.abs(hash);
+    }
+
 }

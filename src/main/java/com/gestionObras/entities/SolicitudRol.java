@@ -18,8 +18,20 @@ public class SolicitudRol implements Serializable {
     @NotEmpty
     private String tipo_rol;
         
+    
     @ManyToOne
-    @JoinColumn(name = "id_solicitud", referencedColumnName = "id_solicitud")
+    @JoinColumn(name = "id_solicitud")
     private SolicitudRegistro solicitudRegistro;
+
+    public SolicitudRol(long id_rol_solicitud, String tipo_rol) {
+        super();
+        this.id_rol_solicitud = id_rol_solicitud;
+        this.tipo_rol = tipo_rol;
+    }
+
+    public SolicitudRol() {
+        super();
+    }
+    
     
 }

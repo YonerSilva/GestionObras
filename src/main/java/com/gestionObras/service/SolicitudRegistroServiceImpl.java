@@ -14,13 +14,14 @@ public class SolicitudRegistroServiceImpl implements SolicitudRegistroService{
     private SolicitudRegistroDAO solicitudDao;
 
     @Override
+    @Transactional(readOnly = true)
     public List<SolicitudRegistro> listarSolicitudes() {
         return solicitudDao.findAll();
     }
 
     @Override
     public void guardarSolicitud(SolicitudRegistro solicitud) {
-        solicitudDao.save(solicitud);
+        solicitudDao.saveAndFlush(solicitud);
     }
 
     @Override

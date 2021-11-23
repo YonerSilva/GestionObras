@@ -22,7 +22,6 @@ public class Usuario implements Serializable{
     @NotEmpty
     private String apellido;
     
-    @NotEmpty
     private String foto;
     
     @NotEmpty
@@ -31,7 +30,7 @@ public class Usuario implements Serializable{
     @NotEmpty
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario")
+    @OneToMany(targetEntity=Rol.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_usuario",referencedColumnName = "id_usuario")
     private List<Rol> roles;
 }

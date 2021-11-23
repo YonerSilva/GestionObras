@@ -18,6 +18,22 @@ public class Rol implements Serializable {
     @NotEmpty
     private String tipo_rol;
     
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    public Rol(long id_rol, String tipo_rol) {
+        super();
+        this.id_rol = id_rol;
+        this.tipo_rol = tipo_rol;
+    }
+
+    public Rol() {
+        super();
+    }
+    
+    
+    
     @Override
     public String toString(){
         String cadena = "";
