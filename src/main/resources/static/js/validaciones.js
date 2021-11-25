@@ -25,17 +25,13 @@ function registrarAction() {
     let check2 = document.getElementById("check_supervisor");
     let check3 = document.getElementById("check_interventor");
     if (inputs[0].value !== "" && inputs[1].value !== "" && inputs[2].value !== "" && inputs[3].value !== "" && inputs[4].value !== "" && inputs[5].value !== "" && check1.checked || check2.checked || check3.checked) {
-        if (verificarUsername(inputs[2].value)){
+        if (verificarUsername(inputs[2].value)) {
             if (verificarContraseñas(inputs)) {
-<<<<<<< HEAD
                 subirArchivo();
-=======
-                document.formulario.submit();
->>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
             }
-        }else{
+        } else {
             alert("El usuario no es correo valido.");
-        }  
+        }
     } else {
         alert("Por favor, complete todos los campos.");
     }
@@ -53,66 +49,50 @@ function verificarUsername(username) {
     return false;
 }
 
-    function verificarContraseñas(inputs) {
-        if (inputs[3].value == inputs[4].value) {
-            let password = inputs[3].value;
-            if (password.length == 8) {
-                let codigo;
-                let mayus, mini, sim;
-                mayus = false;
-                mini = false;
-                num = false;
-                for (let index = 0; index < password.length; index++) {
-                    codigo = password.charCodeAt(index);
-                    //Mayusculas
-                    if (codigo >= 65 && codigo <= 90) {
-                        mayus = true;
-                    }
-                    //Minusculas
-                    if (codigo >= 97 && codigo <= 122) {
-                        mini = true;
-                    }
-                    //Numeros
-                    if (codigo >= 48 && codigo <= 57) {
-                        num = true;
-                    }
+function verificarContraseñas(inputs) {
+    if (inputs[3].value == inputs[4].value) {
+        let password = inputs[3].value;
+        if (password.length == 8) {
+            let codigo;
+            let mayus, mini, sim;
+            mayus = false;
+            mini = false;
+            num = false;
+            for (let index = 0; index < password.length; index++) {
+                codigo = password.charCodeAt(index);
+                //Mayusculas
+                if (codigo >= 65 && codigo <= 90) {
+                    mayus = true;
                 }
-                if (mayus && mini && num) {
-                    return true;
+                //Minusculas
+                if (codigo >= 97 && codigo <= 122) {
+                    mini = true;
                 }
-            } else {
-                alert("La contraseña debe tener como minimo y maximo 8 caracteres. \n Además, la contraseña debe tener al menos una letra mayuscula, una minuscula y un numero.");
-                return false;
+                //Numeros
+                if (codigo >= 48 && codigo <= 57) {
+                    num = true;
+                }
+            }
+            if (mayus && mini && num) {
+                return true;
             }
         } else {
-<<<<<<< HEAD
-            alert("Las contraseñas no coinciden.");
+            alert("La contraseña debe tener como minimo y maximo 8 caracteres. \n Además, la contraseña debe tener al menos una letra mayuscula, una minuscula y un numero.");
             return false;
         }
+    } else {
+        alert("Las contraseñas no coinciden.");
+        return false;
+    }
 }
 
-/*const img_nav = document.getElementById("img_nav");
-img_nav.src=abrirArchivo(img_nav.getAttribute("src"));
-
-const img_menu = document.getElementById("img_menu");
-img_menu.src=abrirArchivo(img_menu.getAttribute("src"));
-
-if(document.title==="Sistema Administrador Principal"){
-    const img_main = document.getElementById("user_img");
-    img_main.src=abrirArchivo(img_main.getAttribute("src"));
+function olvidarContrasenia() {
+    let input = document.getElementById("email").value;
+    if(input!==undefined || input!==""){
+        alert("verifica tu correo electronico");
+        document.formulario.submit();
+    }else{
+        alert("No ha escrito un correo valido");
+    }
+    
 }
-if(document.title==="Sistema Interventor Principal"){
-    const img_main = document.getElementById("user_img");
-    img_main.src=abrirArchivo(img_main.getAttribute("src"));
-}
-if(document.title==="Sistema Supervisor Principal"){
-    const img_main = document.getElementById("user_img");
-    img_main.src=abrirArchivo(img_main.getAttribute("src"));
-}*/
-
-=======
-            alert("Las contraseñas no coinciden.")
-            return false;
-        }
-}
->>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6

@@ -13,19 +13,19 @@
 <body>
   <section class="contenedor-principal">
     <h3>RECUPERAR CONTRASEÑA</h3>
-    <form class="formulario" method="post">
+    <form class="formulario" method="post" th:action="@{/}" name="formulario">
       <img src="/img/padlock.png" alt="">
       <div class="contenedor-div">
         <label for="email" class="">Ingresa el Correo:</label>
         <div class="contenedor-email">
-          <input type="email" class="" id="email" required>
+            <input type="email" class="" id="email" required="true">
         </div>
       </div>
       <div class="contenedor-div">
-        <a href="/html/Registrar_User.html" class="link-primary">Registrarse</a>
-        <a href="../login.html" class="link-primary">Volver al Inicio</a>
+        <a th:href="@{/sign_in}" class="link-primary">Registrarse</a>
+        <a th:href="@{/}" class="link-primary">Volver al Inicio</a>
       </div>
-      <button type="submit" class="" onclick="location.href='' ">Enviar</button>
+      <button type="button" class="" onclick="olvidarContrasenia()">Enviar</button>
     </form>
   </section>
 

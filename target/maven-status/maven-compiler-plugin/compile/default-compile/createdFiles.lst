@@ -16,6 +16,7 @@ com\gestionObras\service\SolicitudRegistroService.class
 com\gestionObras\main\SecurityConfig.class
 com\gestionObras\service\AreaService.class
 com\gestionObras\dao\SolicitudRegistroDAO.class
+com\gestionObras\service\ZonaServiceImpl.class
 com\gestionObras\dao\AreaDAO.class
 com\gestionObras\entities\Zona.class
 com\gestionObras\entities\SolicitudRegistro.class
