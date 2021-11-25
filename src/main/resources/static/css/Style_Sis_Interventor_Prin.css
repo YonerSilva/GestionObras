@@ -154,6 +154,10 @@ hr{
     border-radius: 100%;
     background-color: rgb(228, 228, 228);
     height: 25px !important;
+<<<<<<< HEAD
+    width: 25px  !important;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
 }
 
 .texto-nav{
@@ -298,10 +302,18 @@ hr{
     border-radius: 100%;
     background-color: rgb(228, 228, 228);
     height: 70px;
+<<<<<<< HEAD
+    width: 70px;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
 }
 
 .user-aside_img-active{
     height: 45px;
+<<<<<<< HEAD
+    width: 45px;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
 }
 .contenedor-principal{
     width: 80%;
@@ -658,10 +670,18 @@ footer .titulo-final{
         border-radius: 100%;
         background-color: rgb(228, 228, 228);
         height: 60px;
+<<<<<<< HEAD
+        width: 60px;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
     }
 
     .user-aside_img-active{
         height: 45px !important;
+<<<<<<< HEAD
+        width: 45px  !important;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
     }
 
     .menu-cargo{font-size: 0.9rem;}
@@ -756,6 +776,10 @@ footer .titulo-final{
 
     .user-aside_img{
         height: 30px !important;
+<<<<<<< HEAD
+        width: 30px  !important;
+=======
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
     }
 
     .menu-a:before{

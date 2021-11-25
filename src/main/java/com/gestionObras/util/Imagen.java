@@ -59,6 +59,8 @@ public class Imagen {
             throw new Exception("Error al agregar imagen.");
     }
 
+<<<<<<< HEAD
+=======
     /*public String saveFile(Part part, File pathUploads,String fileName) throws Exception {
         String pathAbsolute = "";
 
@@ -79,6 +81,7 @@ public class Imagen {
         return modificarPathAbsolute(pathAbsolute);
     }*/
 
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
     public boolean existeImagen(String path) {
         File archivo = new File(path);
         if (archivo.exists()) {

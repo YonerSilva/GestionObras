@@ -27,7 +27,11 @@ function registrarAction() {
     if (inputs[0].value !== "" && inputs[1].value !== "" && inputs[2].value !== "" && inputs[3].value !== "" && inputs[4].value !== "" && inputs[5].value !== "" && check1.checked || check2.checked || check3.checked) {
         if (verificarUsername(inputs[2].value)){
             if (verificarContraseñas(inputs)) {
+<<<<<<< HEAD
+                subirArchivo();
+=======
                 document.formulario.submit();
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
             }
         }else{
             alert("El usuario no es correo valido.");
@@ -81,7 +85,34 @@ function verificarUsername(username) {
                 return false;
             }
         } else {
+<<<<<<< HEAD
+            alert("Las contraseñas no coinciden.");
+            return false;
+        }
+}
+
+/*const img_nav = document.getElementById("img_nav");
+img_nav.src=abrirArchivo(img_nav.getAttribute("src"));
+
+const img_menu = document.getElementById("img_menu");
+img_menu.src=abrirArchivo(img_menu.getAttribute("src"));
+
+if(document.title==="Sistema Administrador Principal"){
+    const img_main = document.getElementById("user_img");
+    img_main.src=abrirArchivo(img_main.getAttribute("src"));
+}
+if(document.title==="Sistema Interventor Principal"){
+    const img_main = document.getElementById("user_img");
+    img_main.src=abrirArchivo(img_main.getAttribute("src"));
+}
+if(document.title==="Sistema Supervisor Principal"){
+    const img_main = document.getElementById("user_img");
+    img_main.src=abrirArchivo(img_main.getAttribute("src"));
+}*/
+
+=======
             alert("Las contraseñas no coinciden.")
             return false;
         }
 }
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
