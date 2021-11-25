@@ -29,25 +29,25 @@
                     <hr>
                 </div>
                 <div id="contenedor-div">
-
-                    <form>
+                    <form  class="form-insumos col-6" th:action="@{/guardarZona}" method="post" th:object="${zona}">
+                        <input type="hidden" name="id_zona" th:field="*{id_zona}">
+                        
                         <div class="mb-3">
-                            <label for="exampleInputNombre" class="form-label">Nombre</label>
-                            <input type="nombre" class="form-control" id="exampleInputNombre">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
-                            <input type="descripcion" class="form-control" id="exampleInputDescripcion">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
-                            <input type="ubicacion" class="form-control" id="exampleInputUbicacion">
+                            <label for="ubicacion" class="form-label">Ubicacion</label>
+                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}" required>
                         </div>
                         <div class="contenedor-buttons mx-auto mt-3">
-                            <button type="button"  class="btn-primary p-1" onclick="">Actualizar</button>
+                            <button type="submit"  class="btn-primary p-1">Actualizar</button>
                         </div>
                     </form>
-
                 </div>
             </section>
         </main>

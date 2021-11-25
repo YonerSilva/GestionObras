@@ -33,34 +33,17 @@
                     <form  class="form-insumos col-6" th:action="@{/guardarZona}" method="post" th:object="${zona}">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required>
                         </div>
                         <div class="mb-3">
                             <label for="ubicacion" class="form-label">Ubicacion</label>
-                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}">
+                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">AGREGAR ZONA</button>
-                    </form>
-                </div>
-                <div id="form2" class="row">
-                    <form  class="form-insumos col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputNombre" class="form-label">Nombre</label>
-                            <input type="nombre" class="form-control" id="exampleInputNombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
-                            <input type="descripcion" class="form-control" id="exampleInputDescripcion">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
-                            <input type="ubicacion" class="form-control" id="exampleInputUbicacion">
-                        </div>
-                        <button type="submit" class="btn btn-primary">AGREGAR PUNTOS</button>
                     </form>
                 </div>
             </div>

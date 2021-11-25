@@ -34,15 +34,15 @@
                         
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required>
                         </div>
                         <div class="mb-3">
                             <label for="ubicacion" class="form-label">Ubicacion</label>
-                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}">
+                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}" required>
                         </div>
                         <div class="contenedor-buttons mx-auto mt-3">
                             <button type="submit"  class="btn-primary p-1">Actualizar</button>
