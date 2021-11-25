@@ -74,11 +74,18 @@ public class ControladorInicio {
             solicitud.setNombre(usuario.getNombre());
             solicitud.setApellido(usuario.getApellido());
             solicitud.setUsername(usuario.getUsername());
+<<<<<<< HEAD
             /*String [] nombres = solicitud.getNombre().split(" ");
             String fileName = String.valueOf(solicitud.hash(solicitud.getUsername()))+'-'+nombres[0];
             Imagen imagen = new Imagen();
             solicitud.setFoto(guardarfoto(req, res,fileName,imagen));*/
             solicitud.setFoto(usuario.getFoto());
+=======
+            String [] nombres = solicitud.getNombre().split(" ");
+            String fileName = String.valueOf(solicitud.hash(solicitud.getUsername()))+'-'+nombres[0];
+            Imagen imagen = new Imagen();
+            solicitud.setFoto(guardarfoto(req, res,fileName,imagen));
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
             solicitud.setPassword(encriptar.encriptarPassword(usuario.getPassword()));
 
             String checkAdmin = req.getParameter("check_admin");
@@ -109,7 +116,11 @@ public class ControladorInicio {
             }
             solicitud.setSolicitudRoles(roles);
             solicitudImpl.guardarSolicitud(solicitud);
+<<<<<<< HEAD
             //imagen.saveFile();
+=======
+            imagen.saveFile();
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -117,12 +128,16 @@ public class ControladorInicio {
         return "/login";
     }
 
+<<<<<<< HEAD
     @GetMapping("/Olvide_Contrasenia")
     public String olvideContrasenia() {
         return "/html/Olvide_Contrasenia";
     }
     
     /*private String guardarfoto(HttpServletRequest req, HttpServletResponse res, String fileName, Imagen imagen) {
+=======
+    private String guardarfoto(HttpServletRequest req, HttpServletResponse res, String fileName, Imagen imagen) {
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
         String photo = null;
         try {
             Part part = req.getPart("file");
@@ -139,5 +154,14 @@ public class ControladorInicio {
             e.printStackTrace();
         }
         return photo;
+<<<<<<< HEAD
     }*/
+=======
+    }
+
+    @GetMapping("/Olvide_Contrasenia")
+    public String olvideContrasenia() {
+        return "/html/Olvide_Contrasenia";
+    }
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
 }

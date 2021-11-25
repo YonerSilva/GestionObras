@@ -27,7 +27,11 @@ function registrarAction() {
     if (inputs[0].value !== "" && inputs[1].value !== "" && inputs[2].value !== "" && inputs[3].value !== "" && inputs[4].value !== "" && inputs[5].value !== "" && check1.checked || check2.checked || check3.checked) {
         if (verificarUsername(inputs[2].value)){
             if (verificarContraseñas(inputs)) {
+<<<<<<< HEAD
                 subirArchivo();
+=======
+                document.formulario.submit();
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
             }
         }else{
             alert("El usuario no es correo valido.");
@@ -81,6 +85,7 @@ function verificarUsername(username) {
                 return false;
             }
         } else {
+<<<<<<< HEAD
             alert("Las contraseñas no coinciden.");
             return false;
         }
@@ -105,3 +110,9 @@ if(document.title==="Sistema Supervisor Principal"){
     img_main.src=abrirArchivo(img_main.getAttribute("src"));
 }*/
 
+=======
+            alert("Las contraseñas no coinciden.")
+            return false;
+        }
+}
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6

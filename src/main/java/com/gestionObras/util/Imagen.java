@@ -59,6 +59,29 @@ public class Imagen {
             throw new Exception("Error al agregar imagen.");
     }
 
+<<<<<<< HEAD
+=======
+    /*public String saveFile(Part part, File pathUploads,String fileName) throws Exception {
+        String pathAbsolute = "";
+
+        Path path = Paths.get(part.getSubmittedFileName());
+        fileName += getExtension(path.getFileName().toString());
+        //fileName = path.getFileName().toString();
+        InputStream input = part.getInputStream();
+
+        if (input != null) {
+            File file = new File(pathUploads, fileName);
+            pathAbsolute = file.getAbsolutePath();
+            if(!existeImagen(pathAbsolute))
+                Files.copy(input, file.toPath());
+            else
+                throw new Exception("La imagen ya existe.");
+        }
+
+        return modificarPathAbsolute(pathAbsolute);
+    }*/
+
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
     public boolean existeImagen(String path) {
         File archivo = new File(path);
         if (archivo.exists()) {

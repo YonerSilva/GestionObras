@@ -20,7 +20,13 @@
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
                             <figure class="nav-figure"><img class="nav_user_img" id="img_nav" th:src="@{${usuario.getFoto()}}" alt="user"></figure>
+=======
+
+                            <figure th:if="${usuario.getFoto()== null or usuario.getFoto().equals('')}" class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user"></figure>
+                            <figure th:unless="${usuario.getFoto()!= null or usuario.getFoto().equals('')==false}" class="nav-figure"><img class="nav_user_img" th:src="@{${usuario.getFoto()}}" alt="user">
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
                             </figure>
                             <p>USER</p>
                         </button>
@@ -42,7 +48,11 @@
         <aside class="menu" id="menu_side" th:fragment="aside_admin">
             <div class=" menu-div" id="menu-div">
                 <div>
+<<<<<<< HEAD
                     <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" id="img_menu" th:src="@{${usuario.getFoto()}}" alt="user-Aside"></figure>  
+=======
+                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
+>>>>>>> 1bae8229b8a1692188726e309da0f103fc3285b6
                 </div>
                 <div id="menu_info">
                     <h4 class="menu-text-user" th:value="${usuario.getNombre()}+' '+${usuario.getApellido()}"></h4>
