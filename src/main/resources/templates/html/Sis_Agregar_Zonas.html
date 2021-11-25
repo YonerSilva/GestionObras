@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Administrador Agregar Zona">Agregar Zona</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Administrador_Are.css">
+
+    <!-- CSS Tabla -->
+    <link rel="stylesheet" href="/css/bootstrap.table.css">
+    <!-- CSS Tabla -->
+
+</head>
+
+<body id="body">
+    
+    <!-- Header -->
+    <header id="cabecera" class="row" th:replace="layout/plantilla :: header"></header>
+    
+    <!-- Aside -->
+    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_admin"></aside>
+
+    <!-- Main -->
+    <main id="contenedor-principal" class="contenedor-principal">
+        <section id="contenedor">
+            <div>
+                <h2 class="">AGREGAR ZONA</h2>
+                <hr>
+            </div>
+            <div id="contenedor-div1">
+                <div id="form1" class="row">
+                    <form  class="form-insumos col-6" th:action="@{/guardarZona}" method="post" th:object="${zona}">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacion" class="form-label">Ubicacion</label>
+                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">AGREGAR ZONA</button>
+                    </form>
+                </div>
+                <div id="form2" class="row">
+                    <form  class="form-insumos col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputNombre" class="form-label">Nombre</label>
+                            <input type="nombre" class="form-control" id="exampleInputNombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
+                            <input type="descripcion" class="form-control" id="exampleInputDescripcion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
+                            <input type="ubicacion" class="form-control" id="exampleInputUbicacion">
+                        </div>
+                        <button type="submit" class="btn btn-primary">AGREGAR PUNTOS</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+
+
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+
+    <!-- JS Tabla -->
+    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+            document.getElementById("example_length").hidden = true;
+        });
+    </script>
+    <!-- JS Tabla -->
+</body>
+
+</html>

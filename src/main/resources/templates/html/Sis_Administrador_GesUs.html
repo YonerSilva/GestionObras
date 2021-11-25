@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title alt="Sistema Administrador Gestionar Usuario">Sistema Administrador Gestionar Usuario</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Style_Sis_Administrador_Are.css">
+
+    <!-- CSS Tabla -->
+    <link rel="stylesheet" href="/css/bootstrap.table.css">
+    <!-- CSS Tabla -->
+
+</head>
+
+<body id="body">
+    
+    <!-- Header -->
+    <header id="cabecera" class="row" th:replace="layout/plantilla :: header"></header>
+    
+    <!-- Aside -->
+    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_admin"></aside>
+        
+    <!-- Main -->
+    <main id="contenedor-principal" class="contenedor-principal">
+        <section id="contenedor">
+            <div>
+                <h2 class="">GESTIONAR USUARIOS</h2>
+                <hr>
+            </div>
+            <div id="contenedor-div">
+                <table id="example" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1114</td>
+                            <td>Supervisor</td>
+                            <td>Fermín</td>
+                            <td>Galarga</td>
+                            <td>Fermíngalargafg@ufps.edu.co</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Opciones
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                        <li><a class="dropdown-item" href="Editar_User.html">Modificar</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Eliminar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1115</td>
+                            <td>Supervisor</td>
+                            <td>Elba</td>
+                            <td>Gina</td>
+                            <td>Elbaginaeg@ufps.edu.co</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Opciones
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                        <li><a class="dropdown-item" href="Editar_User.html">Modificar</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Eliminar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1116</td>
+                            <td>Supervisor</td>
+                            <td>Felipe</td>
+                            <td>Lotas</td>
+                            <td>Felipelotasfl@ufps.edu.co</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Opciones
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                        <li><a class="dropdown-item" href="Editar_User.html">Modificar</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Eliminar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+    </footer>
+
+
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+
+    <!-- JS Tabla -->
+    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+            document.getElementById("example_length").hidden=true;
+        });
+    </script>
+    <!-- JS Tabla -->
+</body>
+
+</html>
