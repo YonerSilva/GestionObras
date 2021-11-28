@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
             </div>
-            <div th:if="${zonas == null or zonas.empty}">
+            <div th:if="${zonas == null or zonas.empty}" class="alert alert-danger" role="alert">
                 No hay zonas registradas en el sistema. 
             </div>
             <div class="contenedor-buttons mx-auto mt-3">
@@ -87,7 +87,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#example').DataTable();
-            document.getElementById("example_length").hidden = true;
         });
     </script>
     <!-- JS Tabla -->

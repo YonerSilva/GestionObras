@@ -9,7 +9,9 @@ public interface SolicitudRegistroService{
     
     public void guardarSolicitud(SolicitudRegistro solicitud);
     
-    public void eliminarSolicitud(long id);
+    public void eliminarSolicitud(SolicitudRegistro solicitud);
     
     public SolicitudRegistro buscarSolicitudRegistro(String username);
+    
+    public SolicitudRegistro findById(long id);
 }

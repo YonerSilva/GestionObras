@@ -22,6 +22,12 @@ public class Rol implements Serializable {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    public Rol(String tipo_rol) {
+        super();
+        this.tipo_rol = tipo_rol;
+    }
+
+    
     public Rol(long id_rol, String tipo_rol) {
         super();
         this.id_rol = id_rol;
@@ -31,8 +37,6 @@ public class Rol implements Serializable {
     public Rol() {
         super();
     }
-    
-    
     
     @Override
     public String toString(){

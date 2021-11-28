@@ -2,7 +2,7 @@
 function verContraseña() {
     let password = document.getElementById("password");
     let c_password;
-    if (document.title == "Registrar Usuario") {
+    if (document.title == "Registrar Usuario" || document.title == "Editar Usuario") {
         c_password = document.getElementById("c-password");
     }
     let eye = document.getElementById("password-eye");
@@ -17,6 +17,18 @@ function verContraseña() {
         password.setAttribute("type", "password");
         c_password.setAttribute("type", "password");
     }
+}
+
+function modificarAction() {
+    let inputs = document.querySelectorAll(".input");
+    if (verificarUsername(inputs[2].value)) {
+        if (verificarContraseñas(inputs)) {
+            document.formulario.submit();
+        }
+    } else {
+        alert("El usuario no es correo valido.");
+    }
+
 }
 
 function registrarAction() {
@@ -37,8 +49,28 @@ function registrarAction() {
     }
 }
 
+function deleteUsuario(id,url){
+    eliminarUsuario(id,url);
+}
+
+function modificarUsuario(id) {
+    const id_usuario = id;
+    document.location.href = "/modificarUsuario/" + id_usuario;
+}
+
+function rechazarSolicitud(id, url) {
+    eliminarSolicitud(id, url);
+}
+
+function aceptarSolicitud(id) {
+    const id_solicitud = id;
+    document.location.href = "/aceptarSolicitud/" + id_solicitud;
+}
+
 function verificarUsername(username) {
     let codigo;
+    if (username.length === 0)
+        return true;
     for (let index = 0; index < username.length; index++) {
         codigo = username.charCodeAt(index);
         //@
@@ -50,49 +82,53 @@ function verificarUsername(username) {
 }
 
 function verificarContraseñas(inputs) {
-    if (inputs[3].value == inputs[4].value) {
-        let password = inputs[3].value;
-        if (password.length == 8) {
-            let codigo;
-            let mayus, mini, sim;
-            mayus = false;
-            mini = false;
-            num = false;
-            for (let index = 0; index < password.length; index++) {
-                codigo = password.charCodeAt(index);
-                //Mayusculas
-                if (codigo >= 65 && codigo <= 90) {
-                    mayus = true;
+    if (inputs[3].value !== "" && inputs[4].value !== "") {
+        if (inputs[3].value == inputs[4].value) {
+            let password = inputs[3].value;
+            if (password.length >= 8) {
+                let codigo;
+                let mayus, mini, sim;
+                mayus = false;
+                mini = false;
+                num = false;
+                for (let index = 0; index < password.length; index++) {
+                    codigo = password.charCodeAt(index);
+                    //Mayusculas
+                    if (codigo >= 65 && codigo <= 90) {
+                        mayus = true;
+                    }
+                    //Minusculas
+                    if (codigo >= 97 && codigo <= 122) {
+                        mini = true;
+                    }
+                    //Numeros
+                    if (codigo >= 48 && codigo <= 57) {
+                        num = true;
+                    }
                 }
-                //Minusculas
-                if (codigo >= 97 && codigo <= 122) {
-                    mini = true;
+                if (mayus && mini && num) {
+                    return true;
                 }
-                //Numeros
-                if (codigo >= 48 && codigo <= 57) {
-                    num = true;
-                }
-            }
-            if (mayus && mini && num) {
-                return true;
+            } else {
+                alert("La contraseña debe tener como minimo 8 caracteres. \n Además, la contraseña debe tener al menos una letra mayuscula, una minuscula y un numero.");
+                return false;
             }
         } else {
-            alert("La contraseña debe tener como minimo y maximo 8 caracteres. \n Además, la contraseña debe tener al menos una letra mayuscula, una minuscula y un numero.");
+            alert("Las contraseñas no coinciden.");
             return false;
         }
     } else {
-        alert("Las contraseñas no coinciden.");
-        return false;
+        return true;
     }
 }
 
 function olvidarContrasenia() {
     let input = document.getElementById("email").value;
-    if(input!==undefined || input!==""){
+    if (input !== undefined || input !== "") {
         alert("verifica tu correo electronico");
         document.formulario.submit();
-    }else{
+    } else {
         alert("No ha escrito un correo valido");
     }
-    
+
 }

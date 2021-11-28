@@ -60,6 +60,27 @@ public class ControladorInicio {
         }
         return "/login";
     }
+    
+    @GetMapping("/Sis_Administrador_Prin")
+    public String Administrador(Model model, HttpSession session){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_Administrador_Prin";
+    }
+    
+    @GetMapping("/Sis_Supervisor_Prin")
+    public String Supervisor(Model model, HttpSession session){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_Supervisor_Prin";    
+    }
+    
+    @GetMapping("/Sis_Interventor_Prin")
+    public String Interventor(Model model, HttpSession session){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_Interventor_Prin";
+    }
 
     @GetMapping("/sign_in")
     public String registrar_User(Usuario usuario) {

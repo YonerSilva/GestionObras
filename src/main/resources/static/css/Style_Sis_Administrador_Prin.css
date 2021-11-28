@@ -54,7 +54,9 @@ hr{
 }
 
 #cabecera nav .nav-span2 div{
-    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #cabecera nav .nav-span2 div button{
@@ -67,10 +69,12 @@ hr{
 }
 
 #cabecera nav .nav-span2 div .contenedor-ul{
+    position: absolute;
+    inset: auto !important;
     width: 166px;  
     background-color: var(--azul);
     padding: 0;
-    transform: translate(1px, 63px) !important;
+    transform: translate(0px, 63px) !important;
     border-radius: 0 !important;
 }
 
@@ -797,8 +801,3 @@ footer .titulo-final{
     margin-left: 15% !important;
     width: 85% !important;
 }
-
-
-
-
-

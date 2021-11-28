@@ -25,14 +25,19 @@ public class SolicitudRegistroServiceImpl implements SolicitudRegistroService{
     }
 
     @Override
-    public void eliminarSolicitud(long id) {
-        solicitudDao.deleteById(id);
+    public void eliminarSolicitud(SolicitudRegistro solicitud) {
+        solicitudDao.delete(solicitud);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public SolicitudRegistro buscarSolicitudRegistro(String username) {
         return solicitudDao.findByUsername(username);
     }
-    
+
+    @Override
+    @Transactional(readOnly = true)
+    public SolicitudRegistro findById(long id) {
+        return solicitudDao.findById(id).get();
+    }
 }

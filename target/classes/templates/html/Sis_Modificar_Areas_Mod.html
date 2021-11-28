@@ -14,13 +14,13 @@
     </head>
 
     <body id="body">
-        
+
         <!-- Header -->
         <header id="cabecera" class="row" th:replace="layout/plantilla :: header"></header>
-        
+
         <!-- Aside -->
         <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_admin"></aside>
-        
+
         <!-- Main -->
         <main id="contenedor-principal" class="contenedor-principal">
             <section id="contenedor">
@@ -31,7 +31,7 @@
                 <div id="contenedor-div">
                     <form  class="form-insumos col-6" th:action="@{/guardarArea}" method="post" th:object="${area}">
                         <input type="hidden" name="id_area" th:field="*{id_area}">
-                        
+
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
@@ -64,17 +64,6 @@
         <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
         <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/js/menu.js"></script>
-
-        <!-- JS Tabla -->
-        <script type="text/javascript" src="/js/jquery.datatable.js"></script>
-        <script type="text/javascript" src="/js/bootstrap.table.js"></script>
-        <script type="text/javascript">
-                        $(document).ready(function () {
-                            $('#example').DataTable();
-                            document.getElementById("example_length").hidden = true;
-                        });
-        </script>
-        <!-- JS Tabla -->
     </body>
 
 </html>

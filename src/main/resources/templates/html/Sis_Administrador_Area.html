@@ -50,7 +50,7 @@
                     </tbody>
                 </table>
             </div>
-            <div th:if="${areas == null or areas.empty}">
+            <div th:if="${areas == null or areas.empty}" class="alert alert-danger" role="alert">
                 No hay areas registradas en el sistema. 
             </div>
             <div class="contenedor-buttons mx-auto mt-3">
@@ -76,7 +76,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#example').DataTable();
-            document.getElementById("example_length").hidden=true;
         });
     </script>
 </body>

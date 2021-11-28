@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
     </head>
     <body>
+        <!-- HEADER PARA EL ADMINISTRADOR, SUPERVISOR, INTERVENTOR -->
         <header id="cabecera" class="row" th:fragment="header">
             <nav class="col-12">
                 <span class="nav-span1 col-4">
@@ -21,15 +22,15 @@
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             <figure class="nav-figure"><img class="nav_user_img" id="img_nav" th:src="@{${usuario.getFoto()}}" alt="user"></figure>
-                            <p>USER</p>
+                            <p th:text="${usuario.getNombre()}+' '+${usuario.getApellido()}">USER</p>
                         </button>
                         <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
                             <li id="sub-dropdown" class="dropdown">
                                 <a href="#" class="dropdown-item">Cambiar Rol</a>
                                 <ul id="sub-dropdown-menu" class="dropdown-menu">
-                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_ADMINISTRADOR')}"><a th:href="@{../html/Sis_Administrador_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
-                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_SUPERVISOR')}"><a th:href="@{../html/Sis_Supervisor_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
-                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_INTERVENTOR')}"><a th:href="@{../html/Sis_Interventor_Prin.html}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_ADMINISTRADOR')}"><a th:href="@{/Sis_Administrador_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_SUPERVISOR')}"><a th:href="@{/Sis_Supervisor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_INTERVENTOR')}"><a th:href="@{/Sis_Interventor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
                                 </ul>
                             </li>
                             <li><form class="d-flex justify-content-center" method="post" th:action="@{/logout}"><input class="dropdown-item" type="submit" name="name" value="Cerrar Sesión"></form></li>
@@ -74,45 +75,12 @@
                 </ul>
             </div>
         </aside>
-        <!-- ASIDE PARA EL INTERVENTOR -->
-        <aside class=" menu" id="menu_side" th:fragment="aside_interventor">
-            <div class=" menu-div" id="menu-div">
-                <div>
-                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
-                </div>
-                <div id="menu_info">
-                    <h4 class="menu-text-user" th:value="${usuario.getNombre()}+' '+${usuario.getApellido()}"></h4>
-                    <h5 class="menu-cargo" value="INTERVENTOR"></h5>
-                    <h6 class="menu-text-email" ><a class="menu-text-email-a" th:value="${usuario.getUsername()}" th:href="'mailto:'+${usuario.getUsername()}"></a></h6>
-                </div>
-                <hr>
-                <ul class="list-unstyled components menu-ul">
-                    <li class="menu-li">
-                        <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
-                    </li>
-                    <li class="menu-li">
-                        <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
-                        <a href="Sis_Interventor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="GESTIONAR PEDIDOS"></a>
-                    </li>
-                    <li class="menu-li">
-                        <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
-                        <a href="Sis_Interventor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="CONSULTAR PEDIDOS"></a>
-                    </li>
-                    <li class="menu-li">
-                        <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
-                        <a href="Sis_Interventor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+
         <!-- ASIDE PARA EL SUPERVISOR -->
-        <aside class=" menu" id="menu_side" th:fragment="aside_supervisor">
+        <aside class="menu" id="menu_side" th:fragment="aside_supervisor">
             <div class=" menu-div" id="menu-div">
                 <div>
-                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" src="/img/icons/man.png" alt="user-Aside"></figure>
+                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" id="img_menu" th:src="@{${usuario.getFoto()}}" alt="user-Aside"></figure>  
                 </div>
                 <div id="menu_info">
                     <h4 class="menu-text-user" th:value="${usuario.getNombre()}+' '+${usuario.getApellido()}"></h4>
@@ -123,7 +91,8 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li">
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
+                        <a href="Sis_Supervisor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                           value="INICIO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
@@ -143,6 +112,42 @@
                     <li class="menu-li">
                         <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
                         <a href="Sis_Supervisor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ASIDE PARA EL INTERVENTOR -->
+        <aside class="menu" id="menu_side" th:fragment="aside_interventor">
+            <div class=" menu-div" id="menu-div">
+                <div>
+                    <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img" id="img_menu" th:src="@{${usuario.getFoto()}}" alt="user-Aside"></figure>  
+                </div>
+                <div id="menu_info">
+                    <h4 class="menu-text-user" th:value="${usuario.getNombre()}+' '+${usuario.getApellido()}"></h4>
+                    <h5 class="menu-cargo" value="INTERVENTOR"></h5>
+                    <h6 class="menu-text-email" ><a class="menu-text-email-a" th:value="${usuario.getUsername()}" th:href="'mailto:'+${usuario.getUsername()}"></a></h6>
+                </div>
+                <hr>
+                <ul class="list-unstyled components menu-ul">
+                    <li class="menu-li">
+                        <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
+                        <a href="Sis_Interventor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                           value="INICIO"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
+                        <a href="Sis_Interventor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                           value="GESTIONAR PEDIDOS"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
+                        <a href="Sis_Interventor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                           value="CONSULTAR PEDIDOS"></a>
+                    </li>
+                    <li class="menu-li">
+                        <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
+                        <a href="Sis_Interventor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
                     </li>
                 </ul>
             </div>
