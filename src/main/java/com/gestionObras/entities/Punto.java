@@ -12,13 +12,13 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
-@Table(name = "area")
-public class Area implements Serializable{
+@Table(name = "punto")
+public class Punto implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_area;
+    private long id_punto;
     
     @NotEmpty
     private String nombre;
@@ -29,7 +29,12 @@ public class Area implements Serializable{
     @NotEmpty
     private String ubicacion;
     
-    @OneToMany(targetEntity=Punto.class)
-    @JoinColumn(name="id_area",referencedColumnName="id_area")
-    private List<Punto> puntosA;
+    @ManyToOne
+    @JoinColumn(name="id_area")
+    private Area area;
+    
+    @ManyToOne
+    @JoinColumn(name="id_zona")
+    private Zona zona;
+    
 }

@@ -65,6 +65,10 @@
                         <a th:href="@{/Sis_Administrador_Zona}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR ZONAS"></a>
                     </li>
                     <li class="menu-li">
+                        <img src="/img/icons/zone-admin.svg" alt="home" height="30px" title="ADMINISTRAR PUNTOS">
+                        <a th:href="@{/Sis_Administrador_Punto}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR PUNTOS"></a>
+                    </li>
+                    <li class="menu-li">
                         <img src="/img/icons/add-user.svg" alt="home" height="30px" title="GESTIONAR REGISTROS DE USUARIO">
                         <a th:href="@{/Sis_Administrador_GesReg}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR REGISTROS"></a>
                     </li>
@@ -91,13 +95,11 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li">
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a href="Sis_Supervisor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="INICIO"></a>
+                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
-                        <a href="Sis_Supervisor_CargarPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="CARGAR PEDIDO"></a>
+                        <a th:href="@{/Sis_Supervisor_CargarPedido}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="CARGAR PEDIDO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
@@ -106,12 +108,11 @@
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
-                        <a href="Sis_Supervisor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="CONSULTAR PEDIDOS"></a>
+                        <a th:href="@{/Sis_Supervisor_ConsuPe}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="CONSULTAR PEDIDOS"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
-                        <a href="Sis_Supervisor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                        <a th:href="@{/Sis_Supervisor_DesPedido}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
                     </li>
                 </ul>
             </div>
@@ -132,22 +133,21 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li">
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a href="Sis_Interventor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true"
                            value="INICIO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
-                        <a href="Sis_Interventor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                           value="GESTIONAR PEDIDOS"></a>
+                        <a  class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR PEDIDOS"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
-                        <a href="Sis_Interventor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        <a th:href="@{/Sis_Interventor_ConsuPe}" class="d-block menu-a" id="menu-a" aria-hidden="true"
                            value="CONSULTAR PEDIDOS"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
-                        <a href="Sis_Interventor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
+                        <a th:href="@{/Sis_Interventor_DesPedido}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
                     </li>
                 </ul>
             </div>

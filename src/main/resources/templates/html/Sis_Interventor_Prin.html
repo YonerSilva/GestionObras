@@ -22,13 +22,13 @@
                 <section class="contenedor-div-section" id="contenedor-div-section">
                     <div class="div-figure">
                         <figure class="contenedor-figure">
-                            <img id="user_img" src="/img/icons/man.png" alt="user">
+                            <img id="user_img" th:src="@{${usuario.getFoto()}}" alt="user">
                         </figure>
                     </div>
                     <div class="div-info">
                         <h1 class="">INTERVENTOR</h1>
-                        <h3 class="">YONER ARBEY SILVA LEAL</h3>
-                        <h5 class=""><a href="mailto: yonerarbeysl@ufps.eduo.co">YONERARBEYSL@UFPS.EDU.CO</a></h3>
+                        <h3 class="" th:text="${usuario.getNombre()+' '+usuario.getApellido()}"></h3>
+                        <h5 class=""><a th:href="'mailto:'+${usuario.getUsername()}" th:text="${usuario.getUsername()}"></a></h5>
                     </div>
                 </section>
                 <hr>
@@ -42,7 +42,7 @@
                         <figure class="fig-button-triangulo"></figure>
                     </button>
 
-                    <button type="button" class="fig-button">
+                    <button type="button" class="fig-button" th:onClick="location.href='/Sis_Interventor_ConsuPe'">
                         <div>
                             <p>CONSULTAR <br>PEDIDO</p>
                             <i><img src="/img/icons/consulta.svg" alt="CONSULTAR" height="40px"></i>
@@ -50,7 +50,7 @@
                         <figure class="fig-button-triangulo"></figure>
                     </button>
 
-                    <button type="button" class="fig-button">
+                    <button type="button" class="fig-button" th:onClick="location.href='/Sis_Interventor_DesPedido'">
                         <div>
                             <p>DESCARGAR <br>REPORTE</p>
                             <i><img src="/img/icons/flecha-hacia-abajo.svg" alt="DESCARGAR" height="40px"></i>

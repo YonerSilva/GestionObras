@@ -1,6 +1,7 @@
 package com.gestionObras.main;
 
 import com.gestionObras.entities.Area;
+import com.gestionObras.entities.Punto;
 import com.gestionObras.entities.Rol;
 import com.gestionObras.entities.SolicitudRegistro;
 import com.gestionObras.entities.SolicitudRol;
@@ -80,6 +81,15 @@ public class Controlador_Admin {
         model.addAttribute("areas", areas);
         return "/html/Sis_Administrador_Area";
     }
+    
+    @GetMapping("/Sis_VerPuntos_Area")
+    public String Sis_VerPuntos_Area(Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+       /* var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);*/
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_VerPuntos_Area";
+    }
 
     @GetMapping("/Sis_Administrador_Zona")
     public String Sis_Administrador_Zona(Model model, HttpSession session) {
@@ -124,6 +134,40 @@ public class Controlador_Admin {
         var zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);
         return "/html/Sis_Administrador_Zona";
+    }
+    
+    @GetMapping("/Sis_VerPuntos_Zona")
+    public String Sis_VerPuntos_Zona(Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+       /* var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);*/
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_VerPuntos_Zona";
+    }
+    
+    @GetMapping("/Sis_Administrador_Punto")
+    public String Sis_Administrador_Punto(Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        /*var zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);*/
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_Administrador_Punto";
+    }
+    
+   @GetMapping("/Sis_Agregar_Punto")
+    public String Sis_Agregar_Punto(Punto punto, HttpSession session, Model model) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        return "/html/Sis_Agregar_Punto";
+    }
+    
+    @GetMapping("/Sis_Modificar_Puntos_Mod/{id_punto}")
+    public String Sis_Modificar_Puntos_Mod(Punto punto, Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        /*zona = zonaService.encontrarZona(zona);
+        model.addAttribute("zona", zona);*/
+        return "html/Sis_Modificar_Puntos_Mod";
     }
 
     @GetMapping("/Sis_Administrador_GesReg")
