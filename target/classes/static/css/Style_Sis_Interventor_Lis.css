@@ -53,7 +53,9 @@ hr{
 }
 
 #cabecera nav .nav-span2 div{
-    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #cabecera nav .nav-span2 div button{
@@ -66,6 +68,8 @@ hr{
 }
 
 #cabecera nav .nav-span2 div .contenedor-ul{
+    position: absolute;
+    inset: auto !important;
     width: 166px;  
     background-color: var(--azul);
     padding: 0;
@@ -77,6 +81,16 @@ hr{
     color: white;
     text-align: center;
     font-size: small;
+}
+
+#cabecera nav .nav-span2 div .contenedor-ul li form input{
+    color: white;
+    text-align: center;
+    font-size: small;
+    width: 100%;
+}
+#cabecera nav .nav-span2 div .contenedor-ul li form input:hover{
+    color: black;
 }
 
 #cabecera nav .nav-span2 div .contenedor-ul a:hover{
