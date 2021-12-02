@@ -9,6 +9,7 @@ com\gestionObras\dao\ZonaDAO.class
 com\gestionObras\main\WebConfig.class
 com\gestionObras\entities\Usuario.class
 com\gestionObras\main\Controlador_Inter.class
+com\gestionObras\service\PuntoService.class
 com\gestionObras\entities\SolicitudRol.class
 com\gestionObras\service\ZonaService.class
 com\gestionObras\util\EncriptarPassword.class
@@ -16,9 +17,12 @@ com\gestionObras\service\SolicitudRegistroService.class
 com\gestionObras\main\SecurityConfig.class
 com\gestionObras\service\AreaService.class
 com\gestionObras\dao\SolicitudRegistroDAO.class
+com\gestionObras\dao\PuntoDAO.class
+com\gestionObras\service\PuntoServiceImpl.class
 com\gestionObras\service\ZonaServiceImpl.class
 com\gestionObras\dao\AreaDAO.class
 com\gestionObras\entities\Zona.class
+com\gestionObras\entities\Punto.class
 com\gestionObras\entities\SolicitudRegistro.class
 com\gestionObras\GestionObrasApplication.class
 com\gestionObras\service\SolicitudRegistroServiceImpl.class

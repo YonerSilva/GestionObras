@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <!-- HEADER PARA EL ADMINISTRADOR, SUPERVISOR, INTERVENTOR -->
-        <header id="cabecera" class="row" th:fragment="header">
+        <!-- HEADER PARA EL ADMINISTRADOR -->
+        <header id="cabecera" class="row" th:fragment="header_admin">
             <nav class="col-12">
                 <span class="nav-span1 col-4">
                     <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS" data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
@@ -15,7 +15,7 @@
                 </span>
                 <div class="col-1"></div>
                 <span class="nav-span2 col-7">
-                    <a th:href="@{/}" class="home">
+                    <a th:href="@{/Sis_Administrador_Prin}" class="home">
                         <img src="/img/icons/home.svg" alt="home" height="35px">
                     </a>
                     <div class="dropdown">
@@ -54,7 +54,7 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li" >
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
+                        <a th:href="@{/Sis_Administrador_Prin}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/area-administrar.svg" alt="home" height="30px" title="ADMINISTRAR ÁREAS">
@@ -65,7 +65,7 @@
                         <a th:href="@{/Sis_Administrador_Zona}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR ZONAS"></a>
                     </li>
                     <li class="menu-li">
-                        <img src="/img/icons/zone-admin.svg" alt="home" height="30px" title="ADMINISTRAR PUNTOS">
+                        <img src="/img/icons/points.svg" alt="home" height="30px" title="ADMINISTRAR PUNTOS">
                         <a th:href="@{/Sis_Administrador_Punto}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="ADMINISTRAR PUNTOS"></a>
                     </li>
                     <li class="menu-li">
@@ -80,6 +80,40 @@
             </div>
         </aside>
 
+        <!-- HEADER PARA EL SUPERVISOR -->
+        <header id="cabecera" class="row" th:fragment="header_super">
+            <nav class="col-12">
+                <span class="nav-span1 col-4">
+                    <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS" data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                    <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg" alt="menu" height="30px" class="menu-button">
+                    </figure>
+                </span>
+                <div class="col-1"></div>
+                <span class="nav-span2 col-7">
+                    <a th:href="@{/Sis_Supervisor_Prin}" class="home">
+                        <img src="/img/icons/home.svg" alt="home" height="35px">
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <figure class="nav-figure"><img class="nav_user_img" id="img_nav" th:src="@{${usuario.getFoto()}}" alt="user"></figure>
+                            <p th:text="${usuario.getNombre()}+' '+${usuario.getApellido()}">USER</p>
+                        </button>
+                        <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                            <li id="sub-dropdown" class="dropdown">
+                                <a href="#" class="dropdown-item">Cambiar Rol</a>
+                                <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_ADMINISTRADOR')}"><a th:href="@{/Sis_Administrador_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_SUPERVISOR')}"><a th:href="@{/Sis_Supervisor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_INTERVENTOR')}"><a th:href="@{/Sis_Interventor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                </ul>
+                            </li>
+                            <li><form class="d-flex justify-content-center" method="post" th:action="@{/logout}"><input class="dropdown-item" type="submit" name="name" value="Cerrar Sesión"></form></li>
+                        </ul>
+                    </div>
+                </span>
+            </nav>
+        </header>
         <!-- ASIDE PARA EL SUPERVISOR -->
         <aside class="menu" id="menu_side" th:fragment="aside_supervisor">
             <div class=" menu-div" id="menu-div">
@@ -95,7 +129,7 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li">
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
+                        <a th:href="@{/Sis_Supervisor_Prin}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="INICIO"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/subir.svg" alt="home" height="30px" title="CARGAR PEDIDO">
@@ -118,6 +152,40 @@
             </div>
         </aside>
 
+        <!-- HEADER PARA EL SUPERVISOR -->
+        <header id="cabecera" class="row" th:fragment="header_inter">
+            <nav class="col-12">
+                <span class="nav-span1 col-4">
+                    <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS" data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
+                    <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg" alt="menu" height="30px" class="menu-button">
+                    </figure>
+                </span>
+                <div class="col-1"></div>
+                <span class="nav-span2 col-7">
+                    <a th:href="@{/Sis_Interventor_Prin}" class="home">
+                        <img src="/img/icons/home.svg" alt="home" height="35px">
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <figure class="nav-figure"><img class="nav_user_img" id="img_nav" th:src="@{${usuario.getFoto()}}" alt="user"></figure>
+                            <p th:text="${usuario.getNombre()}+' '+${usuario.getApellido()}">USER</p>
+                        </button>
+                        <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
+                            <li id="sub-dropdown" class="dropdown">
+                                <a href="#" class="dropdown-item">Cambiar Rol</a>
+                                <ul id="sub-dropdown-menu" class="dropdown-menu">
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_ADMINISTRADOR')}"><a th:href="@{/Sis_Administrador_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_SUPERVISOR')}"><a th:href="@{/Sis_Supervisor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                    <li th:each='rol : ${usuario.getRoles()}' th:if="${rol.getTipo_rol().equals('ROLE_INTERVENTOR')}"><a th:href="@{/Sis_Interventor_Prin}" class="dropdown-item" th:text='${rol.toString()}'></a></li>
+                                </ul>
+                            </li>
+                            <li><form class="d-flex justify-content-center" method="post" th:action="@{/logout}"><input class="dropdown-item" type="submit" name="name" value="Cerrar Sesión"></form></li>
+                        </ul>
+                    </div>
+                </span>
+            </nav>
+        </header>
         <!-- ASIDE PARA EL INTERVENTOR -->
         <aside class="menu" id="menu_side" th:fragment="aside_interventor">
             <div class=" menu-div" id="menu-div">
@@ -133,7 +201,7 @@
                 <ul class="list-unstyled components menu-ul">
                     <li class="menu-li">
                         <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                        <a th:href="@{/}" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        <a th:href="@{/Sis_Interventor_Prin}" class="d-block menu-a" id="menu-a" aria-hidden="true"
                            value="INICIO"></a>
                     </li>
                     <li class="menu-li">
