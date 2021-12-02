@@ -31,6 +31,6 @@ public class Zona implements Serializable{
     
     @OneToMany(targetEntity=Punto.class)
     @JoinColumn(name="id_zona",referencedColumnName="id_zona")
-    private List<Punto> puntosZ;
+    private List<Punto> puntosZ;    
     
 }

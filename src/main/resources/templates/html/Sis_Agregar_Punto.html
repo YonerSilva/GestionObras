@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title alt="Sistema Administrador Agregar Puntos Area">Agregar Puntos Area</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/Style_Sis_Administrador_Are.css">
+    <head>
+        <meta charset="UTF-8">
+        <title alt="Sistema Administrador Agregar Puntos Area">Agregar Puntos Area</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/Style_Sis_Administrador_Are.css">
 
-    <!-- CSS Tabla -->
-    <link rel="stylesheet" href="/css/bootstrap.table.css">
-    <!-- CSS Tabla -->
+        <!-- CSS Tabla -->
+        <link rel="stylesheet" href="/css/bootstrap.table.css">
+        <!-- CSS Tabla -->
 
-</head>
+    </head>
 
-<body id="body">
-    
-    <!-- Header -->
-    <header id="cabecera" class="row" th:replace="layout/plantilla :: header_admin"></header>
-        
-    <!-- Aside -->
-    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_admin"></aside>
-        
-    <!-- Main -->
-    <main id="contenedor-principal" class="contenedor-principal">
-        <section id="contenedor">
-            <div>
-                <h2 class="">AGREGAR PUNTOS</h2>
-                <hr>
-            </div>
-            <div id="contenedor-div">
+    <body id="body">
 
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputNombre" class="form-label">Nombre</label>
-                        <input type="nombre" class="form-control" id="exampleInputNombre">
+        <!-- Header -->
+        <header id="cabecera" class="row" th:replace="layout/plantilla :: header_admin"></header>
+
+        <!-- Aside -->
+        <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_admin"></aside>
+
+        <!-- Main -->
+        <main id="contenedor-principal" class="contenedor-principal">
+            <section id="contenedor">
+                <div>
+                    <h2 class="">AGREGAR PUNTOS</h2>
+                    <hr>
+                </div>
+                <div id="contenedor-div">
+                    <div th:if="${errores != null}" >    
+                        <div class="alert alert-danger" role="alert">El punto ya existe.</div>
+                        <button type="button"  class="btn btn-primary p-1 mt-2" th:onClick="location.href='/Sis_Agregar_Punto'">Volver</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputDescripcion" class="form-label">Descripcion</label>
-                        <input type="descripcion" class="form-control" id="exampleInputDescripcion">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputUbicacion" class="form-label">Ubicacion</label>
-                        <input type="ubicacion" class="form-control" id="exampleInputUbicacion">
-                    </div>
-                    <div class="contenedor-buttons mx-auto mt-3">
-                        <button type="button"  class="btn-primary p-1" onclick="">GUARDAR PUNTO</button>
+                    <form class="form-insumos" th:if="${errores == null}" th:action="@{/guardarPunto}" th:object="${punto}" method="post">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required="true">
                         </div>
-                </form>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <textarea class="form-control" id="descripcion" th:field="*{descripcion}" required="true"></textarea>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <label class="my-auto" for="area">Área: </label>
+                            <select id="area" class="form-select" th:field="*{area}" required="true">
+                                <option th:each="area : ${areas}" th:value="${area.getId_area()}">[[${area.getNombre()}]]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <label class="my-auto" for="zona">Zona: </label>
+                            <select id="zona" class="form-select" th:field="*{zona}" required="true">
+                                <option th:each="zona : ${zonas}" th:value="${zona.getId_zona()}">[[${zona.getNombre()}]]</option>
+                            </select>
+                        </div>
+                        <div class="contenedor-buttons mx-auto mt-3">
+                            <button type="submit" class="btn btn-primary p-1">GUARDAR PUNTO</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
 
-            </div>
-        </section>
-    </main>
-
-    <footer id="footer">
-        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
-    </footer>
+        <footer id="footer">
+            <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+        </footer>
 
 
-    <script type="text/javascript" src="/js/popper.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="/js/menu.js"></script>
-</body>
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+    </body>
 
 </html>

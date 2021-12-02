@@ -28,23 +28,21 @@
                 <h2 class="">ADMINISTRAR PUNTOS</h2>
                 <hr>
             </div>
-            <div id="contenedor-div" th:if="${zonas != null and !zonas.empty}">
+            <div id="contenedor-div" th:if="${puntos != null and !puntos.empty}">
                 <table id="example" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Ubicacion</th>
-                            <th>Área</th>
-                            <th>Zona</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="zona : ${zonas}">
-                            <td th:text="${zona.nombre}"></td>
-                            <td th:text="${zona.descripcion}"></td>
-                            <td th:text="${zona.ubicacion}"></td>
+                        <tr th:each="punto : ${puntos}">
+                            <td th:text="${punto.nombre}"></td>
+                            <td th:text="${punto.descripcion}"></td>
+                            <td th:text="${punto.toString()}"></td>
                             <td>
                                 <div class="dropdown">
                                     <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
@@ -61,7 +59,7 @@
                     </tbody>
                 </table>
             </div>
-            <div th:if="${zonas == null or zonas.empty}" class="alert alert-danger" role="alert">
+            <div th:if="${puntos == null or puntos.empty}" class="alert alert-danger" role="alert">
                 No hay puntos registrados en el sistema. 
             </div>
             <div class="contenedor-buttons mx-auto mt-3 text-center">

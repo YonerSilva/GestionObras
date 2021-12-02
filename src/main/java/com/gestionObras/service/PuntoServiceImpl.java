@@ -3,6 +3,7 @@ package com.gestionObras.service;
 import com.gestionObras.dao.PuntoDAO;
 import com.gestionObras.entities.Punto;
 import com.gestionObras.entities.Zona;
+import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class PuntoServiceImpl implements PuntoService{
 
     @Override
     @Transactional
-    public void guardar(Punto punto) {
+    public void guardar(Punto punto) throws SQLException{
         puntoDao.save(punto);
     }
 

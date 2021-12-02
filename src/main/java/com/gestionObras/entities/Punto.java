@@ -8,7 +8,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 import java.util.List;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
@@ -26,9 +26,6 @@ public class Punto implements Serializable{
     @NotEmpty
     private String descripcion;
     
-    @NotEmpty
-    private String ubicacion;
-    
     @ManyToOne
     @JoinColumn(name="id_area")
     private Area area;
@@ -36,5 +33,23 @@ public class Punto implements Serializable{
     @ManyToOne
     @JoinColumn(name="id_zona")
     private Zona zona;
+
+    public Punto(long id_punto, String nombre, String descripcion) {
+        super();
+        this.id_punto = id_punto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public Punto() {
+        super();
+    }
     
+    @Override
+    public String toString(){
+        if(zona==null)
+            return "Area: "+area.getNombre()+" - Zona: Vacio";
+        return "Area: "+area.getNombre()+" - Zona: "+zona.getNombre();
+    }
+
 }

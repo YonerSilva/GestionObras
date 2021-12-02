@@ -8,6 +8,7 @@ import com.gestionObras.entities.SolicitudRol;
 import com.gestionObras.entities.Usuario;
 import com.gestionObras.entities.Zona;
 import com.gestionObras.service.AreaService;
+import com.gestionObras.service.PuntoServiceImpl;
 import com.gestionObras.service.SolicitudRegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
 import com.gestionObras.service.ZonaService;
@@ -15,12 +16,15 @@ import com.gestionObras.util.EncriptarPassword;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class Controlador_Admin {
@@ -36,6 +40,9 @@ public class Controlador_Admin {
 
     @Autowired
     private SolicitudRegistroServiceImpl solicitudService;
+
+    @Autowired
+    private PuntoServiceImpl puntoService;
 
     @GetMapping("/Sis_Administrador_Area")
     public String Sis_Administrador_Area(Model model, HttpSession session) {
@@ -81,11 +88,11 @@ public class Controlador_Admin {
         model.addAttribute("areas", areas);
         return "/html/Sis_Administrador_Area";
     }
-    
+
     @GetMapping("/Sis_VerPuntos_Area")
     public String Sis_VerPuntos_Area(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-       /* var zonas = zonaService.listarZonas();
+        /* var zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);*/
         model.addAttribute("usuario", usuario);
         return "/html/Sis_VerPuntos_Area";
@@ -135,32 +142,54 @@ public class Controlador_Admin {
         model.addAttribute("zonas", zonas);
         return "/html/Sis_Administrador_Zona";
     }
-    
+
     @GetMapping("/Sis_VerPuntos_Zona")
     public String Sis_VerPuntos_Zona(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-       /* var zonas = zonaService.listarZonas();
+        /* var zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);*/
         model.addAttribute("usuario", usuario);
         return "/html/Sis_VerPuntos_Zona";
     }
-    
+
     @GetMapping("/Sis_Administrador_Punto")
     public String Sis_Administrador_Punto(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        /*var zonas = zonaService.listarZonas();
-        model.addAttribute("zonas", zonas);*/
+        var puntos = puntoService.listarPuntos();
+        model.addAttribute("puntos", puntos);
         model.addAttribute("usuario", usuario);
         return "/html/Sis_Administrador_Punto";
     }
-    
-   @GetMapping("/Sis_Agregar_Punto")
-    public String Sis_Agregar_Punto(Punto punto, HttpSession session, Model model) {
+
+    @GetMapping("/Sis_Agregar_Punto")
+    public String Sis_Agregar_Punto(Punto punto,RedirectAttributes errores , HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
+        List<Area> areas = new ArrayList<>();
+        areas = areaService.listarAreas();
+        model.addAttribute("areas", areas);
+        List<Zona> zonas = new ArrayList<>();
+        zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);
         return "/html/Sis_Agregar_Punto";
     }
-    
+
+    @PostMapping("/guardarPunto")
+    public String guardarPunto(Model model,Punto punto, RedirectAttributes errores, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        try {
+            puntoService.guardar(punto);
+            var puntos = puntoService.listarPuntos();
+            model.addAttribute("puntos", puntos);
+            
+        } catch (Exception e) {
+            errores.addFlashAttribute("errores", e.getMessage());
+            return "redirect:/Sis_Agregar_Punto";
+        }
+        return "/html/Sis_Administrador_Punto";
+    }
+
     @GetMapping("/Sis_Modificar_Puntos_Mod/{id_punto}")
     public String Sis_Modificar_Puntos_Mod(Punto punto, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -216,12 +245,12 @@ public class Controlador_Admin {
     @GetMapping("/Sis_Administrador_GesUs")
     public String Sis_Administrador_GesUs(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        model.addAttribute("usuario", usuario);      
+        model.addAttribute("usuario", usuario);
         List<Usuario> usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
         return "/html/Sis_Administrador_GesUs";
     }
-    
+
     @GetMapping("/eliminarUsuario/{id_usuario}")
     public String eliminarUsuario(Usuario usuario, Model model, HttpSession session) {
         Usuario aux = (Usuario) session.getAttribute("usuario");
@@ -232,16 +261,16 @@ public class Controlador_Admin {
         model.addAttribute("usuarios", usuarios);
         return "/html/Sis_Administrador_GesUs";
     }
-    
+
     @GetMapping("/modificarUsuario/{id_usuario}")
     public String modificarUsuario(Usuario usuario, Model model, HttpSession session) {
         Usuario aux = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", aux);
         usuario = usuarioService.findById(usuario.getId_usuario());
-        model.addAttribute("usuarioAux",usuario);
+        model.addAttribute("usuarioAux", usuario);
         return "/html/Editar_User";
     }
-    
+
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(Usuario usuario, Model model, HttpSession session) {
         EncriptarPassword encriptar = new EncriptarPassword();
@@ -252,14 +281,18 @@ public class Controlador_Admin {
         String apellido = usuario.getApellido();
         String username = usuario.getUsername();
         String password = usuario.getPassword();
-        if(!nombre.equals(""))
+        if (!nombre.equals("")) {
             info.setNombre(nombre);
-        if(!apellido.equals(""))
+        }
+        if (!apellido.equals("")) {
             info.setApellido(apellido);
-        if(!username.equals(""))
+        }
+        if (!username.equals("")) {
             info.setUsername(username);
-        if(!password.equals(""))
+        }
+        if (!password.equals("")) {
             info.setPassword(encriptar.encriptarPassword(password));
+        }
         usuarioService.guardarUsuario(info);
         var usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);

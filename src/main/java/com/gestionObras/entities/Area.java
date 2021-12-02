@@ -29,7 +29,14 @@ public class Area implements Serializable{
     @NotEmpty
     private String ubicacion;
     
-    @OneToMany(targetEntity=Punto.class)
+    @OneToMany(targetEntity=Punto.class, cascade=CascadeType.ALL)
     @JoinColumn(name="id_area",referencedColumnName="id_area")
     private List<Punto> puntosA;
+    
+    @PostRemove
+    public void eliminarPuntos(){
+        puntosA.forEach(punto -> punto=null);
+    }
+    
+    
 }
