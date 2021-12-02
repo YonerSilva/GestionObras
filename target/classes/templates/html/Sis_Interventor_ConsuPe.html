@@ -13,82 +13,14 @@
 </head>
 
 <body id="body">
-    <header id="cabecera" class="row">
-        <nav class="col-12">
-            <span class="nav-span1 col-4">
-                <h3 class="texto-nav" id="texto-nav" data-desktoptext="SISTEMA DE PEDIDOS"
-                    data-tablettext="SISTEMA DE PEDIDOS" data-phonetext="SP"></h3>
-                <figure class="nav-menu-button my-auto"><img onclick="menu()" id="btn_open" src="/img/icons/menu.svg"
-                        alt="menu" height="30px" class="menu-button">
-                </figure>
-            </span>
-            <div class="col-1"></div>
-            <span class="nav-span2 col-7">
-                <a href="Sis_Interventor_Prin.html" class="home">
-                    <img src="/img/icons/home.svg" alt="home" height="35px">
-                </a>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <figure class="nav-figure"><img class="nav_user_img" src="/img/icons/man.png" alt="user">
-                        </figure>
-                        <p>USER</p>
-                    </button>
-                    <ul class="dropdown-menu contenedor-ul" aria-labelledby="dropdownMenuButton1">
-                        <li id="sub-dropdown" class="dropdown">
-                            <a href="#" class="dropdown-item">Cambiar Rol</a>
-                            <ul id="sub-dropdown-menu" class="dropdown-menu">
-                                <li class=""><a href="../html/Sis_Administrador_Prin.html"
-                                        class="dropdown-item">ADMINISTRADOR</a></li>
-                                <li class=""><a href="../html/Sis_Supervisor_Prin.html"
-                                        class="dropdown-item">SUPERVISOR</a></li>
-                                <li class=""><a href="../html/Sis_Interventor_Prin.html"
-                                        class="dropdown-item">INTERVENTOR</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="../login.html">Cerrar Sesión</a></li>
-                    </ul>
-                </div>
-            </span>
-        </nav>
-    </header>
-    <aside class=" menu" id="menu_side">
-        <div class=" menu-div" id="menu-div">
-            <div>
-                <figure class="menu-figure mx-auto" id="menu-figure"><img class="user-aside_img"
-                        src="/img/icons/man.png" alt="user-Aside"></figure>
-            </div>
-            <div id="menu_info">
-                <h4 class="menu-text-user" value="USUARIO"></h4>
-                <h5 class="menu-cargo" value="INTERVENTOR"></h5>
-                <h6 class="menu-text-email"><a class="menu-text-email-a" value="user@gmail.com"
-                        href="mailto:user@gmail.com"></a></h6>
-            </div>
-            <hr>
-            <ul class="list-unstyled components menu-ul">
-                <li class="menu-li">
-                    <img src="/img/icons/home-menu.svg" alt="home" height="30px" title="INICIO">
-                    <a href="Sis_Interventor_Prin.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                        value="INICIO"></a>
-                </li>
-                <li class="menu-li">
-                    <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
-                    <a href="Sis_Interventor_GesPed.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                        value="GESTIONAR PEDIDOS"></a>
-                </li>
-                <li class="menu-li">
-                    <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
-                    <a href="Sis_Interventor_ConsuPe.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
-                        value="CONSULTAR PEDIDOS"></a>
-                </li>
-                <li class="menu-li">
-                    <img src="/img/icons/flecha-hacia-abajo.svg" alt="home" height="30px" title="DESCARGAR REPORTES">
-                    <a href="Sis_Interventor_DesPedido.html" class="d-block menu-a" id="menu-a" aria-hidden="true" value="DESCARGAR REPORTES"></a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
+   
+    <!-- Header -->
+    <header id="cabecera" class="row" th:replace="layout/plantilla :: header_inter"></header>
+        
+    <!-- Aside -->
+    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_interventor"></aside>
+        
+    <!-- Main -->
     <main id="contenedor-principal" class="contenedor-principal">
 
         <section id="contenedor">

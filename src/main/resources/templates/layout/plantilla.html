@@ -137,7 +137,7 @@
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
-                        <a href="Sis_Supervisor_Lista.html" class="d-block menu-a" id="menu-a" aria-hidden="true"
+                        <a th:href="@{/Sis_Supervisor_GesPed}" class="d-block menu-a" id="menu-a" aria-hidden="true"
                            value="GESTIONAR PEDIDOS"></a>
                     </li>
                     <li class="menu-li">
@@ -152,7 +152,7 @@
             </div>
         </aside>
 
-        <!-- HEADER PARA EL SUPERVISOR -->
+        <!-- HEADER PARA EL INTERVENTOR -->
         <header id="cabecera" class="row" th:fragment="header_inter">
             <nav class="col-12">
                 <span class="nav-span1 col-4">
@@ -206,7 +206,7 @@
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/orden.svg" alt="home" height="35px" title="GESTIONAR PEDIDO">
-                        <a  class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR PEDIDOS"></a>
+                        <a  th:href="@{/Sis_Interventor_GesPed}" class="d-block menu-a" id="menu-a" aria-hidden="true" value="GESTIONAR PEDIDOS"></a>
                     </li>
                     <li class="menu-li">
                         <img src="/img/icons/consulta.svg" alt="home" height="30px" title="CONSULTAR PEDIDO">
