@@ -88,7 +88,8 @@ public class ControladorInicio {
     }
 
     @PostMapping("/Guardar_Solicitud")
-    public String guardar(Usuario usuario, HttpServletRequest req, HttpServletResponse res) {
+    public String guardar(Usuario usuario, HttpServletRequest req) {
+        //HttpServletResponse res
         try {
             EncriptarPassword encriptar = new EncriptarPassword();
             SolicitudRegistro solicitud = new SolicitudRegistro();

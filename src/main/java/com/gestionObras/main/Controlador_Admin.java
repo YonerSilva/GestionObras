@@ -13,15 +13,14 @@ import com.gestionObras.service.SolicitudRegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
 import com.gestionObras.service.ZonaService;
 import com.gestionObras.util.EncriptarPassword;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -61,12 +60,19 @@ public class Controlador_Admin {
     }
 
     @PostMapping("/guardarArea")
-    public String guardarArea(Model model, Area area, HttpSession session) {
+    public String guardarArea(Model model, Area area, RedirectAttributes atribute, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        areaService.guardar(area);
-        var areas = areaService.listarAreas();
-        model.addAttribute("areas", areas);
+        try {
+            areaService.guardar(area);
+            var areas = areaService.listarAreas();
+            model.addAttribute("areas", areas);
+        } catch (Exception e) {
+            atribute.addFlashAttribute("errores", "El área ya existe.");
+            
+            return "redirect:/Sis_Agregar_Areas";
+        }
+
         return "/html/Sis_Administrador_Area";
     }
 
@@ -78,22 +84,39 @@ public class Controlador_Admin {
         model.addAttribute("area", area);
         return "html/Sis_Modificar_Areas_Mod";
     }
+    
+    @PostMapping("/modificarArea")
+    public String modificarArea(Model model, Area area, RedirectAttributes atribute, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        try {
+            areaService.guardar(area);
+            var areas = areaService.listarAreas();
+            model.addAttribute("areas", areas);
+        } catch (Exception e) {
+            atribute.addFlashAttribute("errores", "El área ya existe.");
+            return "redirect:/Sis_Modificar_Areas_Mod/"+String.valueOf(area.getId_area());
+        }
+        return "/html/Sis_Administrador_Area";
+    }
 
-    @GetMapping("/eliminar/{id_area}")
+    @GetMapping("/eliminarArea/{id_area}")
     public String eliminarArea(Area area, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        areaService.eliminar(area);
+        Area areaAux = areaService.encontrarArea(area);
+        areaService.eliminar(areaAux);
         var areas = areaService.listarAreas();
         model.addAttribute("areas", areas);
         return "/html/Sis_Administrador_Area";
     }
 
-    @GetMapping("/Sis_VerPuntos_Area")
-    public String Sis_VerPuntos_Area(Model model, HttpSession session) {
+    @GetMapping("/Sis_VerPuntos_Area/{id_area}")
+    public String Sis_VerPuntos_Area(Area area, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        /* var zonas = zonaService.listarZonas();
-        model.addAttribute("zonas", zonas);*/
+        area = areaService.encontrarArea(area);
+        var puntos = area.getPuntosA();
+        model.addAttribute("puntos", puntos);
         model.addAttribute("usuario", usuario);
         return "/html/Sis_VerPuntos_Area";
     }
@@ -115,12 +138,32 @@ public class Controlador_Admin {
     }
 
     @PostMapping("/guardarZona")
-    public String guardarZona(Model model, Zona zona, HttpSession session) {
+    public String guardarZona(Model model, Zona zona,RedirectAttributes atribute, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        zonaService.guardar(zona);
-        var zonas = zonaService.listarZonas();
-        model.addAttribute("zonas", zonas);
+        try {
+            zonaService.guardar(zona);
+            var zonas = zonaService.listarZonas();
+            model.addAttribute("zonas", zonas);
+        } catch (Exception e) {
+            atribute.addFlashAttribute("errores", "La zona ya existe.");
+            return "redirect:/Sis_Agregar_Zonas";
+        }
+        return "/html/Sis_Administrador_Zona";
+    }
+    
+    @PostMapping("/modificarZona")
+    public String modificarZona(Model model, Zona zona, RedirectAttributes atribute, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        try {
+            zonaService.guardar(zona);
+            var zonas = zonaService.listarZonas();
+            model.addAttribute("zonas", zonas);
+        } catch (Exception e) {
+            atribute.addFlashAttribute("errores", "La zona ya existe.");
+            return "redirect:/Sis_Modificar_Zonas_Mod/"+String.valueOf(zona.getId_zona());
+        }
         return "/html/Sis_Administrador_Zona";
     }
 
@@ -143,11 +186,12 @@ public class Controlador_Admin {
         return "/html/Sis_Administrador_Zona";
     }
 
-    @GetMapping("/Sis_VerPuntos_Zona")
-    public String Sis_VerPuntos_Zona(Model model, HttpSession session) {
+    @GetMapping("/Sis_VerPuntos_Zona/{id_zona}")
+    public String Sis_VerPuntos_Zona(Zona zona, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        /* var zonas = zonaService.listarZonas();
-        model.addAttribute("zonas", zonas);*/
+        zona = zonaService.encontrarZona(zona);
+        var puntos = zona.getPuntosZ();
+        model.addAttribute("puntos", puntos);
         model.addAttribute("usuario", usuario);
         return "/html/Sis_VerPuntos_Zona";
     }
@@ -162,7 +206,7 @@ public class Controlador_Admin {
     }
 
     @GetMapping("/Sis_Agregar_Punto")
-    public String Sis_Agregar_Punto(Punto punto,RedirectAttributes errores , HttpSession session, Model model) {
+    public String Sis_Agregar_Punto(Punto punto, RedirectAttributes errores, HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
         List<Area> areas = new ArrayList<>();
@@ -175,18 +219,28 @@ public class Controlador_Admin {
     }
 
     @PostMapping("/guardarPunto")
-    public String guardarPunto(Model model,Punto punto, RedirectAttributes errores, HttpSession session) {
+    public String guardarPunto(Model model, Punto punto, RedirectAttributes errores, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
         try {
             puntoService.guardar(punto);
             var puntos = puntoService.listarPuntos();
             model.addAttribute("puntos", puntos);
-            
+
         } catch (Exception e) {
-            errores.addFlashAttribute("errores", e.getMessage());
+            errores.addFlashAttribute("errores", "El punto ya existe.");
             return "redirect:/Sis_Agregar_Punto";
         }
+        return "/html/Sis_Administrador_Punto";
+    }
+
+    @GetMapping("/eliminarPunto/{id_punto}")
+    public String eliminarPunto(Punto punto, Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        puntoService.eliminar(punto);
+        var puntos = puntoService.listarPuntos();
+        model.addAttribute("puntos", puntos);
         return "/html/Sis_Administrador_Punto";
     }
 
@@ -194,9 +248,31 @@ public class Controlador_Admin {
     public String Sis_Modificar_Puntos_Mod(Punto punto, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        /*zona = zonaService.encontrarZona(zona);
-        model.addAttribute("zona", zona);*/
+        List<Area> areas = new ArrayList<>();
+        areas = areaService.listarAreas();
+        model.addAttribute("areas", areas);
+        List<Zona> zonas = new ArrayList<>();
+        zonas = zonaService.listarZonas();
+        model.addAttribute("zonas", zonas);
+        punto = puntoService.encontrarPunto(punto);
+        model.addAttribute("punto", punto);
         return "html/Sis_Modificar_Puntos_Mod";
+    }
+    
+    @PostMapping("/modificarPunto")
+    public String modificarPunto(Model model, Punto punto, RedirectAttributes errores, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        try {
+            puntoService.guardar(punto);
+            var puntos = puntoService.listarPuntos();
+            model.addAttribute("puntos", puntos);
+
+        } catch (Exception e) {
+            errores.addFlashAttribute("errores", "El punto ya existe.");
+            return "redirect:/Sis_Modificar_Puntos_Mod/"+String.valueOf(punto.getId_punto());
+        }
+        return "/html/Sis_Administrador_Punto";
     }
 
     @GetMapping("/Sis_Administrador_GesReg")

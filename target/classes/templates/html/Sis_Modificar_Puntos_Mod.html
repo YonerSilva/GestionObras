@@ -29,8 +29,12 @@
                     <hr>
                 </div>
                 <div id="contenedor-div">
-                    <form  class="form-insumos col-6" th:action="@{/guardarZona}" method="post" th:object="${zona}">
-                        <input type="hidden" name="id_zona" th:field="*{id_zona}">
+                    <div th:if="${errores != null}" >    
+                        <div class="alert alert-danger" role="alert">[[${errores}]]</div>
+                        <a class="btn btn-primary p-1 mt-2" th:href="@{/Sis_Modificar_Puntos_Mod/}+${punto.id_punto}">Volver</a>
+                    </div>
+                    <form  class="form-insumos col-6" th:if="${errores == null}" th:action="@{/modificarPunto}" method="post" th:object="${punto}">
+                        <input type="hidden" name="id_punto" th:field="*{id_punto}">
                         
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
@@ -41,8 +45,16 @@
                             <textarea type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="ubicacion" class="form-label">Ubicacion</label>
-                            <input type="text" class="form-control" id="ubicacion" th:field="*{ubicacion}" required>
+                            <select id="area" class="form-select" th:field="*{area}" required="true">
+                                <option value="" selected hidden>Área</option>
+                                <option th:each="area : ${areas}" th:value="${area.getId_area()}">[[${area.getNombre()}]] - Area</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <select id="zona" class="form-select" th:field="*{zona}">
+                                <option value="" selected hidden>Zona</option>
+                                <option th:each="zona : ${zonas}" th:value="${zona.getId_zona()}">[[${zona.getNombre()}]] - Zona</option>
+                            </select>
                         </div>
                         <div class="contenedor-buttons mx-auto mt-3">
                             <button type="submit"  class="btn-primary p-1">Actualizar</button>

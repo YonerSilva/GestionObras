@@ -2,6 +2,7 @@ package com.gestionObras.service;
 
 import com.gestionObras.dao.ZonaDAO;
 import com.gestionObras.entities.Zona;
+import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ZonaServiceImpl implements ZonaService{
 
     @Override
     @Transactional
-    public void guardar(Zona zona) {
+    public void guardar(Zona zona) throws SQLException{
         zonaDao.save(zona);
     }
 

@@ -60,5 +60,4 @@ public class SolicitudRegistro implements Serializable{
         hash = 89 * hash + Objects.hashCode(username);
         return Math.abs(hash);
     }
-
 }

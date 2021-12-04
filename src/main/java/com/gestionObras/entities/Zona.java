@@ -29,7 +29,7 @@ public class Zona implements Serializable{
     @NotEmpty
     private String ubicacion;
     
-    @OneToMany(targetEntity=Punto.class)
+    @OneToMany(targetEntity=Punto.class, cascade=CascadeType.ALL)
     @JoinColumn(name="id_zona",referencedColumnName="id_zona")
     private List<Punto> puntosZ;    
     

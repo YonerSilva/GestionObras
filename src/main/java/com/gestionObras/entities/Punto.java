@@ -7,7 +7,6 @@ package com.gestionObras.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
-import java.util.List;
 import javax.validation.constraints.*;
 
 @Entity
@@ -26,14 +25,14 @@ public class Punto implements Serializable{
     @NotEmpty
     private String descripcion;
     
-    @ManyToOne
+    @ManyToOne(targetEntity = Area.class, cascade = CascadeType.ALL)
     @JoinColumn(name="id_area")
     private Area area;
     
-    @ManyToOne
+    @ManyToOne(targetEntity = Zona.class)
     @JoinColumn(name="id_zona")
     private Zona zona;
-
+    
     public Punto(long id_punto, String nombre, String descripcion) {
         super();
         this.id_punto = id_punto;

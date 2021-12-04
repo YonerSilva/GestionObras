@@ -37,6 +37,4 @@ public class Area implements Serializable{
     public void eliminarPuntos(){
         puntosA.forEach(punto -> punto=null);
     }
-    
-    
 }

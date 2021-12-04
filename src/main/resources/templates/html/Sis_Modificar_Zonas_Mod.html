@@ -29,7 +29,11 @@
                     <hr>
                 </div>
                 <div id="contenedor-div">
-                    <form  class="form-insumos col-6" th:action="@{/guardarZona}" method="post" th:object="${zona}">
+                    <div th:if="${errores != null}" >    
+                        <div class="alert alert-danger" role="alert">[[${errores}]]</div>
+                        <a class="btn btn-primary p-1 mt-2" th:href="@{/Sis_Modificar_Zonas_Mod/}+${zona.id_zona}">Volver</a>
+                    </div>
+                    <form  class="form-insumos col-6" th:if="${errores == null}" th:action="@{/modificarZona}" method="post" th:object="${zona}">
                         <input type="hidden" name="id_zona" th:field="*{id_zona}">
                         
                         <div class="mb-3">

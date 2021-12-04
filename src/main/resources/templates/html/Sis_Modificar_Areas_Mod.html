@@ -29,7 +29,11 @@
                     <hr>
                 </div>
                 <div id="contenedor-div">
-                    <form  class="form-insumos col-6" th:action="@{/guardarArea}" method="post" th:object="${area}">
+                    <div th:if="${errores != null}" >    
+                        <div class="alert alert-danger" role="alert">[[${errores}]]</div>
+                        <a class="btn btn-primary p-1 mt-2" th:href="@{/Sis_Modificar_Areas_Mod/}+${area.id_area}">Volver</a>
+                    </div>
+                    <form  class="form-insumos col-6" th:if="${errores == null}" th:action="@{/modificarArea}" method="post" th:object="${area}">
                         <input type="hidden" name="id_area" th:field="*{id_area}">
 
                         <div class="mb-3">

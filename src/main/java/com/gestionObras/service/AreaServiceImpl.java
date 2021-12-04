@@ -2,6 +2,7 @@ package com.gestionObras.service;
 
 import com.gestionObras.dao.AreaDAO;
 import com.gestionObras.entities.Area;
+import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,13 @@ public class AreaServiceImpl  implements AreaService{
 
     @Override
     @Transactional
-    public void guardar(Area area) {
+    public void guardar(Area area)throws SQLException{
         areaDao.save(area);
     }
 
     @Override
     @Transactional
-    public void eliminar(Area area) {
+    public void eliminar(Area area){
         areaDao.delete(area);
     }
 
