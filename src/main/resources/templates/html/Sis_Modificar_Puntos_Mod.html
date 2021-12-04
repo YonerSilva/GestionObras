@@ -25,7 +25,7 @@
         <main id="contenedor-principal" class="contenedor-principal">
             <section id="contenedor">
                 <div>
-                    <h2 class="">ACTUALIZAR ZONAS</h2>
+                    <h2 class="">ACTUALIZAR PUNTO</h2>
                     <hr>
                 </div>
                 <div id="contenedor-div">
@@ -45,9 +45,8 @@
                             <textarea type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <select id="area" class="form-select" th:field="*{area}" required="true">
-                                <option value="" selected hidden>Área</option>
-                                <option th:each="area : ${areas}" th:value="${area.getId_area()}">[[${area.getNombre()}]] - Area</option>
+                            <select id="area" class="form-select" th:field="*{area}" required="true" disabled>
+                                <option value="" selected hidden>[[${punto.getArea().getNombre()}]] - Area</option>
                             </select>
                         </div>
                         <div class="mb-3">
