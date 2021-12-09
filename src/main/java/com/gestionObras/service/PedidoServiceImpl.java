@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class PersonaServiceImpl implements PedidoService{
+public class PedidoServiceImpl implements PedidoService{
 
     @Autowired
     private PedidoDAO pedidoDao;
