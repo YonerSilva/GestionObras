@@ -1,113 +1,114 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title alt="Sistema Supervisor Cargar Pedido">Supervisor Cargar Pedido</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/Style_Sis_Supervisor_CarPed.css">
+    <head>
+        <meta charset="UTF-8">
+        <title alt="Sistema Supervisor Cargar Pedido">Supervisor Cargar Pedido</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/Style_Sis_Supervisor_CarPed.css">
 
-    <!-- CSS Tabla -->
-    <link rel="stylesheet" href="/css/bootstrap.table.css">
-    <!-- CSS Tabla -->
+        <!-- CSS Tabla -->
+        <link rel="stylesheet" href="/css/bootstrap.table.css">
+        <!-- CSS Tabla -->
 
-</head>
+    </head>
 
-<body id="body">
-    
-    <!-- Header -->
-    <header id="cabecera" class="row" th:replace="layout/plantilla :: header_super"></header>
-    
-    <!-- Aside -->
-    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_supervisor"></aside>
-    
-    <!-- Main -->
-    <main id="contenedor-principal" class="contenedor-principal">
+    <body id="body">
 
-        <section id="contenedor">
-            <div>
-                <h2 class="">CARGAR PEDIDO</h2>
-                <hr>
-            </div>
-            <div class="contenedor-info">
-                <div id="contenedor-form">
-                    <form class="form-pedido mb-2">
-                        <div class="mb-1">
-                            <select id="select-tipo" class="form-select" onchange="selectDisable()" required>
-                                <option selected hidden>TIPO</option>
-                                <option value="1">REGULAR</option>
-                                <option value="2">MAQUINARIA EXPRESS</option>
-                                <option value="3">KIT MENSUAL</option>
-                                <option value="4">KIT TRIMESTRAL</option>
-                                <option value="5">PEDIDOS ADICIONALES - 1</option>
-                                <option value="6">PEDIDOS ADICIONALES - 2</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <input type="text" class="form-control input" id="nombre-pedido" placeholder="NOMBRE DEL PEDIDO" required>
-                        </div>
-                    </form>
-                    <form class="form-insumos">
-                        <div class="mb-2">
-                            <input type="text" class="form-control input" id="descripcion-insumo" placeholder="DESCRIPCIÓN" required>
-                        </div>
-                        <div class="input-group mb-2">
-                            <input id="cantidad-insumo" type="number" class="form-control input" placeholder="CANTIDAD" required>
-                            <button class="btn btn-outline-secondary" type="button" onclick="more()"><img src="/img/icons/plus-solid.svg" alt="más" height="15px"></button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="less()"><img src="/img/icons/minus-solid.svg" alt="menos" height="15px"></button>
-                        </div>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text">$</span>
-                            <input type="number" class="form-control input" placeholder="PRECIO UNITARIO">
-                            <span class="input-group-text">.00</span>
-                        </div>
-                        <div class="contenedor-buttons">
-                            <button type="button" class=" btn-primary p-1" onclick="agregarPedido()">AGREGAR</button>
-                            <button type="button" class=" btn-primary p-1" onclick="eliminarTodo()">ELIMINAR</button>
-                        </div>
-                    </form>
+        <!-- Header -->
+        <header id="cabecera" class="row" th:replace="layout/plantilla :: header_super"></header>
+
+        <!-- Aside -->
+        <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_supervisor"></aside>
+
+        <!-- Main -->
+        <main id="contenedor-principal" class="contenedor-principal">
+
+            <section id="contenedor">
+                <div>
+                    <h2 class="">CARGAR PEDIDO</h2>
+                    <hr>
                 </div>
-                <div id="contenedor-div">
-                    <table id="table-insumos" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Insumo</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                    </table>
+                <div class="contenedor-info">
+                    <div id="contenedor-form">
+                        <form class="form-pedido mb-2" th:action="@{/guardarPedido}" method="post" th:object="${pedido}">
+                            <div class="mb-2">
+                                <select id="select-tipo" th:field="*{tipo_pedido}" class="form-select" onchange="selectDisable()" required>
+                                    <option value="" selected hidden>TIPO</option>
+                                    <option value="1">REGULAR</option>
+                                    <option value="2">MAQUINARIA EXPRESS</option>
+                                    <option value="3">KIT MENSUAL</option>
+                                    <option value="4">KIT TRIMESTRAL</option>
+                                    <option value="5">PEDIDOS ADICIONALES - 1</option>
+                                    <option value="6">PEDIDOS ADICIONALES - 2</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control input" id="nombre-pedido" th:field="*{nombre}" placeholder="NOMBRE DEL PEDIDO" required>
+                            </div>
+                            <div class="form-insumos mb-2">
+                                <div class="mb-2">
+                                    <textarea type="text" class="form-control input" id="descripcion-insumo" th:field="*{descripcion}" placeholder="DESCRIPCIÓN" required></textarea>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input id="cantidad-insumo" type="number" class="form-control input" placeholder="CANTIDAD" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="more()"><img src="/img/icons/plus-solid.svg" alt="más" height="15px"></button>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="less()"><img src="/img/icons/minus-solid.svg" alt="menos" height="15px"></button>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control input" placeholder="PRECIO UNITARIO">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                            <div class="contenedor-buttons">
+                                <button type="button" class=" btn-primary p-1" onclick="agregarPedido()">AGREGAR</button>
+                                <button type="button" class=" btn-primary p-1" onclick="eliminarTodo()">ELIMINAR</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div id="contenedor-div">
+                        <table id="table-insumos" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Insumo</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-    <footer id="footer">
-        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
-    </footer>
+        <footer id="footer">
+            <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+        </footer>
 
 
-    <script type="text/javascript" src="/js/popper.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-    
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 
-    <!-- JS Tabla -->
-    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
-    <script type="text/javascript" src="/js/menu.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#table-insumos').DataTable();
-        });
-    </script>
-    <!-- JS Tabla -->
 
-</body>
+        <!-- JS Tabla -->
+        <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+        <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('#table-insumos').DataTable();
+                                        });
+        </script>
+        <!-- JS Tabla -->
+
+    </body>
 
 </html>

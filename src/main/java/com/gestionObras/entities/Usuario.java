@@ -33,4 +33,12 @@ public class Usuario implements Serializable{
     @OneToMany(targetEntity=Rol.class,cascade=CascadeType.ALL)
     @JoinColumn(name = "id_usuario",referencedColumnName = "id_usuario")
     private List<Rol> roles;
+    
+    @OneToMany(targetEntity = Pedido.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_supervsior",referencedColumnName = "id_usuario")
+    private List<Pedido> pedidos_super;
+    
+    @OneToMany(targetEntity = Pedido.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_interventor",referencedColumnName = "id_usuario")
+    private List<Pedido> pedidos_inter;
 }

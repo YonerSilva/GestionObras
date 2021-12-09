@@ -386,13 +386,14 @@ hr{
     border: 2px solid black;
     border-radius: 3px;
     padding: 5px;
+    background-color: var(--azul);
 }
 
 #contenedor-form .form-insumos input{
     font-size: small;
 }
 
-#contenedor-form .form-insumos .contenedor-buttons{
+#contenedor-form .contenedor-buttons{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -400,10 +401,10 @@ hr{
 
 
 
-#contenedor-form .form-insumos .contenedor-buttons button{
+#contenedor-form .contenedor-buttons button{
     font-size: small !important;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 3px;
     font-weight: 400;
 }
 
