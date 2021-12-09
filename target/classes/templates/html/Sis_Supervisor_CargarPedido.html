@@ -33,7 +33,7 @@
                     <div id="contenedor-form">
                         <form class="form-pedido mb-2" th:action="@{/guardarPedido}" method="post" th:object="${pedido}">
                             <div class="mb-2">
-                                <select id="select-tipo" th:field="*{tipo_pedido}" class="form-select" onchange="selectDisable()" required>
+                                <select id="select-tipo"  class="form-select" onchange="selectDisable()" required>
                                     <option value="" selected hidden>TIPO</option>
                                     <option value="1">REGULAR</option>
                                     <option value="2">MAQUINARIA EXPRESS</option>
