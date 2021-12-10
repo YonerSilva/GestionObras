@@ -26,31 +26,35 @@
             <div id="contenedor-div">
                 <h2 class="">LISTA DE PEDIDOS</h2>
             <hr>
+            </div>
+            <div id="contenedor-div" th:if="${pedidos != null and !pedidos.empty}">
             <table id="example" class="table table-striped" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>Numero de Pedido</th>
-                        <th>Fecha</th>
+                        <th>Nombre del Pedido</th>
+                        <th>Tipo de Pedido</th>
+                        <th>Fecha de Petición</th>
                         <th>Supervisor</th>
-                        <th>Estado</th>
-                        <th>Iva</th>
                         <th>Total</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1015</td>
-                        <td>27/09/2021</td>
-                        <th>3</th>
-                        <td>Pendiente</td>
-                        <td>6.00</td>
-                        <td>$320,800</td>
-                        <td><button type="button" class="btn btn-secondary" onclick="location.href='/html/Sis_Interventor_Pedido.html'">Ver Pedido</button></td>
+                        <tr th:each="pedido : ${pedidos}">
+                            <td th:text="${pedido.id_pedido}"></td>
+                            <td th:text="${pedido.nombre}"></td>
+                            <td th:text="${pedido.tipo_pedido}"></td>
+                            <td th:text="${pedido.fechaCarga}"></td>
+                            <td th:text="${pedido.id_supervisor}"></td>
+                            <td><button type="button" class="btn btn-secondary" th:onClick="location.href='@{/Sis_Interventor_Pedido/}+ ${pedido.id_pedido}'">Ver Pedido</button></td>
                     </tr>
                 </tbody>
-
                 </table>
+            </div>
+            <div th:if="${pedidos == null or pedidos.empty}" class="alert alert-danger" role="alert">
+                No hay pedidos registrados en el sistema. 
             </div>
         </section>
     </main>

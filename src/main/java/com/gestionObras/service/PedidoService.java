@@ -10,7 +10,7 @@ public interface PedidoService {
     
     public void eliminarPedido(Pedido pedido);
     
-    public List<Pedido> listarPedido(Pedido pedido);
+    public List<Pedido> listarPedido();
         
-    public Pedido findById(long id_pedido);
+    public Pedido encontrarPedido(Pedido pedido);
 }
