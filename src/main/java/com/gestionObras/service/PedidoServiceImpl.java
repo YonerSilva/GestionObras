@@ -28,14 +28,14 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Override
     @Transactional(readOnly = true)
-    public List<Pedido> listarPedido(Pedido pedido) {
+    public List<Pedido> listarPedido() {
         return (List<Pedido>) pedidoDao.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Pedido findById(long id_pedido) {
-        return pedidoDao.findById(id_pedido).get();
+    public Pedido encontrarPedido(Pedido pedido) {
+        return pedidoDao.findById(pedido.getId_pedido()).orElse(null);
     }
     
 }

@@ -26,7 +26,7 @@ public class Controlador_Super {
         model.addAttribute("usuario", usuario);
 
         if(pedido.getId_pedido()!=0){
-            pedido = pedidoService.findById(pedido.getId_pedido());
+            pedido = pedidoService.encontrarPedido(pedido);
             model.addAttribute("pedido", pedido);
         }
         List<Insumo> insumos = pedido.getInsumos();
@@ -58,7 +58,7 @@ public class Controlador_Super {
     public String eliminarPedido(Pedido pedido, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        pedido = pedidoService.findById(pedido.getId_pedido());
+        pedido = pedidoService.encontrarPedido(pedido);
         pedidoService.eliminarPedido(pedido);
         model.addAttribute("pedido", pedido);
         return "redirect:/Sis_Supervisor_CargarPedido/0";
@@ -69,7 +69,7 @@ public class Controlador_Super {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
         try {
-            pedido = pedidoService.findById(pedido.getId_pedido());
+            pedido = pedidoService.encontrarPedido(pedido);
             double valorInsumo = insumo.getCantidad() * insumo.getPrecio();
             pedido.setTotal_pedido(pedido.getTotal_pedido() + valorInsumo);
             pedido.getInsumos().add(insumo);
