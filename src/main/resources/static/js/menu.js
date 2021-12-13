@@ -17,28 +17,18 @@ function less() {
     }
 }
 
-function agregarPedido() {
-    let inputs = document.querySelectorAll(".input");
-    let insumo = inputs[1].value;
-    let cant = inputs[2].value;
-    let precio = inputs[3].value;
-    let tabla = document.getElementById("table-insumos");
-    let cadena = "<td>"+insumo+"</td><td>"+cant+"</td><td>"+precio+"</td>"
-    tabla.insertRow(-1).innerHTML = cadena;
-
-    $(document).ready(function () {
-        $('#table-insumos').DataTable();
-    });
-}
-
-function eliminarTodo() {
-    let select = document.getElementById("select-tipo");
-    select.removeAttribute("disabled");
-    select.removeAttribute("selected");
-    let inputs = document.querySelectorAll(".input");
-    for (let index = 0; index < inputs.length; index++) {
-        inputs[index].value = "";
-
+if(document.title==="Supervisor Cargar Pedido"){
+    let nombre_pedido = document.getElementById("nombre-pedido");
+    let tipo_pedido = document.getElementById("select-tipo");
+    let crear_pedido = document.getElementById("crear_pedido");
+    if (nombre_pedido.value !== "" && tipo_pedido.value > 0 ) {
+        nombre_pedido.disabled = true;
+        tipo_pedido.disabled = true;
+        crear_pedido.disabled = true;
+        crear_pedido.hidden = true;
+        document.form_insumos.hidden = false;
+        document.getElementById("eliminar_pedido").hidden = false;
+        selectDisable();
     }
 }
 
@@ -109,17 +99,23 @@ function menu() {
             case "SUPERVISOR":
                 if (menu_info.innerHTML === "") {
                     menu_info.innerHTML = '<h4 class="menu-text-user my-2">USUARIO</h4><h5 class="menu-cargo my-2">SUPERVISOR</h5><h6 class="menu-text-email my-2"><a href="mailto:user@gmail.com">user@gmail.com</a></h6>';
-                } else { menu_info.innerHTML = "" }
+                } else {
+                    menu_info.innerHTML = ""
+                }
                 break;
             case "INTERVENTOR":
                 if (menu_info.innerHTML === "") {
                     menu_info.innerHTML = '<h4 class="menu-text-user my-2">USUARIO</h4><h5 class="menu-cargo my-2">INTERVENTOR</h5><h6 class="menu-text-email my-2"><a href="mailto:user@gmail.com">user@gmail.com</a></h6>';
-                } else { menu_info.innerHTML = "" }
+                } else {
+                    menu_info.innerHTML = ""
+                }
                 break;
             case "ADMINISTRADOR":
                 if (menu_info.innerHTML === "") {
                     menu_info.innerHTML = '<h4 class="menu-text-user my-2">USUARIO</h4><h5 class="menu-cargo my-2">ADMINISTRADOR</h5><h6 class="menu-text-email my-2"><a href="mailto:user@gmail.com">user@gmail.com</a></h6>';
-                } else { menu_info.innerHTML = "" }
+                } else {
+                    menu_info.innerHTML = ""
+                }
                 break;
         }
     }

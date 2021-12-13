@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PedidoService {
     
-    public void guardarPedido(Pedido pedido)throws SQLException;
+    public Pedido guardarPedido(Pedido pedido)throws SQLException;
     
     public void eliminarPedido(Pedido pedido);
     

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostRemove;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -49,7 +50,10 @@ public class Pedido implements Serializable{
     @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
     private List<Insumo> insumos;
     
-    
+    @PostRemove
+    public void eliminarNulos(){
+        insumos.forEach(insumo -> insumo=null);
+    }
     
     @Override
     public String toString(){

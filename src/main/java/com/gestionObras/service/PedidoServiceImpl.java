@@ -16,8 +16,8 @@ public class PedidoServiceImpl implements PedidoService{
     
     @Override
     @Transactional
-    public void guardarPedido(Pedido pedido) throws SQLException {
-        pedidoDao.save(pedido);
+    public Pedido guardarPedido(Pedido pedido) throws SQLException {
+        return pedidoDao.save(pedido);
     }
 
     @Override

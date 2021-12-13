@@ -1,6 +1,7 @@
 package com.gestionObras.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,13 +23,15 @@ public class Insumo implements Serializable{
     
     private String descripcion;
     
+    private int cantidad;
+    
     private double precio;
     
-    @ManyToOne(targetEntity = Punto.class)
+    @ManyToOne(targetEntity = Punto.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_punto")
     private Punto punto;
     
-    @ManyToOne(targetEntity = Pedido.class)
+    @ManyToOne(targetEntity = Pedido.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 }
