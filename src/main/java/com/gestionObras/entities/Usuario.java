@@ -41,4 +41,10 @@ public class Usuario implements Serializable{
     @OneToMany(targetEntity = Pedido.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_interventor",referencedColumnName = "id_usuario")
     private List<Pedido> pedidos_inter;
+    
+    @Override
+    public String toString(){
+        String [] nombres = nombre.split(" ");
+        return id_usuario+" - "+nombres[0]+" "+apellido;
+    }
 }

@@ -5,6 +5,7 @@ import com.gestionObras.entities.Pedido;
 import com.gestionObras.entities.Usuario;
 import com.gestionObras.service.PedidoService;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class Controlador_Super {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
 
-        if(pedido.getId_pedido()!=0){
+        if (pedido.getId_pedido() != 0) {
             pedido = pedidoService.encontrarPedido(pedido);
             model.addAttribute("pedido", pedido);
         }
@@ -51,9 +52,9 @@ public class Controlador_Super {
             }
         }
         model.addAttribute("pedido", pedido);
-        return "redirect:/Sis_Supervisor_CargarPedido/"+pedido.getId_pedido();
+        return "redirect:/Sis_Supervisor_CargarPedido/" + pedido.getId_pedido();
     }
-    
+
     @GetMapping("/eliminarPedido/{id_pedido}")
     public String eliminarPedido(Pedido pedido, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -78,14 +79,35 @@ public class Controlador_Super {
             atributes.addFlashAttribute("errores_ins", "El insumo ya existe.");
         }
         model.addAttribute("pedido", pedido);
-        return "redirect:/Sis_Supervisor_CargarPedido/"+pedido.getId_pedido();
+        return "redirect:/Sis_Supervisor_CargarPedido/" + pedido.getId_pedido();
     }
 
     @GetMapping("/Sis_Supervisor_GesPed")
     public String Sis_Supervisor_GesPed(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
+        var pedidos = pedidoService.listarPedido();
+        model.addAttribute("pedidos", pedidos);
         return "/html/Sis_Supervisor_GesPed";
+    }
+
+    @GetMapping("/verPedido/{id_pedido}")
+    public String verPedido(Pedido pedido, Model model, RedirectAttributes atributes, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
+        List<Insumo> insumos = new ArrayList<>();
+        try {
+            pedido = pedidoService.encontrarPedido(pedido);
+            
+            if(pedido!=null){
+                insumos = pedido.getInsumos();
+            }
+        } catch (Exception e) {
+            atributes.addFlashAttribute("errores", "No se pudo encontrar el pedido.");
+        }
+        model.addAttribute("pedido", pedido);
+        model.addAttribute("insumos", insumos);
+        return "/html/Sis_Supervisor_Pedido";
     }
 
     @GetMapping("/Sis_Supervisor_ConsuPe")

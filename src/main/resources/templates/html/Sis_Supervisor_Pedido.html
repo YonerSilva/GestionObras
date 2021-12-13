@@ -1,151 +1,132 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title alt="Sistema Supervisor Pedido">Sistema Supervisor Pedido</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/Style_Sis_Interventor_Ped.css">
-    
-    <!-- CSS Tabla -->
-    <link rel="stylesheet" href="/css/bootstrap.table.css">
-    <!-- CSS Tabla -->
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title alt="Sistema Supervisor Pedido">Sistema Supervisor Pedido</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/Style_Sis_Interventor_Ped.css">
 
-<body id="body">
-    
-   <!-- Header -->
-    <header id="cabecera" class="row" th:replace="layout/plantilla :: header_super"></header>
-    
-    <!-- Aside -->
-    <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_supervisor"></aside>
-    
-    <!-- Main -->
-    <main id="contenedor-principal" class="contenedor-principal">
+        <!-- CSS Tabla -->
+        <link rel="stylesheet" href="/css/bootstrap.table.css">
+        <!-- CSS Tabla -->
+    </head>
 
-        <section id="contenedor">
-            <div id="contenedor-div">
-                
+    <body id="body">
+
+        <!-- Header -->
+        <header id="cabecera" class="row" th:replace="layout/plantilla :: header_super"></header>
+
+        <!-- Aside -->
+        <aside class=" menu" id="menu_side" th:replace="layout/plantilla :: aside_supervisor"></aside>
+
+        <!-- Main -->
+        <main id="contenedor-principal" class="contenedor-principal">
+
+            <section id="contenedor">
+                <div id="contenedor-div" th:if="${errores != null}" >    
+                    <div class="alert alert-danger" role="alert">[[${errores}]]</div>
+                    <button type="button"  class="btn btn-primary p-1 mt-2" th:onClick="location.href='/Sis_Supervisor_CargarPedido/0'">Volver</button>
+                </div>
+                <div id="contenedor-div" th:if="${errores == null}">
                     <h2 class="">INFORMACION PEDIDO</h2>
                     <hr>
-                <table id="tabla-pedido" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID Pedido</th>
-                            <th>Nombre Pedido</th>
-                            <th>Tipo Pedido</th>
-                            <th>Fecha Carga</th>
-                            <th>Fecha Aprobacion</th>
-                            <th>Fecha Despacho</th>
-                            <th>Estado Pedido</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1105</td>
-                            <td>Pedido1</td>
-                            <td>Regular</td>
-                            <td>27/09/2021</td>
-                            <td>27/09/2021</td>
-                            <td>27/09/2021</td>
-                            <td>PENDIENTE</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr>
-                <div class="d-flex justify-content-around align-items-center">
-                    
-                    <div id="div-central" >
-                    <table id="tabla-interventor" class="table table-striped">
+                    <table id="tabla-pedido" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID Interventor</th>
-                                <th>Nombre Interventor</th>
+                                <th>ID Pedido</th>
+                                <th>Nombre Pedido</th>
+                                <th>Tipo Pedido</th>
+                                <th>Fecha Carga</th>
+                                <th>Fecha Aprobacion</th>
+                                <th>Estado Pedido</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>11151</td>
-                                <td>Garrett Winters</td>
+                                <td>[[${pedido.getId_pedido()}]]</td>
+                                <td>[[${pedido.getNombre()}]]</td>
+                                <td>[[${pedido.getTipo_pedido()}]]</td>
+                                <td>[[${pedido.getFecha_carga()}]]</td>
+                                <td th:text="${pedido.getFecha_aprobacion()!=null} ? ${pedido.getFecha_aprobacion()} : 'Vacio'"></td>
+                                <td th:style="${pedido.getEstado()=='Pendiente' ? 'background-color:#FE9A05;' : 'background-color:#158C0B;'}">[[${pedido.getEstado()}]]</td>
+                                <td>[[${pedido.getTotal_pedido()}]]</td>
                             </tr>
                         </tbody>
                     </table>
-
+                    <hr>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <div id="div-central" th:if="${pedido.getInterventor() != null}">
+                            <table id="tabla-interventor" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID Interventor</th>
+                                        <th>Nombre Interventor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${pedido.getInterventor().getId_pedido()}</td>
+                                        <td>${pedido.getInterventor().getNombre()}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="div-central" th:if="${pedido.getInterventor() == null}" class="alert alert-danger m-3" role="alert">
+                            Aún no ha sido aprobado el pedido por un interventor.
+                        </div>
+                        <div th:if="${insumos != null and !insumos.empty}">
+                            <table id="tabla-insumo" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Descripción</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="insumo : ${insumos}">
+                                        <td>[[${insumo.descripcion}]]</td>
+                                        <td>[[${insumo.cantidad}]]</td>
+                                        <td>[[${insumo.precio}]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${insumos == null or insumos.empty}" class="alert alert-danger" role="alert">
+                            No hay insumos registrados en el pedido. 
+                        </div>
+                    </div>
                     <div class="align-content-center"> 
                         <button type="button" class="btn btn-secondary">Descargar Reporte</button>
                     </div>
-                   
-                    </div>
-                    <table id="tabla-insumo" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Descripción</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                                <th>Valor Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Cemento</td>
-                                <td>12</td>
-                                <td>20.000</td>
-                                <td>0.00</td>
-                            </tr>
-                            <tr>
-                                <td>Varillas</td>
-                                <td>5</td>
-                                <td>35.000</td>
-                                <td>0.00</td>
-                            </tr>
-                            <tr>
-                                <td>Varilla 0.5</td>
-                                <td>10</td>
-                                <td>17.500</td>
-                                <td>0.00</td>
-                            </tr>
-                            <tr>
-                                <td>Arena</td>
-                                <td>100</td>
-                                <td>9.000</td>
-                                <td>0.00</td>
-                            </tr> 
-                            <tr>
-                                <td>Bloques</td>
-                                <td>200</td>
-                                <td>10.000</td>
-                                <td>0.00</td>
-                            </tr>
-                        </tbody>
-                        
-                    </table>
                 </div>
-            </div>
 
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-    <footer id="footer">
-        <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
-    </footer>
+        <footer id="footer">
+            <h4 class="titulo-final ">&copy; SISTEMA DE PEDIDOS 2021</h4>
+        </footer>
 
-    <script type="text/javascript" src="/js/popper.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="/js/menu.js"></script>
-    
-    <!-- JS Tabla -->
-    <script type="text/javascript" src="/js/jquery.datatable.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.table.js"></script>
-    <!-- JS Tabla -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#tabla-insumo').DataTable();
-        });
-    </script>
-</body>
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+
+        <!-- JS Tabla -->
+        <script type="text/javascript" src="/js/jquery.datatable.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.table.js"></script>
+        <!-- JS Tabla -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tabla-insumo').DataTable();
+            });
+        </script>
+    </body>
 
 </html>

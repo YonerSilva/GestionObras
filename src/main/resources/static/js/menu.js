@@ -32,6 +32,16 @@ if(document.title==="Supervisor Cargar Pedido"){
     }
 }
 
+function buscarPedido(){
+    let id_pedido = document.getElementById("id_pedido");
+    if(id_pedido.value!==""){
+        document.form_buscar.action="/verPedido/"+id_pedido.value;
+        document.form_buscar.submit();
+    }else{
+        alert("Campos vacios.");
+    }
+}
+
 let cargo = document.querySelector(".menu-cargo").getAttribute("value");
 let li_roles = document.getElementById("sub-dropdown-menu").childNodes;
 switch (cargo) {

@@ -353,31 +353,8 @@ hr{
     margin-top: 10px;
 }
 
-#contenedor-div #tabla-interventor{
-    border: 2px solid black;
-    border-radius: 5px !important;
-    width: 20%;
-    height: 10px;
-}
-
-#contenedor-div #tabla-pedido{
-    border: 2px solid black;
-    border-radius: 5px !important;
-}
-
-#contenedor-div #tabla-insumo{
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 100%;
-}
-
-#contenedor-div table th{
-    text-align: center;
-    font-size: small;
-}
-#contenedor-div table td{
-    text-align: center;
-    font-size: small;
+#contenedor-div #id_pedido{
+    width: 30% !important;
 }
 
 #contenedor-div h2{
