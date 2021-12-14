@@ -12,5 +12,5 @@ public interface PedidoService {
     
     public List<Pedido> listarPedido();
         
-    public Pedido encontrarPedido(Pedido pedido);
+    public Pedido encontrarPedido(Pedido pedido) throws SQLException;
 }

@@ -27,7 +27,7 @@ public class Insumo implements Serializable{
     
     private double precio;
     
-    @ManyToOne(targetEntity = Punto.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Punto.class)
     @JoinColumn(name = "id_punto")
     private Punto punto;
     

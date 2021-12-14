@@ -4,6 +4,7 @@ import com.gestionObras.entities.Insumo;
 import com.gestionObras.entities.Pedido;
 import com.gestionObras.entities.Usuario;
 import com.gestionObras.service.PedidoService;
+import com.gestionObras.service.PuntoService;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,9 @@ public class Controlador_Super {
 
     @Autowired
     private PedidoService pedidoService;
+    
+    @Autowired
+    private PuntoService puntoService;
 
     @GetMapping("/Sis_Supervisor_CargarPedido/{id_pedido}")
     public String Sis_Supervisor_CargarPedido(Pedido pedido, Insumo insumo, Model model, HttpSession session) {
@@ -27,8 +31,14 @@ public class Controlador_Super {
         model.addAttribute("usuario", usuario);
 
         if (pedido.getId_pedido() != 0) {
-            pedido = pedidoService.encontrarPedido(pedido);
-            model.addAttribute("pedido", pedido);
+            try {
+                pedido = pedidoService.encontrarPedido(pedido);
+                model.addAttribute("pedido", pedido);
+                var puntos = puntoService.listarPuntos();
+                model.addAttribute("puntos", puntos);
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
         List<Insumo> insumos = pedido.getInsumos();
         model.addAttribute("insumos", insumos);
@@ -55,14 +65,18 @@ public class Controlador_Super {
         return "redirect:/Sis_Supervisor_CargarPedido/" + pedido.getId_pedido();
     }
 
-    @GetMapping("/eliminarPedido/{id_pedido}")
-    public String eliminarPedido(Pedido pedido, Model model, HttpSession session) {
+    @GetMapping("/eliminarPedidoSuper/{id_pedido}")
+    public String eliminarPedidoSuper(Pedido pedido, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        pedido = pedidoService.encontrarPedido(pedido);
-        pedidoService.eliminarPedido(pedido);
+        try {
+            pedido = pedidoService.encontrarPedido(pedido);
+            pedidoService.eliminarPedido(pedido);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
         model.addAttribute("pedido", pedido);
-        return "redirect:/Sis_Supervisor_CargarPedido/0";
+        return "redirect:/Sis_Supervisor_GesPed";
     }
 
     @PostMapping("/guardarInsumo/{id_pedido}")
@@ -91,24 +105,28 @@ public class Controlador_Super {
         return "/html/Sis_Supervisor_GesPed";
     }
 
-    @GetMapping("/verPedido/{id_pedido}")
-    public String verPedido(Pedido pedido, Model model, RedirectAttributes atributes, HttpSession session) {
+    @GetMapping("/verPedidoSuper/{id_pedido}")
+    public String verPedidoSuper(Pedido pedido, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
         List<Insumo> insumos = new ArrayList<>();
         try {
             pedido = pedidoService.encontrarPedido(pedido);
-            
-            if(pedido!=null){
+
+            if (pedido != null) {
                 insumos = pedido.getInsumos();
+                model.addAttribute("pedido", pedido);
+                model.addAttribute("insumos", insumos);
+            }else{
+                throw new Exception("No se pudo encontrar el pedido.");
             }
         } catch (Exception e) {
-            atributes.addFlashAttribute("errores", "No se pudo encontrar el pedido.");
+            model.addAttribute("errores", e.getMessage());
         }
-        model.addAttribute("pedido", pedido);
-        model.addAttribute("insumos", insumos);
+        
         return "/html/Sis_Supervisor_Pedido";
     }
+
 
     @GetMapping("/Sis_Supervisor_ConsuPe")
     public String Sis_Supervisor_ConsuPe(Model model, HttpSession session) {

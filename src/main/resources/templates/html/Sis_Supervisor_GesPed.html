@@ -34,6 +34,7 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Estado</th>
+                                <th>Tipo Pedido</th>
                                 <th>Fecha Carga</th>
                                 <th>Fecha Aprobado</th>
                                 <th>Interventor</th>
@@ -45,12 +46,24 @@
                             <tr th:each="pedido : ${pedidos}">
                                 <td th:text="${pedido.getId_pedido()}"></td>
                                 <td th:text="${pedido.getNombre()}"></td>
-                                <td th:style="${pedido.getEstado()=='Pendiente' ? 'background-color:#FE9A05;' : 'background-color:#158C0B;'}" th:text="${pedido.getEstado()}"></td>
+                                <td th:style="${pedido.getEstado()=='Pendiente' ? 'background-color:#FE9A05;' : 'background-color:#158C0B;color:white;'}" th:text="${pedido.getEstado()}"></td>
+                                <td th:text="${pedido.toString()}"></td>
                                 <td th:text="${pedido.getFecha_carga()}"></td>
                                 <td th:text="${pedido.getFecha_aprobacion()!=null} ? ${pedido.getFecha_aprobacion()} : 'Vacio'"></td>
                                 <td th:text="${pedido.getInterventor()!=null} ? ${pedido.getInterventor().toString()} : 'Vacio'"></td>
                                 <td th:text="${pedido.getTotal_pedido()}"></td>
-                                <td><button type="button" class="btn btn-secondary" th:attr="onclick=|location.href='/verPedido/'+${pedido.getId_pedido()}|">Ver</button></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            Opciones
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                            <li><a class="dropdown-item" th:href="@{/verPedidoSuper/} + ${pedido.getId_pedido()}">Ver</a></li>
+                                            <li th:if="${pedido.getEstado()!='Aprobado'}"><a class="dropdown-item" th:href="@{/eliminarPedidoSuper/}+ ${pedido.getId_pedido()}">Eliminar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -77,9 +90,9 @@
         <script type="text/javascript" src="/js/jquery.datatable.js"></script>
         <script type="text/javascript" src="/js/bootstrap.table.js"></script>
         <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#example').DataTable();
-                                });
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
         </script>
         <!-- JS Tabla -->
     </body>

@@ -13,10 +13,8 @@ import com.gestionObras.service.SolicitudRegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
 import com.gestionObras.service.ZonaService;
 import com.gestionObras.util.EncriptarPassword;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -189,10 +187,10 @@ public class Controlador_Admin {
     @GetMapping("/Sis_VerPuntos_Zona/{id_zona}")
     public String Sis_VerPuntos_Zona(Zona zona, Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
+        model.addAttribute("usuario", usuario);
         zona = zonaService.encontrarZona(zona);
         var puntos = zona.getPuntosZ();
         model.addAttribute("puntos", puntos);
-        model.addAttribute("usuario", usuario);
         return "/html/Sis_VerPuntos_Zona";
     }
 

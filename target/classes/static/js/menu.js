@@ -32,10 +32,20 @@ if(document.title==="Supervisor Cargar Pedido"){
     }
 }
 
-function buscarPedido(){
+function buscarPedidoSuper(){
     let id_pedido = document.getElementById("id_pedido");
     if(id_pedido.value!==""){
-        document.form_buscar.action="/verPedido/"+id_pedido.value;
+        document.form_buscar.action="/verPedidoSuper/"+id_pedido.value;
+        document.form_buscar.submit();
+    }else{
+        alert("Campos vacios.");
+    }
+}
+
+function buscarPedidoInter(){
+    let id_pedido = document.getElementById("id_pedido");
+    if(id_pedido.value!==""){
+        document.form_buscar.action="/verPedidoInter/"+id_pedido.value;
         document.form_buscar.submit();
     }else{
         alert("Campos vacios.");
