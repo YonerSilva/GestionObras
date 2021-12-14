@@ -33,9 +33,12 @@ public class PedidoServiceImpl implements PedidoService{
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Pedido encontrarPedido(Pedido pedido) {
-        return pedidoDao.findById(pedido.getId_pedido()).orElse(null);
+    public Pedido encontrarPedido(Pedido pedido) throws SQLException{
+        long id = pedido.getId_pedido();
+        pedido = pedidoDao.findById(id).orElse(null);
+        if(pedido!=null)
+            return pedido;
+        return null;
     }
     
 }

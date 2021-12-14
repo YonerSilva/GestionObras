@@ -63,6 +63,12 @@
                             <div class="mb-2">
                                 <input type="text" class="form-control input" id="descripcion-insumo" placeholder="DESCRIPCIÓN" th:field="*{descripcion}" required>
                             </div>
+                            <div class="mb-2">
+                                <select id="select-punto" class="form-select" required="true" th:field="*{punto}">
+                                    <option value="" selected hidden>Punto</option>
+                                    <option th:each="punto : ${puntos}" th:value="${punto.getId_punto()}">[[${punto.getNombre()}]] - Punto</option>
+                                </select>
+                            </div>
                             <div class="input-group mb-2">
                                 <input id="cantidad-insumo" type="number" th:field="*{cantidad}" class="form-control input" placeholder="CANTIDAD" required>
                                 <button class="btn btn-outline-secondary" type="button" onclick="more()"><img src="/img/icons/plus-solid.svg" alt="más" height="15px"></button>
@@ -78,7 +84,7 @@
                             </div>
                         </form>
                         <div class="contenedor-buttons">
-                            <button type="button" id="eliminar_pedido" class=" btn-primary p-1" th:attr="onclick=|location.href='/eliminarPedido/'+${pedido.getId_pedido()}|" hidden>ELIMINAR</button>
+                            <button type="button" id="eliminar_pedido" class=" btn-primary p-1" th:attr="onclick=|location.href='/eliminarPedidoSuper/'+${pedido.getId_pedido()}|" hidden>ELIMINAR</button>
                         </div>
                     </div>
                     <div id="contenedor-div" th:if="${insumos != null and !insumos.empty}">
@@ -125,9 +131,9 @@
         <script type="text/javascript" src="/js/bootstrap.table.js"></script>
         <script type="text/javascript" src="/js/menu.js"></script>
         <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#table-insumos').DataTable();
-                                });
+                                    $(document).ready(function () {
+                                        $('#table-insumos').DataTable();
+                                    });
         </script>
         <!-- JS Tabla -->
 

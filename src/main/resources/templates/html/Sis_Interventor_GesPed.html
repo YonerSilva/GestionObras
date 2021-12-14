@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title alt="Sistema Supervisor Lista">Sistema Interventor Lista</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/Style_Sis_Interventor_Ped.css">
+        <link rel="stylesheet" href="/css/Style_Sis_Interventor_Lis.css">
 
         <!-- CSS Tabla -->
         <link rel="stylesheet" href="/css/bootstrap.table.css">
@@ -28,27 +28,43 @@
                     <hr>
                 </div>
                 <div id="contenedor-div" th:if="${pedidos != null and !pedidos.empty}">
-                    <table id="example" class="table table-striped" style="width: 100%;">
+                    <table id="tabla-pedido" class="table table-striped" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Tipo</th>
-                                <th>Fecha de Petición</th>
+                                <th>Estado</th>
+                                <th>Tipo Pedido</th>
+                                <th>Fecha Carga</th>
+                                <th>Fecha Aprobado</th>
                                 <th>Supervisor</th>
                                 <th>Total</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
                             <tr th:each="pedido : ${pedidos}">
-                                <td th:text="${pedido.id_pedido}"></td>
-                                <td th:text="${pedido.nombre}"></td>
-                                <td th:text="${pedido.tipo_pedido}"></td>
-                                <td th:text="${pedido.fechaCarga}"></td>
-                                <td th:text="${pedido.id_supervisor}"></td>
-                                <td><button type="button" class="btn btn-secondary" th:onClick="location.href='@{/Sis_Interventor_Pedido/}+ ${pedido.id_pedido}'">Ver Pedido</button></td>
+                                <td th:text="${pedido.getId_pedido()}"></td>
+                                <td th:text="${pedido.getNombre()}"></td>
+                                <td th:style="${pedido.getEstado()=='Pendiente' ? 'background-color:#FE9A05;' : 'background-color:#158C0B;color:white;'}" th:text="${pedido.getEstado()}"></td>
+                                <td th:text="${pedido.toString()}"></td>
+                                <td th:text="${pedido.getFecha_carga()}"></td>
+                                <td th:text="${pedido.getFecha_aprobacion()!=null} ? ${pedido.getFecha_aprobacion()} : 'Vacio'"></td>
+                                <td th:text="${pedido.getSupervisor()!=null} ? ${pedido.getSupervisor().toString()} : 'Vacio'"></td>
+                                <td th:text="${pedido.getTotal_pedido()}"></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button id="dropdown-button" class="btn btn-secondary dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            Opciones
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                            <li><a class="dropdown-item" th:href="@{/verPedidoInter/} + ${pedido.getId_pedido()}">Ver</a></li>
+                                            <li th:if="${pedido.getEstado()!='Aprobado'}"><a class="dropdown-item" th:href="@{/aprobarPedido/} + ${pedido.getId_pedido()}">Aprobar</a></li>
+                                            <li th:if="${pedido.getEstado()!='Aprobado'}"><a class="dropdown-item" th:href="@{/eliminarPedidoInter/}+ ${pedido.getId_pedido()}">Rechazar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,7 +92,7 @@
         <script type="text/javascript" src="/js/bootstrap.table.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#example').DataTable();
+                $('#tabla-pedido').DataTable();
             });
         </script>
         <!-- JS Tabla -->

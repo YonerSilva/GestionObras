@@ -359,9 +359,20 @@ hr{
 
 #contenedor-div table th{
     text-align: center;
+    font-size: small;
 }
 #contenedor-div table td{
     text-align: center;
+    font-size: small;
+}
+
+#contenedor-div table td button,li{
+    text-align: center;
+    font-size: small !important;
+}
+
+#contenedor-div table .dropdown-menu{
+    min-width: 100% !important;
 }
 
 #contenedor-div h2{
