@@ -158,3 +158,9 @@ if (window.innerWidth < 600) {
     const footer = document.getElementById("footer");
     footer.classList.add("footer_600");
 }
+
+function descargarReporte(id_pedido){
+    
+    //document.location.href="/verPedidoSuper/" + id_pedido + "?format=pdf";
+    window.open("/verPedidoSuper/" + id_pedido + "?format=pdf","_blank");
+}
