@@ -139,6 +139,8 @@ public class Controlador_Super {
     public String Sis_Supervisor_DesPedido(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
+        var pedidos = pedidoService.listarPedido();
+        model.addAttribute("pedidos", pedidos);
         return "/html/Sis_Supervisor_DesPedido";
     }
 }

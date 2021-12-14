@@ -1,3 +1,4 @@
+com\gestionObras\util\PedidosInterPdf.class
 com\gestionObras\entities\Area.class
 com\gestionObras\service\UsuarioService.class
 com\gestionObras\util\Imagen.class
@@ -7,6 +8,7 @@ com\gestionObras\dao\UsuarioDAO.class
 com\gestionObras\main\Controlador_Super.class
 com\gestionObras\dao\ZonaDAO.class
 com\gestionObras\main\WebConfig.class
+com\gestionObras\util\PedidosSuperPdf.class
 com\gestionObras\entities\Usuario.class
 com\gestionObras\main\Controlador_Inter.class
 com\gestionObras\service\PuntoService.class
@@ -30,7 +32,6 @@ com\gestionObras\entities\Punto.class
 com\gestionObras\entities\SolicitudRegistro.class
 com\gestionObras\GestionObrasApplication.class
 com\gestionObras\service\SolicitudRegistroServiceImpl.class
-com\gestionObras\util\PedidosPdf.class
 com\gestionObras\service\PedidoService.class
 com\gestionObras\service\AreaServiceImpl.class
 com\gestionObras\main\ControladorInicio.class

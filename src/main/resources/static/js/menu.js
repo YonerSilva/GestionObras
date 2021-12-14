@@ -159,8 +159,10 @@ if (window.innerWidth < 600) {
     footer.classList.add("footer_600");
 }
 
-function descargarReporte(id_pedido){
-    
-    //document.location.href="/verPedidoSuper/" + id_pedido + "?format=pdf";
+function descargarReporteSuper(id_pedido){
     window.open("/verPedidoSuper/" + id_pedido + "?format=pdf","_blank");
+}
+
+function descargarReporteInter(id_pedido){
+    window.open("/verPedidoInter/" + id_pedido + "?format=pdf","_blank");
 }

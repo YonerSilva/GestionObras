@@ -94,6 +94,7 @@
                                     <th>Insumo</th>
                                     <th>Cantidad</th>
                                     <th>Precio Unitario</th>
+                                    <th>Punto</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -101,6 +102,7 @@
                                     <td>[[${insumo.descripcion}]]</td>
                                     <td>[[${insumo.cantidad}]]</td>
                                     <td>[[${insumo.precio}]]</td>
+                                    <td>[[${insumo.getPunto().getId_punto()+' - '+insumo.getPunto().getNombre()}]]</td>
                                 </tr>
                             </tbody>
                         </table>

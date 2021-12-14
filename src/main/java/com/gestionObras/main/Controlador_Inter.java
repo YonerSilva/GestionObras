@@ -105,6 +105,8 @@ public class Controlador_Inter {
     public String Sis_Interventor_DesPedido(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
+        var pedidos = pedidoService.listarPedido();
+        model.addAttribute("pedidos", pedidos);
         return "/html/Sis_Interventor_DesPedido";
     }
 

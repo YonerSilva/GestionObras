@@ -82,6 +82,7 @@
                                         <th>Descripción</th>
                                         <th>Cantidad</th>
                                         <th>Precio Unitario</th>
+                                        <th>Punto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,6 +90,7 @@
                                         <td>[[${insumo.descripcion}]]</td>
                                         <td>[[${insumo.cantidad}]]</td>
                                         <td>[[${insumo.precio}]]</td>
+                                        <td>[[${insumo.getPunto().getId_punto()+' - '+insumo.getPunto().getNombre()}]]</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -98,7 +100,7 @@
                         </div>
                     </div>
                     <div class="d-flex"> 
-                        <button class="btn btn-primary p-1 m-2" th:attr="onClick=|descargarReporte(${pedido.getId_pedido()})|">Descargar Reporte</button>
+                        <button class="btn btn-primary p-1 m-2" th:attr="onClick=|descargarReporteInter(${pedido.getId_pedido()})|">Descargar Reporte</button>
                         <a th:if="${pedido.getEstado()!='Aprobado'}" class="btn btn-primary p-1 m-2" th:href="@{/aprobarPedido/}+ ${pedido.getId_pedido()}">Aprobar</a>
                         <a th:if="${pedido.getEstado()!='Aprobado'}" class="btn btn-primary p-1 m-2" th:href="@{/eliminarPedidoInter/}+ ${pedido.getId_pedido()}">Rechazar</a>
                     </div>
