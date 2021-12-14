@@ -30,6 +30,7 @@ com\gestionObras\entities\Punto.class
 com\gestionObras\entities\SolicitudRegistro.class
 com\gestionObras\GestionObrasApplication.class
 com\gestionObras\service\SolicitudRegistroServiceImpl.class
+com\gestionObras\util\PedidosPdf.class
 com\gestionObras\service\PedidoService.class
 com\gestionObras\service\AreaServiceImpl.class
 com\gestionObras\main\ControladorInicio.class

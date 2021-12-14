@@ -90,7 +90,7 @@ public class Controlador_Super {
         model.addAttribute("pedidos", pedidos);
         return "/html/Sis_Supervisor_GesPed";
     }
-
+    
     @GetMapping("/verPedido/{id_pedido}")
     public String verPedido(Pedido pedido, Model model, RedirectAttributes atributes, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
