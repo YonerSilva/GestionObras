@@ -53,7 +53,7 @@ public class ControladorInicio {
                 return "html/Sis_Interventor_Prin";
             }
         }
-        return "/login";
+        return "login";
     }
     
     @GetMapping("/Sis_Administrador_Prin")
@@ -131,7 +131,7 @@ public class ControladorInicio {
             System.err.println(e.getMessage());
         }
         
-        return "/login";
+        return "login";
     }
     
     @GetMapping("/Olvide_Contrasenia")
