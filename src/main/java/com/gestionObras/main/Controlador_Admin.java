@@ -47,14 +47,14 @@ public class Controlador_Admin {
         var areas = areaService.listarAreas();
         model.addAttribute("areas", areas);
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Administrador_Area";
+        return "html/Sis_Administrador_Area";
     }
 
     @GetMapping("/Sis_Agregar_Areas")
     public String Sis_Agregar_Areas(Area area, HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Agregar_Areas";
+        return "html/Sis_Agregar_Areas";
     }
 
     @PostMapping("/guardarArea")
@@ -71,7 +71,7 @@ public class Controlador_Admin {
             return "redirect:/Sis_Agregar_Areas";
         }
 
-        return "/html/Sis_Administrador_Area";
+        return "html/Sis_Administrador_Area";
     }
 
     @GetMapping("/Sis_Modificar_Areas_Mod/{id_area}")
@@ -95,7 +95,7 @@ public class Controlador_Admin {
             atribute.addFlashAttribute("errores", "El área ya existe.");
             return "redirect:/Sis_Modificar_Areas_Mod/"+String.valueOf(area.getId_area());
         }
-        return "/html/Sis_Administrador_Area";
+        return "html/Sis_Administrador_Area";
     }
 
     @GetMapping("/eliminarArea/{id_area}")
@@ -106,7 +106,7 @@ public class Controlador_Admin {
         areaService.eliminar(areaAux);
         var areas = areaService.listarAreas();
         model.addAttribute("areas", areas);
-        return "/html/Sis_Administrador_Area";
+        return "html/Sis_Administrador_Area";
     }
 
     @GetMapping("/Sis_VerPuntos_Area/{id_area}")
@@ -116,7 +116,7 @@ public class Controlador_Admin {
         var puntos = area.getPuntosA();
         model.addAttribute("puntos", puntos);
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_VerPuntos_Area";
+        return "html/Sis_VerPuntos_Area";
     }
 
     @GetMapping("/Sis_Administrador_Zona")
@@ -125,14 +125,14 @@ public class Controlador_Admin {
         var zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Administrador_Zona";
+        return "html/Sis_Administrador_Zona";
     }
 
     @GetMapping("/Sis_Agregar_Zonas")
     public String Sis_Agregar_Zonas(Zona zona, HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Agregar_Zonas";
+        return "html/Sis_Agregar_Zonas";
     }
 
     @PostMapping("/guardarZona")
@@ -147,7 +147,7 @@ public class Controlador_Admin {
             atribute.addFlashAttribute("errores", "La zona ya existe.");
             return "redirect:/Sis_Agregar_Zonas";
         }
-        return "/html/Sis_Administrador_Zona";
+        return "html/Sis_Administrador_Zona";
     }
     
     @PostMapping("/modificarZona")
@@ -162,7 +162,7 @@ public class Controlador_Admin {
             atribute.addFlashAttribute("errores", "La zona ya existe.");
             return "redirect:/Sis_Modificar_Zonas_Mod/"+String.valueOf(zona.getId_zona());
         }
-        return "/html/Sis_Administrador_Zona";
+        return "html/Sis_Administrador_Zona";
     }
 
     @GetMapping("/Sis_Modificar_Zonas_Mod/{id_zona}")
@@ -181,7 +181,7 @@ public class Controlador_Admin {
         zonaService.eliminar(zona);
         var zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);
-        return "/html/Sis_Administrador_Zona";
+        return "html/Sis_Administrador_Zona";
     }
 
     @GetMapping("/Sis_VerPuntos_Zona/{id_zona}")
@@ -191,7 +191,7 @@ public class Controlador_Admin {
         zona = zonaService.encontrarZona(zona);
         var puntos = zona.getPuntosZ();
         model.addAttribute("puntos", puntos);
-        return "/html/Sis_VerPuntos_Zona";
+        return "html/Sis_VerPuntos_Zona";
     }
 
     @GetMapping("/Sis_Administrador_Punto")
@@ -200,7 +200,7 @@ public class Controlador_Admin {
         var puntos = puntoService.listarPuntos();
         model.addAttribute("puntos", puntos);
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Administrador_Punto";
+        return "html/Sis_Administrador_Punto";
     }
 
     @GetMapping("/Sis_Agregar_Punto")
@@ -213,7 +213,7 @@ public class Controlador_Admin {
         List<Zona> zonas = new ArrayList<>();
         zonas = zonaService.listarZonas();
         model.addAttribute("zonas", zonas);
-        return "/html/Sis_Agregar_Punto";
+        return "html/Sis_Agregar_Punto";
     }
 
     @PostMapping("/guardarPunto")
@@ -229,7 +229,7 @@ public class Controlador_Admin {
             errores.addFlashAttribute("errores", "El punto ya existe.");
             return "redirect:/Sis_Agregar_Punto";
         }
-        return "/html/Sis_Administrador_Punto";
+        return "html/Sis_Administrador_Punto";
     }
 
     @GetMapping("/eliminarPunto/{id_punto}")
@@ -239,7 +239,7 @@ public class Controlador_Admin {
         puntoService.eliminar(punto);
         var puntos = puntoService.listarPuntos();
         model.addAttribute("puntos", puntos);
-        return "/html/Sis_Administrador_Punto";
+        return "html/Sis_Administrador_Punto";
     }
 
     @GetMapping("/Sis_Modificar_Puntos_Mod/{id_punto}")
@@ -270,7 +270,7 @@ public class Controlador_Admin {
             errores.addFlashAttribute("errores", "El punto ya existe.");
             return "redirect:/Sis_Modificar_Puntos_Mod/"+String.valueOf(punto.getId_punto());
         }
-        return "/html/Sis_Administrador_Punto";
+        return "html/Sis_Administrador_Punto";
     }
 
     @GetMapping("/Sis_Administrador_GesReg")
@@ -279,7 +279,7 @@ public class Controlador_Admin {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
         model.addAttribute("solicitudes", solicitudes);
-        return "/html/Sis_Administrador_GesReg";
+        return "html/Sis_Administrador_GesReg";
     }
 
     @GetMapping("/aceptarSolicitud/{id_solicitud}")
@@ -302,7 +302,7 @@ public class Controlador_Admin {
         solicitudService.eliminarSolicitud(solicitud);
         var solicitudes = solicitudService.listarSolicitudes();
         model.addAttribute("solicitudes", solicitudes);
-        return "/html/Sis_Administrador_GesReg";
+        return "html/Sis_Administrador_GesReg";
     }
 
     @GetMapping("/rechazarSolicitud/{id_solicitud}")
@@ -313,7 +313,7 @@ public class Controlador_Admin {
         solicitudService.eliminarSolicitud(solicitud);
         var solicitudes = solicitudService.listarSolicitudes();
         model.addAttribute("solicitudes", solicitudes);
-        return "/html/Sis_Administrador_GesReg";
+        return "html/Sis_Administrador_GesReg";
     }
 
     @GetMapping("/Sis_Administrador_GesUs")
@@ -322,7 +322,7 @@ public class Controlador_Admin {
         model.addAttribute("usuario", usuario);
         List<Usuario> usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "/html/Sis_Administrador_GesUs";
+        return "html/Sis_Administrador_GesUs";
     }
 
     @GetMapping("/eliminarUsuario/{id_usuario}")
@@ -333,7 +333,7 @@ public class Controlador_Admin {
         usuarioService.eliminarUsuario(usuario.getId_usuario());
         var usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "/html/Sis_Administrador_GesUs";
+        return "html/Sis_Administrador_GesUs";
     }
 
     @GetMapping("/modificarUsuario/{id_usuario}")
@@ -342,7 +342,7 @@ public class Controlador_Admin {
         model.addAttribute("usuario", aux);
         usuario = usuarioService.findById(usuario.getId_usuario());
         model.addAttribute("usuarioAux", usuario);
-        return "/html/Editar_User";
+        return "html/Editar_User";
     }
 
     @PostMapping("/guardarUsuario")
@@ -370,6 +370,6 @@ public class Controlador_Admin {
         usuarioService.guardarUsuario(info);
         var usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "/html/Sis_Administrador_GesUs";
+        return "html/Sis_Administrador_GesUs";
     }
 }
