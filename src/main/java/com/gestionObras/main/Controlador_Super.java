@@ -42,7 +42,7 @@ public class Controlador_Super {
         }
         List<Insumo> insumos = pedido.getInsumos();
         model.addAttribute("insumos", insumos);
-        return "/html/Sis_Supervisor_CargarPedido";
+        return "html/Sis_Supervisor_CargarPedido";
     }
 
     @PostMapping("/guardarPedido")
@@ -102,7 +102,7 @@ public class Controlador_Super {
         model.addAttribute("usuario", usuario);
         var pedidos = pedidoService.listarPedido();
         model.addAttribute("pedidos", pedidos);
-        return "/html/Sis_Supervisor_GesPed";
+        return "html/Sis_Supervisor_GesPed";
     }
 
     @GetMapping("/verPedidoSuper/{id_pedido}")
@@ -124,7 +124,7 @@ public class Controlador_Super {
             model.addAttribute("errores", e.getMessage());
         }
         
-        return "/html/Sis_Supervisor_Pedido";
+        return "html/Sis_Supervisor_Pedido";
     }
 
 
@@ -132,7 +132,7 @@ public class Controlador_Super {
     public String Sis_Supervisor_ConsuPe(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Supervisor_ConsuPe";
+        return "html/Sis_Supervisor_ConsuPe";
     }
 
     @GetMapping("/Sis_Supervisor_DesPedido")
@@ -141,6 +141,6 @@ public class Controlador_Super {
         model.addAttribute("usuario", usuario);
         var pedidos = pedidoService.listarPedido();
         model.addAttribute("pedidos", pedidos);
-        return "/html/Sis_Supervisor_DesPedido";
+        return "html/Sis_Supervisor_DesPedido";
     }
 }
