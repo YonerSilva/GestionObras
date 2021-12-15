@@ -23,7 +23,7 @@ public class Controlador_Inter {
     public String Sis_Interventor_ConsuPe(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Interventor_ConsuPe";
+        return "html/Sis_Interventor_ConsuPe";
     }
 
     @GetMapping("/Sis_Interventor_GesPed")
@@ -32,7 +32,7 @@ public class Controlador_Inter {
         var pedidos = pedidoService.listarPedido();
         model.addAttribute("pedidos", pedidos);
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Interventor_GesPed";
+        return "html/Sis_Interventor_GesPed";
     }
 
     @GetMapping("/Sis_Interventor_Pedido")
@@ -81,7 +81,7 @@ public class Controlador_Inter {
             model.addAttribute("errores", e.getMessage());
         }
         
-        return "/html/Sis_Interventor_Pedido";
+        return "html/Sis_Interventor_Pedido";
     }
     
     @GetMapping("/aprobarPedido/{id_pedido}")
@@ -107,7 +107,7 @@ public class Controlador_Inter {
         model.addAttribute("usuario", usuario);
         var pedidos = pedidoService.listarPedido();
         model.addAttribute("pedidos", pedidos);
-        return "/html/Sis_Interventor_DesPedido";
+        return "html/Sis_Interventor_DesPedido";
     }
 
 }
