@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
-@Component("/html/Sis_Supervisor_Pedido")
+@Component("html/Sis_Supervisor_Pedido")
 public class PedidosSuperPdf extends AbstractPdfView {
 
     @Override

@@ -13,7 +13,6 @@ com\gestionObras\entities\Usuario.class
 com\gestionObras\main\Controlador_Inter.class
 com\gestionObras\service\PuntoService.class
 com\gestionObras\entities\SolicitudRol.class
-.netbeans_automatic_build
 com\gestionObras\service\ZonaService.class
 com\gestionObras\util\EncriptarPassword.class
 com\gestionObras\service\SolicitudRegistroService.class
