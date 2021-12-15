@@ -6,15 +6,11 @@ import com.gestionObras.entities.Usuario;
 import com.gestionObras.service.SolicitudRegistroServiceImpl;
 import com.gestionObras.service.UsuarioService;
 import com.gestionObras.util.EncriptarPassword;
-import com.gestionObras.util.Imagen;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +18,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -49,13 +44,13 @@ public class ControladorInicio {
 
         for (GrantedAuthority role : roles) {
             if (role.getAuthority().equals("ROLE_ADMINISTRADOR")) {
-                return "/html/Sis_Administrador_Prin";
+                return "html/Sis_Administrador_Prin";
             }
             if (role.getAuthority().equals("ROLE_SUPERVISOR")) {
-                return "/html/Sis_Supervisor_Prin";
+                return "html/Sis_Supervisor_Prin";
             }
             if (role.getAuthority().equals("ROLE_INTERVENTOR")) {
-                return "/html/Sis_Interventor_Prin";
+                return "html/Sis_Interventor_Prin";
             }
         }
         return "/login";
@@ -65,21 +60,21 @@ public class ControladorInicio {
     public String Administrador(Model model, HttpSession session){
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Administrador_Prin";
+        return "html/Sis_Administrador_Prin";
     }
     
     @GetMapping("/Sis_Supervisor_Prin")
     public String Supervisor(Model model, HttpSession session){
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Supervisor_Prin";    
+        return "html/Sis_Supervisor_Prin";    
     }
     
     @GetMapping("/Sis_Interventor_Prin")
     public String Interventor(Model model, HttpSession session){
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         model.addAttribute("usuario", usuario);
-        return "/html/Sis_Interventor_Prin";
+        return "html/Sis_Interventor_Prin";
     }
 
     @GetMapping("/sign_in")
@@ -138,9 +133,10 @@ public class ControladorInicio {
         
         return "/login";
     }
+    
     @GetMapping("/Olvide_Contrasenia")
     public String olvideContrasenia() {
-        return "/html/Olvide_Contrasenia";
+        return "html/Olvide_Contrasenia";
     }
     
     /*
