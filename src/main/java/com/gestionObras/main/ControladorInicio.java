@@ -84,7 +84,7 @@ public class ControladorInicio {
 
     @GetMapping("/sign_in")
     public String registrar_User(Usuario usuario) {
-        return "/html/Registrar_User";
+        return "html/Registrar_User";
     }
 
     @PostMapping("/Guardar_Solicitud")
