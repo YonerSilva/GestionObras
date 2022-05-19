@@ -44,6 +44,8 @@ public class Punto implements Serializable{
     public String toString(){
         if(zona==null)
             return "Area: "+area.getNombre()+" - Zona: Vacio";
+        if(area==null)
+            return "vacio";
         return "Area: "+area.getNombre()+" - Zona: "+zona.getNombre();
     }
 
